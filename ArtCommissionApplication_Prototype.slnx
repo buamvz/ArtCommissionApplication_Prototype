@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="ArtCommisionApplication.Test/ArtCommisionApplication.Test.csproj" Id="d11e5525-5c44-4253-8fc0-224983d67ebb" />
   <Project Path="ArtCommissionApplication_Prototype/ArtCommissionApplication_Prototype.csproj" />
 </Solution>

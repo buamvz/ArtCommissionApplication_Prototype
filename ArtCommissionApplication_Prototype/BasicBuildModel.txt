@@ -4,6 +4,9 @@
         //-ClientName
         //-ClentEmail
         //-CommisionType
+        //      -Head Shot
+        //      -Half Body
+        //      -Full Body
         //-Description
         //-EstimatedPrice
         //-Status
