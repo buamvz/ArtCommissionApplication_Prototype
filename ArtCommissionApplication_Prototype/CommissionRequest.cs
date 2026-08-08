@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ArtCommissionApplication_Prototype
+{
+    public class CommissionRequest
+    {
+        //Basic model build
+        //CommisionRequest
+        //-ID
+        //-ClientName
+        //-ClentEmail
+        //-CommisionType
+        //-Description
+        //-EstimatedPrice
+        //-Status
+        //  -Pending
+        //  -Accepted
+        //  -Rejected
+        //  -InProgress
+        //      -Sketch
+        //      -Linart
+        //      -Colouring
+        //      -Rendering
+        //  -Completed
+        //-SubmittedDate
+
+        //Validations needed
+        //  -commission ID cannot be empty
+        //  -client name cannot be empty
+        //  -client email cannot be empty
+        //  -commission type cannot be empty
+        //  -description cannot be empty
+        //  -estimated price cannot be negative
+        //  -new request starts as Pending
+
+
+    }
+}
