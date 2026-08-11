@@ -23,14 +23,14 @@ namespace ArtCommissionApplication_Prototype
         public CommissionStatus Status { get; private set; }
         public DateTime SubmittedDate { get; }
 
-        public CommissionRequest(Client client, CommissionInformation commissionType)
+        public CommissionRequest(Client client, CommissionInformation commissionInformation)
         {
             Client = client ?? throw new ArgumentNullException(nameof(client));
-            CommissionType = commissionType ?? throw new ArgumentNullException(nameof(commissionType));
+            CommissionType = commissionInformation ?? throw new ArgumentNullException(nameof(commissionInformation));
 
             /* sienna - moved to client and commission classes
              
-            if (string.IsNullOrWhiteSpace(commissionType))
+            if (string.IsNullOrWhiteSpace(commissionInformation))
                 throw new ArgumentException("Commission type is required.");
             
             if (string.IsNullOrWhiteSpace(description))
@@ -43,7 +43,7 @@ namespace ArtCommissionApplication_Prototype
             initialising properties with values needed
 
             Client = client;
-            CommissionType = commissionType;
+            CommissionType = commissionInformation;
 
             Description = description;
             EstimatedPrice = estimatedPrice;
