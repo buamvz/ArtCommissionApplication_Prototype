@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace ArtCommissionApplication_Prototype
@@ -10,10 +11,12 @@ namespace ArtCommissionApplication_Prototype
         public string ClientName { get; }
         public string ClientEmail { get; }
 
-        public Client(string id, string clientName, string email) 
+
+        public Client(string clientName, string email) 
         {
-            if (string.IsNullOrWhiteSpace(id))
-                throw new ArgumentException("Commission ID is required.");
+            // sienna - dont need id?
+            // if (string.IsNullOrWhiteSpace(id))
+            //    throw new ArgumentException("Commission ID is required.");
 
             if (string.IsNullOrWhiteSpace(clientName))
                 throw new ArgumentException("Clients name is required.");
@@ -21,7 +24,8 @@ namespace ArtCommissionApplication_Prototype
             if (string.IsNullOrWhiteSpace(email))
                 throw new ArgumentException("Clients email is required.");
 
-            Id = id;
+
+            // Id = id;
             ClientName = clientName;
             ClientEmail = email;
         }
