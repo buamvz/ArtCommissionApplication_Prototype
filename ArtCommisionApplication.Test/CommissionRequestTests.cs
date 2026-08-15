@@ -53,6 +53,35 @@ namespace ArtCommisionApplication.Test
 
         }
 
+        // Brooke - checking a past date 
+        //past date will be rejected (business rule defect prevention) 
+        //vaild future date will be accepted
+
+        [TestMethod]
+        public void CommissionInformation_PastNeedByDate_ThrowsException()
+        {
+            Assert.ThrowsException<ArgumentException>(() =>
+                new CommissionInformation(CharacterCrop.Fullbody, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(-1)));
+        }
+
+        [TestMethod]
+        public void CommissionInformation_FutureNeedByDate_CreatesCommission()
+        {
+            var commission = new CommissionInformation(CharacterCrop.Fullbody, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(7));
+
+            Assert.AreEqual(DateTime.Today.AddDays(7), commission.NeedByDate.Value.Date);
+        }
+
+
+
+
+
+
+
+
+
+
+
         /* Sienna - old version of tests (similar tests above)
         
         [TestMethod]

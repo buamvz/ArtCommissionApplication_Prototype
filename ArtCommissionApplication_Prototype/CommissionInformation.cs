@@ -28,15 +28,22 @@ namespace ArtCommissionApplication_Prototype
                 throw new ArgumentException($"Invalid commission character crop type: {characterCrop}, please select a valid character crop type.");
 
             if (string.IsNullOrWhiteSpace(description))
-                throw new ArgumentException("A description for the commission is required."); 
-                // maybe do an if-contains-words to eliminate some things that go against TOS ?
+                throw new ArgumentException("A description for the commission is required.");
+            // maybe do an if-contains-words to eliminate some things that go against TOS ?
 
-            // require 1 week notice on commission requests
-            if (needByDate <= DateTime.Today.AddDays(7))
+            //Brooke - requested date cannot be in the past, this is a business rule defect
+            //prevents invaild commission deadlines from entering the system
+            //problem that needByDate is nullable(DateTime) and that null is allowed later
+            //if (needByDate == null)
+            //    NeedByDate = null;
+
+            //Brooke - require 1 week notice on commission requests + now doesn't allow in the past
+            //changed from <= to < as the rule is minium 7 days notice 
+            //if the request is 7 days then <= 7 wont accept 7 days which would be a weeks notice
+            //this helps prevent unrealistic deadlines and supports commission planning
+            if (needByDate.HasValue && needByDate.Value.Date < DateTime.Today.AddDays(7))
                 throw new ArgumentException("One week notice is required at minimum for a commission. Please select a later date.");
 
-            if (needByDate == null)
-                NeedByDate = null;
 
             CropType = characterCrop;
             HasBackground = hasBackground;
