@@ -72,12 +72,22 @@ namespace ArtCommisionApplication.Test
             Assert.AreEqual(DateTime.Today.AddDays(7), commission.NeedByDate.Value.Date);
         }
 
+        //invaild and vaild email test for new mailAddress in client
+        [TestMethod]
+        public void Client_InvalidEmail_ThrowsException()
+        {
+            Assert.ThrowsException<ArgumentException>(() =>
+                new Client("Yuji", "noemailhere"));
+        }
 
+        [TestMethod]
+        public void Client_ValidEmail_CreatesClient()
+        {
+            var client = new Client("Yuji", "mahitohater67@gmail.com");
 
-
-
-
-
+            Assert.AreEqual("Yuji", client.ClientName);
+            Assert.AreEqual("mahitohater67@gmail.com", client.ClientEmail);
+        }
 
 
 
