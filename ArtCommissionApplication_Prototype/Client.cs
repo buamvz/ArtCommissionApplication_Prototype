@@ -8,12 +8,13 @@ namespace ArtCommissionApplication_Prototype
 {
     public class Client
     {
-        public string Id { get; }
+        // sienna - change so that the program automatically gives client an ID
+        // public string Id { get; }
         public string ClientName { get; }
         public string ClientEmail { get; }
 
 
-        public Client(string Id, string clientName, string email) 
+        public Client(string clientName, string email) 
         {
             // sienna - dont need id?
             // if (string.IsNullOrWhiteSpace(id))
