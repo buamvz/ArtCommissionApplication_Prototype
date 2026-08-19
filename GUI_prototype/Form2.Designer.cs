@@ -28,59 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
             panel1 = new Panel();
-            textBox2 = new TextBox();
+            label1 = new Label();
             button1 = new Button();
+            textBox3 = new TextBox();
+            label2 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.FromArgb(192, 192, 255);
-            textBox1.Font = new Font("SWItalt", 32F);
-            textBox1.Location = new Point(12, 12);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(592, 70);
-            textBox1.TabIndex = 3;
-            textBox1.Text = "Commission [Artist1]";
-            // 
             // panel1
             // 
-            panel1.Controls.Add(textBox2);
+            panel1.AutoScroll = true;
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(button1);
-            panel1.Location = new Point(12, 94);
+            panel1.Controls.Add(textBox3);
+            panel1.Location = new Point(12, 77);
             panel1.Name = "panel1";
-            panel1.Size = new Size(776, 344);
+            panel1.Size = new Size(776, 361);
             panel1.TabIndex = 4;
             // 
-            // textBox2
+            // label1
             // 
-            textBox2.Font = new Font("Segoe UI", 12F);
-            textBox2.Location = new Point(14, 13);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(550, 63);
-            textBox2.TabIndex = 1;
-            textBox2.Text = "Welcome to the commission center...! If you would like to request a commissioned illustration from [Artist1], please press the button below.";
-            textBox2.TextChanged += textBox2_TextChanged;
+            label1.AutoSize = true;
+            label1.Location = new Point(11, 13);
+            label1.Name = "label1";
+            label1.Size = new Size(39, 15);
+            label1.TabIndex = 3;
+            label1.Text = "Email:";
+            label1.Click += label1_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(476, 186);
+            button1.Location = new Point(569, 328);
             button1.Name = "button1";
             button1.Size = new Size(159, 71);
             button1.TabIndex = 0;
             button1.Text = "Request Commission";
             button1.UseVisualStyleBackColor = true;
             // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(11, 31);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(365, 23);
+            textBox3.TabIndex = 2;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(192, 192, 255);
+            label2.Font = new Font("SWItal", 32.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.Location = new Point(12, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(518, 55);
+            label2.TabIndex = 5;
+            label2.Text = "Commission Forms";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
             Controls.Add(panel1);
-            Controls.Add(textBox1);
             Name = "Form2";
             Text = "Form2";
             panel1.ResumeLayout(false);
@@ -90,10 +100,10 @@
         }
 
         #endregion
-
-        private TextBox textBox1;
         private Panel panel1;
-        private TextBox textBox2;
         private Button button1;
+        private Label label1;
+        private TextBox textBox3;
+        private Label label2;
     }
 }

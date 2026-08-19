@@ -24,5 +24,10 @@ namespace GUI_prototype
         {
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
