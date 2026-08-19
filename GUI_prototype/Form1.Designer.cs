@@ -28,17 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            RequestComm = new Button();
-            panel1 = new Panel();
-            textBox2 = new TextBox();
             label1 = new Label();
-            panel1.SuspendLayout();
+            tabAll = new TabControl();
+            tabInformation = new TabPage();
+            label2 = new Label();
+            RequestComm = new Button();
+            tabHome = new TabPage();
+            tabTOS = new TabPage();
+            tabSamples = new TabPage();
+            tabQueue = new TabPage();
+            tabAll.SuspendLayout();
+            tabHome.SuspendLayout();
             SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.FromArgb(192, 192, 255);
+            label1.Dock = DockStyle.Top;
+            label1.Font = new Font("SWItal", 32.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(800, 55);
+            label1.TabIndex = 3;
+            label1.Text = "Commission [Artist1]";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // tabAll
+            // 
+            tabAll.Controls.Add(tabHome);
+            tabAll.Controls.Add(tabInformation);
+            tabAll.Controls.Add(tabTOS);
+            tabAll.Controls.Add(tabSamples);
+            tabAll.Controls.Add(tabQueue);
+            tabAll.Font = new Font("Segoe UI", 8F);
+            tabAll.Location = new Point(0, 58);
+            tabAll.Name = "tabAll";
+            tabAll.SelectedIndex = 0;
+            tabAll.Size = new Size(800, 392);
+            tabAll.TabIndex = 3;
+            // 
+            // tabInformation
+            // 
+            tabInformation.Location = new Point(4, 22);
+            tabInformation.Name = "tabInformation";
+            tabInformation.Padding = new Padding(3);
+            tabInformation.Size = new Size(792, 366);
+            tabInformation.TabIndex = 1;
+            tabInformation.Text = "Information";
+            tabInformation.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.FromArgb(224, 224, 224);
+            label2.Font = new Font("Segoe UI", 12F);
+            label2.Location = new Point(15, 12);
+            label2.Name = "label2";
+            label2.Padding = new Padding(10);
+            label2.Size = new Size(523, 63);
+            label2.TabIndex = 2;
+            label2.Text = "Welcome to the commission center...! If you would like to request a commissioned illustration from [Artist1], please press the button below.";
             // 
             // RequestComm
             // 
             RequestComm.AccessibleName = "RequestComm";
-            RequestComm.Location = new Point(14, 82);
+            RequestComm.Location = new Point(15, 90);
             RequestComm.Name = "RequestComm";
             RequestComm.Size = new Size(159, 71);
             RequestComm.TabIndex = 0;
@@ -46,58 +99,72 @@
             RequestComm.UseVisualStyleBackColor = true;
             RequestComm.Click += RequestComm_Click;
             // 
-            // panel1
+            // tabHome
             // 
-            panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(RequestComm);
-            panel1.Location = new Point(12, 77);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(776, 361);
-            panel1.TabIndex = 1;
+            tabHome.Controls.Add(RequestComm);
+            tabHome.Controls.Add(label2);
+            tabHome.Location = new Point(4, 22);
+            tabHome.Name = "tabHome";
+            tabHome.Padding = new Padding(3);
+            tabHome.Size = new Size(792, 366);
+            tabHome.TabIndex = 0;
+            tabHome.Text = "Home";
+            tabHome.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // tabTOS
             // 
-            textBox2.Font = new Font("Segoe UI", 12F);
-            textBox2.Location = new Point(14, 13);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(550, 63);
-            textBox2.TabIndex = 1;
-            textBox2.Text = "Welcome to the commission center...! If you would like to request a commissioned illustration from [Artist1], please press the button below.";
-            textBox2.TextChanged += textBox2_TextChanged;
+            tabTOS.Location = new Point(4, 22);
+            tabTOS.Name = "tabTOS";
+            tabTOS.Padding = new Padding(3);
+            tabTOS.Size = new Size(792, 366);
+            tabTOS.TabIndex = 2;
+            tabTOS.Text = "Terms Of Service";
+            tabTOS.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // tabSamples
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(192, 192, 255);
-            label1.Font = new Font("SWItal", 32.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(584, 55);
-            label1.TabIndex = 3;
-            label1.Text = "Commission [Artist1]";
+            tabSamples.Location = new Point(4, 22);
+            tabSamples.Name = "tabSamples";
+            tabSamples.Padding = new Padding(3);
+            tabSamples.Size = new Size(792, 366);
+            tabSamples.TabIndex = 3;
+            tabSamples.Text = "Samples Of Work";
+            tabSamples.UseVisualStyleBackColor = true;
+            // 
+            // tabQueue
+            // 
+            tabQueue.Location = new Point(4, 22);
+            tabQueue.Name = "tabQueue";
+            tabQueue.Padding = new Padding(3);
+            tabQueue.Size = new Size(792, 366);
+            tabQueue.TabIndex = 4;
+            tabQueue.Text = "Public Queue";
+            tabQueue.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(tabAll);
             Controls.Add(label1);
-            Controls.Add(panel1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            tabAll.ResumeLayout(false);
+            tabHome.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Button RequestComm;
-        private Panel panel1;
-        private TextBox textBox2;
         private Label label1;
+        private TabControl tabAll;
+        private TabPage tabHome;
+        private Button RequestComm;
+        private Label label2;
+        private TabPage tabInformation;
+        private TabPage tabTOS;
+        private TabPage tabSamples;
+        private TabPage tabQueue;
     }
 }
