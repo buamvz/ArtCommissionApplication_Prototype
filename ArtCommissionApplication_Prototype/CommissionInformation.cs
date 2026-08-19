@@ -15,13 +15,13 @@ namespace ArtCommissionApplication_Prototype
         }
 
         // ADD NUMBER OF CHARACTERS
-
+        public int NumberOFCharacters { get; }
         public bool HasBackground { get; }
         public string Description { get; }
         public decimal EstimatedPrice { get; private set; }
         public DateTime? NeedByDate { get; }
 
-        public CommissionInformation(CharacterCrop characterCrop, bool hasBackground, string description, DateTime? needByDate) 
+        public CommissionInformation(CharacterCrop characterCrop, int numberOfCharacters, bool hasBackground, string description, DateTime? needByDate) 
         {
             // check given character crop type is valid
             if (!Enum.IsDefined(typeof(CharacterCrop), characterCrop))
@@ -44,8 +44,12 @@ namespace ArtCommissionApplication_Prototype
             if (needByDate.HasValue && needByDate.Value.Date < DateTime.Today.AddDays(7))
                 throw new ArgumentException("One week notice is required at minimum for a commission. Please select a later date.");
 
+            // sienna - no more than five characters in a single commission illustration
+            if (numberOfCharacters > 5)
+                throw new ArgumentException("No more than 5 characters in a single commission.");
 
             CropType = characterCrop;
+            NumberOFCharacters = numberOfCharacters;
             HasBackground = hasBackground;
             Description = description;
 

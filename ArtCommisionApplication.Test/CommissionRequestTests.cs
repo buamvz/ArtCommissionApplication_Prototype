@@ -38,7 +38,7 @@ namespace ArtCommisionApplication.Test
         public void CommissionRequest_ValidDetails_CreatesPendingRequest()
         {
             var client = new Client("Yuji", "mahitohater67@gmail.com");
-            var commission = new CommissionInformation(CharacterCrop.Fullbody, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(8));
+            var commission = new CommissionInformation(CharacterCrop.Fullbody, 2, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(8));
 
             var request = new CommissionRequest(client, commission);
 
@@ -49,7 +49,7 @@ namespace ArtCommisionApplication.Test
         public void CommissionRequest_EmptyDescription_ThrowsException()
         {
             Assert.ThrowsException<ArgumentException>(() =>
-                new CommissionInformation(CharacterCrop.Fullbody, true, "", DateTime.Today.AddDays(8)));
+                new CommissionInformation(CharacterCrop.Fullbody, 2, true, "", DateTime.Today.AddDays(8)));
 
         }
 
@@ -61,13 +61,13 @@ namespace ArtCommisionApplication.Test
         public void CommissionInformation_PastNeedByDate_ThrowsException()
         {
             Assert.ThrowsException<ArgumentException>(() =>
-                new CommissionInformation(CharacterCrop.Fullbody, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(-1)));
+                new CommissionInformation(CharacterCrop.Fullbody, 2, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(-1)));
         }
 
         [TestMethod]
         public void CommissionInformation_FutureNeedByDate_CreatesCommission()
         {
-            var commission = new CommissionInformation(CharacterCrop.Fullbody, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(7));
+            var commission = new CommissionInformation(CharacterCrop.Fullbody, 2, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(7));
 
             Assert.AreEqual(DateTime.Today.AddDays(7), commission.NeedByDate.Value.Date);
         }
@@ -89,48 +89,12 @@ namespace ArtCommisionApplication.Test
             Assert.AreEqual("mahitohater67@gmail.com", client.ClientEmail);
         }
 
-
-
-
-        /* Sienna - old version of tests (similar tests above)
-        
         [TestMethod]
-        public void CommissionRequest_EmptyClientName_ThrowsException()
+        public void CommissionInformation_MoreThanFiveCharacters_ThrowsException()
         {
             Assert.ThrowsException<ArgumentException>(() =>
-                new CommissionRequest("C001", "", "mahitohater67@gmail.com", "Half Body drawing", "Me and Junpei having a picnic", 100m));
+                new CommissionInformation(CharacterCrop.Fullbody, 6, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(7)));
         }
 
-        [TestMethod]
-        public void CommissionRequest_EmptyClientEmail_ThrowsException()
-        {
-            Assert.ThrowsException<ArgumentException>(() =>
-                new CommissionRequest("C001", "Yuji", "", "Half Body drawing", "Me and Junpei having a picnic", 100m));
-        }
-
-        [TestMethod]
-        public void CommissionRequest_NegativePrice_ThrowsException()
-        {
-            Assert.ThrowsException<ArgumentException>(() =>
-                new CommissionRequest("C001", "Yuji", "mahitohater67@gmail.com", "Half Body drawing", "Me and Junpei having a picnic", -50m));
-        }
-
-
-        [TestMethod]
-        public void CommissionRequest_ValidDetails_CreatesPendingRequest()
-        {
-            var request = new CommissionRequest("C001", "Yuji", "mahitohater67@gmail.com", "Half Body drawing", "Me and Junpei having a picnic", 100m);
-
-            Assert.AreEqual(CommissionStatus.Pending, request.Status);
-        }
-
-        [TestMethod]
-        public void CommissionRequest_EmptyDescription_ThrowsException()
-        {
-            Assert.ThrowsException<ArgumentException>(() =>
-                new CommissionRequest("C001", "Yuji", "mahitohater67@gmail.com", "Half Body drawing", "", 100m));
-
-        }
-        */
     }
 }
