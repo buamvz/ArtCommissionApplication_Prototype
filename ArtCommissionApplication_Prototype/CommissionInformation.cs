@@ -14,7 +14,6 @@ namespace ArtCommissionApplication_Prototype
             Fullbody,
         }
 
-        // ADD NUMBER OF CHARACTERS
         public int NumberOFCharacters { get; }
         public bool HasBackground { get; }
         public string Description { get; }

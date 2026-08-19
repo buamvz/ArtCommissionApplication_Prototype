@@ -13,7 +13,7 @@ namespace ArtCommissionApplication_Prototype
         public string ClientEmail { get; }
 
 
-        public Client(string clientName, string email) 
+        public Client(string Id, string clientName, string email) 
         {
             // sienna - dont need id?
             // if (string.IsNullOrWhiteSpace(id))
