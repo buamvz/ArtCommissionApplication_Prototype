@@ -34,18 +34,30 @@
             label1 = new Label();
             textBox1 = new TextBox();
             label3 = new Label();
-            checkBox1 = new CheckBox();
             label4 = new Label();
-            checkBox10 = new CheckBox();
             label5 = new Label();
-            checkBox9 = new CheckBox();
-            checkBox8 = new CheckBox();
-            checkBox7 = new CheckBox();
-            checkBox6 = new CheckBox();
-            checkBox2 = new CheckBox();
             panel1 = new Panel();
-            checkBox3 = new CheckBox();
+            label7 = new Label();
+            textBox2 = new TextBox();
+            panel4 = new Panel();
+            radioButton9 = new RadioButton();
+            radioButton10 = new RadioButton();
+            radioButton11 = new RadioButton();
+            label6 = new Label();
+            panel3 = new Panel();
+            radioButton8 = new RadioButton();
+            radioButton7 = new RadioButton();
+            radioButton6 = new RadioButton();
+            radioButton5 = new RadioButton();
+            radioButton4 = new RadioButton();
+            panel2 = new Panel();
+            radioButton3 = new RadioButton();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
             panel1.SuspendLayout();
+            panel4.SuspendLayout();
+            panel3.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // label2
@@ -58,6 +70,7 @@
             label2.Size = new Size(493, 63);
             label2.TabIndex = 5;
             label2.Text = "Commission Forms";
+            label2.Click += label2_Click;
             // 
             // textBox3
             // 
@@ -69,7 +82,7 @@
             // 
             // SubmitRequestButton
             // 
-            SubmitRequestButton.Location = new Point(26, 562);
+            SubmitRequestButton.Location = new Point(16, 855);
             SubmitRequestButton.Margin = new Padding(3, 4, 3, 4);
             SubmitRequestButton.Name = "SubmitRequestButton";
             SubmitRequestButton.Size = new Size(182, 95);
@@ -104,17 +117,6 @@
             label3.TabIndex = 5;
             label3.Text = "Email:";
             // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(23, 215);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(59, 24);
-            checkBox1.TabIndex = 7;
-            checkBox1.Text = "Bust";
-            checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -125,93 +127,27 @@
             label4.Text = "Type of commission:";
             label4.Click += label4_Click;
             // 
-            // checkBox10
-            // 
-            checkBox10.AutoSize = true;
-            checkBox10.CheckAlign = ContentAlignment.BottomCenter;
-            checkBox10.Location = new Point(28, 394);
-            checkBox10.Name = "checkBox10";
-            checkBox10.Size = new Size(21, 41);
-            checkBox10.TabIndex = 13;
-            checkBox10.Text = "1";
-            checkBox10.UseVisualStyleBackColor = true;
-            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(13, 356);
+            label5.Location = new Point(13, 375);
             label5.Name = "label5";
             label5.Size = new Size(263, 20);
             label5.TabIndex = 14;
             label5.Text = "Number of Characters for commission:";
             // 
-            // checkBox9
-            // 
-            checkBox9.AutoSize = true;
-            checkBox9.CheckAlign = ContentAlignment.BottomCenter;
-            checkBox9.Location = new Point(83, 394);
-            checkBox9.Name = "checkBox9";
-            checkBox9.Size = new Size(21, 41);
-            checkBox9.TabIndex = 15;
-            checkBox9.Text = "2";
-            checkBox9.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            checkBox8.AutoSize = true;
-            checkBox8.CheckAlign = ContentAlignment.BottomCenter;
-            checkBox8.Location = new Point(136, 394);
-            checkBox8.Name = "checkBox8";
-            checkBox8.Size = new Size(21, 41);
-            checkBox8.TabIndex = 16;
-            checkBox8.Text = "3";
-            checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            checkBox7.AutoSize = true;
-            checkBox7.CheckAlign = ContentAlignment.BottomCenter;
-            checkBox7.Location = new Point(187, 394);
-            checkBox7.Name = "checkBox7";
-            checkBox7.Size = new Size(21, 41);
-            checkBox7.TabIndex = 17;
-            checkBox7.Text = "4";
-            checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            checkBox6.AutoSize = true;
-            checkBox6.CheckAlign = ContentAlignment.BottomCenter;
-            checkBox6.Location = new Point(242, 394);
-            checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(21, 41);
-            checkBox6.TabIndex = 18;
-            checkBox6.Text = "5";
-            checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(23, 255);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(97, 24);
-            checkBox2.TabIndex = 19;
-            checkBox2.Text = "Half Body";
-            checkBox2.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
             panel1.AutoScroll = true;
-            panel1.Controls.Add(checkBox3);
-            panel1.Controls.Add(checkBox2);
-            panel1.Controls.Add(checkBox6);
-            panel1.Controls.Add(checkBox7);
-            panel1.Controls.Add(checkBox8);
-            panel1.Controls.Add(checkBox9);
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(panel4);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(panel3);
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(checkBox10);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label1);
@@ -220,24 +156,204 @@
             panel1.Location = new Point(14, 103);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(887, 684);
+            panel1.Size = new Size(887, 969);
             panel1.TabIndex = 4;
+            panel1.Paint += panel1_Paint;
             // 
-            // checkBox3
+            // label7
             // 
-            checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(23, 298);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(92, 24);
-            checkBox3.TabIndex = 20;
-            checkBox3.Text = "Full Body";
-            checkBox3.UseVisualStyleBackColor = true;
+            label7.AutoSize = true;
+            label7.Location = new Point(13, 691);
+            label7.Name = "label7";
+            label7.Size = new Size(179, 20);
+            label7.TabIndex = 26;
+            label7.Text = "Specifices of commisions:";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(13, 715);
+            textBox2.Margin = new Padding(3, 4, 3, 4);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(479, 123);
+            textBox2.TabIndex = 25;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = SystemColors.Window;
+            panel4.Controls.Add(radioButton9);
+            panel4.Controls.Add(radioButton10);
+            panel4.Controls.Add(radioButton11);
+            panel4.Location = new Point(16, 530);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(159, 144);
+            panel4.TabIndex = 24;
+            // 
+            // radioButton9
+            // 
+            radioButton9.AutoSize = true;
+            radioButton9.Location = new Point(11, 101);
+            radioButton9.Name = "radioButton9";
+            radioButton9.Size = new Size(109, 24);
+            radioButton9.TabIndex = 2;
+            radioButton9.TabStop = true;
+            radioButton9.Text = "Background";
+            radioButton9.UseVisualStyleBackColor = true;
+            // 
+            // radioButton10
+            // 
+            radioButton10.AutoSize = true;
+            radioButton10.Location = new Point(11, 57);
+            radioButton10.Name = "radioButton10";
+            radioButton10.Size = new Size(112, 24);
+            radioButton10.TabIndex = 1;
+            radioButton10.TabStop = true;
+            radioButton10.Text = "Solid Colour";
+            radioButton10.UseVisualStyleBackColor = true;
+            // 
+            // radioButton11
+            // 
+            radioButton11.AutoSize = true;
+            radioButton11.Location = new Point(12, 14);
+            radioButton11.Name = "radioButton11";
+            radioButton11.Size = new Size(133, 24);
+            radioButton11.TabIndex = 0;
+            radioButton11.TabStop = true;
+            radioButton11.Text = "No Background";
+            radioButton11.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(16, 498);
+            label6.Name = "label6";
+            label6.Size = new Size(126, 20);
+            label6.TabIndex = 23;
+            label6.Text = "Background Type:";
+            // 
+            // panel3
+            // 
+            panel3.BackColor = SystemColors.Window;
+            panel3.Controls.Add(radioButton8);
+            panel3.Controls.Add(radioButton7);
+            panel3.Controls.Add(radioButton6);
+            panel3.Controls.Add(radioButton5);
+            panel3.Controls.Add(radioButton4);
+            panel3.Location = new Point(13, 410);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(357, 69);
+            panel3.TabIndex = 22;
+            // 
+            // radioButton8
+            // 
+            radioButton8.AutoSize = true;
+            radioButton8.CheckAlign = ContentAlignment.TopCenter;
+            radioButton8.Location = new Point(297, 13);
+            radioButton8.Name = "radioButton8";
+            radioButton8.Size = new Size(21, 40);
+            radioButton8.TabIndex = 4;
+            radioButton8.TabStop = true;
+            radioButton8.Text = "5";
+            radioButton8.UseVisualStyleBackColor = true;
+            // 
+            // radioButton7
+            // 
+            radioButton7.AutoSize = true;
+            radioButton7.CheckAlign = ContentAlignment.TopCenter;
+            radioButton7.Location = new Point(233, 13);
+            radioButton7.Name = "radioButton7";
+            radioButton7.Size = new Size(21, 40);
+            radioButton7.TabIndex = 3;
+            radioButton7.TabStop = true;
+            radioButton7.Text = "4";
+            radioButton7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            radioButton6.AutoSize = true;
+            radioButton6.CheckAlign = ContentAlignment.TopCenter;
+            radioButton6.Location = new Point(164, 13);
+            radioButton6.Name = "radioButton6";
+            radioButton6.Size = new Size(21, 40);
+            radioButton6.TabIndex = 2;
+            radioButton6.TabStop = true;
+            radioButton6.Text = "3";
+            radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            radioButton5.AutoSize = true;
+            radioButton5.CheckAlign = ContentAlignment.TopCenter;
+            radioButton5.Location = new Point(97, 13);
+            radioButton5.Name = "radioButton5";
+            radioButton5.Size = new Size(21, 40);
+            radioButton5.TabIndex = 1;
+            radioButton5.TabStop = true;
+            radioButton5.Text = "2";
+            radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            radioButton4.AutoSize = true;
+            radioButton4.CheckAlign = ContentAlignment.TopCenter;
+            radioButton4.Location = new Point(31, 13);
+            radioButton4.Name = "radioButton4";
+            radioButton4.Size = new Size(21, 40);
+            radioButton4.TabIndex = 0;
+            radioButton4.TabStop = true;
+            radioButton4.Text = "1";
+            radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.Window;
+            panel2.Controls.Add(radioButton3);
+            panel2.Controls.Add(radioButton2);
+            panel2.Controls.Add(radioButton1);
+            panel2.Location = new Point(13, 209);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(130, 144);
+            panel2.TabIndex = 21;
+            // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new Point(11, 101);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(91, 24);
+            radioButton3.TabIndex = 2;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "Full Body";
+            radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(11, 57);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(96, 24);
+            radioButton2.TabIndex = 1;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "Half Body";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(12, 14);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(58, 24);
+            radioButton1.TabIndex = 0;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Bust";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 800);
+            ClientSize = new Size(914, 1085);
             Controls.Add(label2);
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
@@ -245,6 +361,12 @@
             Text = "Form2";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -256,16 +378,25 @@
         private Label label1;
         private TextBox textBox1;
         private Label label3;
-        private CheckBox checkBox1;
         private Label label4;
-        private CheckBox checkBox10;
         private Label label5;
-        private CheckBox checkBox9;
-        private CheckBox checkBox8;
-        private CheckBox checkBox7;
-        private CheckBox checkBox6;
-        private CheckBox checkBox2;
         private Panel panel1;
-        private CheckBox checkBox3;
+        private Panel panel2;
+        private RadioButton radioButton3;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
+        private Panel panel3;
+        private RadioButton radioButton8;
+        private RadioButton radioButton7;
+        private RadioButton radioButton6;
+        private RadioButton radioButton5;
+        private RadioButton radioButton4;
+        private Panel panel4;
+        private RadioButton radioButton9;
+        private RadioButton radioButton10;
+        private RadioButton radioButton11;
+        private Label label6;
+        private Label label7;
+        private TextBox textBox2;
     }
 }
