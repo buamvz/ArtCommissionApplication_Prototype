@@ -1,0 +1,1 @@
+Prompts given to GitHib Copilot, repsonses, accepted, changed and denied prompts and generated code
