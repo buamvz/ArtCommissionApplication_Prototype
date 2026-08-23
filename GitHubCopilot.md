@@ -40,3 +40,12 @@ I've updated the character-count validation to reject values below 1 and above 5
 Change made:
 •	Replaced the previous check that only rejected numberOfCharacters > 5 with: if (numberOfCharacters < 1 || numberOfCharacters > 5) throw new ArgumentException("A commission must contain between 1 and 5 characters.");
 I did not modify any other code. You can build the solution locally to verify; let me know if you want a different exception message or to add unit tests.
+
+
+Copilot Prompt 3 — Unit Tests
+- Prompt
+Add MSTest unit tests for all the character-count validation in CommissionInformation.  The valid range is 1 to 5 characters inclusive. I specifically want boundary-value tests that verify:
+0 characters is rejected, 1 character is accepted, 5 characters is accepted, 6 characters is rejected, a negative character count is rejected
+Follow the naming and structure of the existing CommissionRequestTests class. Do not modify production code. Only suggest the tests.
+
+Added tests for invalid and valid boundary values, boundary value analysis was used to test the limits of the allowed range
