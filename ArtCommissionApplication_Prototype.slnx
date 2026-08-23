@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="GitHubCopilot.md" />
+  </Folder>
   <Project Path="ArtCommisionApplication.Test/ArtCommisionApplication.Test.csproj" Id="d11e5525-5c44-4253-8fc0-224983d67ebb" />
   <Project Path="ArtCommissionApplication_Prototype/ArtCommissionApplication_Prototype.csproj" />
   <Project Path="GUI_prototype/GUI_prototype.csproj" Id="d79cba0f-efee-4a76-866a-9f770e71da3e" />

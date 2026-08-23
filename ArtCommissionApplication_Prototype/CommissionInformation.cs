@@ -43,9 +43,9 @@ namespace ArtCommissionApplication_Prototype
             if (needByDate.HasValue && needByDate.Value.Date < DateTime.Today.AddDays(7))
                 throw new ArgumentException("One week notice is required at minimum for a commission. Please select a later date.");
 
-            // sienna - no more than five characters in a single commission illustration
-            if (numberOfCharacters > 5)
-                throw new ArgumentException("No more than 5 characters in a single commission.");
+            // sienna - commission must contain between 1 and 5 characters inclusive
+            if (numberOfCharacters < 1 || numberOfCharacters > 5)
+                throw new ArgumentException("A commission must contain between 1 and 5 characters.");
 
             CropType = characterCrop;
             NumberOFCharacters = numberOfCharacters;

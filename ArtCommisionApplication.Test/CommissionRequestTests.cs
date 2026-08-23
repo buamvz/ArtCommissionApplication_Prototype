@@ -96,5 +96,35 @@ namespace ArtCommisionApplication.Test
                 new CommissionInformation(CharacterCrop.Fullbody, 6, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(7)));
         }
 
+        [TestMethod]
+        public void CommissionInformation_ZeroCharacters_ThrowsException()
+        {
+            Assert.ThrowsException<ArgumentException>(() =>
+                new CommissionInformation(CharacterCrop.Fullbody, 0, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(7)));
+        }
+
+        [TestMethod]
+        public void CommissionInformation_OneCharacter_CreatesCommission()
+        {
+            var commission = new CommissionInformation(CharacterCrop.Headshot, 1, false, "A", DateTime.Today.AddDays(7));
+
+            Assert.AreEqual(1, commission.NumberOFCharacters);
+        }
+
+        [TestMethod]
+        public void CommissionInformation_FiveCharacters_CreatesCommission()
+        {
+            var commission = new CommissionInformation(CharacterCrop.Fullbody, 5, true, "Group of five", DateTime.Today.AddDays(7));
+
+            Assert.AreEqual(5, commission.NumberOFCharacters);
+        }
+
+        [TestMethod]
+        public void CommissionInformation_NegativeCharacters_ThrowsException()
+        {
+            Assert.ThrowsException<ArgumentException>(() =>
+                new CommissionInformation(CharacterCrop.Halfbody, -1, false, "Invalid negative", DateTime.Today.AddDays(7)));
+        }
+
     }
 }
