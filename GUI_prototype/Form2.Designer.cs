@@ -40,7 +40,6 @@
             needbyDateInput = new Panel();
             inputBoolDateFalse = new RadioButton();
             inputBoolDateTrue = new RadioButton();
-            radioButton1 = new RadioButton();
             inputNeedByDate = new DateTimePicker();
             label8 = new Label();
             label7 = new Label();
@@ -62,6 +61,7 @@
             requestSubmittedPanel = new Panel();
             commissionDetails = new Label();
             label9 = new Label();
+            estimatePrice = new Label();
             commissionFormPanel.SuspendLayout();
             needbyDateInput.SuspendLayout();
             backgroundBool.SuspendLayout();
@@ -91,7 +91,7 @@
             // 
             // SubmitRequestButton
             // 
-            SubmitRequestButton.Location = new Point(14, 724);
+            SubmitRequestButton.Location = new Point(14, 749);
             SubmitRequestButton.Name = "SubmitRequestButton";
             SubmitRequestButton.Size = new Size(159, 71);
             SubmitRequestButton.TabIndex = 0;
@@ -148,7 +148,6 @@
             commissionFormPanel.AutoScroll = true;
             commissionFormPanel.BorderStyle = BorderStyle.FixedSingle;
             commissionFormPanel.Controls.Add(needbyDateInput);
-            commissionFormPanel.Controls.Add(radioButton1);
             commissionFormPanel.Controls.Add(inputNeedByDate);
             commissionFormPanel.Controls.Add(label8);
             commissionFormPanel.Controls.Add(label7);
@@ -203,18 +202,6 @@
             inputBoolDateTrue.TabStop = true;
             inputBoolDateTrue.Text = "Yes";
             inputBoolDateTrue.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(357, 353);
-            radioButton1.Margin = new Padding(3, 2, 3, 2);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(42, 19);
-            radioButton1.TabIndex = 29;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Yes";
-            radioButton1.UseVisualStyleBackColor = true;
             // 
             // inputNeedByDate
             // 
@@ -317,7 +304,6 @@
             characterNumInput5.Name = "characterNumInput5";
             characterNumInput5.Size = new Size(17, 32);
             characterNumInput5.TabIndex = 4;
-            characterNumInput5.TabStop = true;
             characterNumInput5.Text = "5";
             characterNumInput5.UseVisualStyleBackColor = true;
             // 
@@ -330,7 +316,6 @@
             characterNumInput4.Name = "characterNumInput4";
             characterNumInput4.Size = new Size(17, 32);
             characterNumInput4.TabIndex = 3;
-            characterNumInput4.TabStop = true;
             characterNumInput4.Text = "4";
             characterNumInput4.UseVisualStyleBackColor = true;
             // 
@@ -343,7 +328,6 @@
             characterNumInput3.Name = "characterNumInput3";
             characterNumInput3.Size = new Size(17, 32);
             characterNumInput3.TabIndex = 2;
-            characterNumInput3.TabStop = true;
             characterNumInput3.Text = "3";
             characterNumInput3.UseVisualStyleBackColor = true;
             // 
@@ -356,7 +340,6 @@
             characterNumInput2.Name = "characterNumInput2";
             characterNumInput2.Size = new Size(17, 32);
             characterNumInput2.TabIndex = 1;
-            characterNumInput2.TabStop = true;
             characterNumInput2.Text = "2";
             characterNumInput2.UseVisualStyleBackColor = true;
             // 
@@ -364,6 +347,7 @@
             // 
             characterNumInput1.AutoSize = true;
             characterNumInput1.CheckAlign = ContentAlignment.TopCenter;
+            characterNumInput1.Checked = true;
             characterNumInput1.Location = new Point(27, 10);
             characterNumInput1.Margin = new Padding(3, 2, 3, 2);
             characterNumInput1.Name = "characterNumInput1";
@@ -450,11 +434,22 @@
             label9.TabIndex = 4;
             label9.Text = "Thank you for your commission! [Artist] will get back to you shortly about your acceptance. \r\n\r\nYour commission details are as follows:\r\n";
             // 
+            // estimatePrice
+            // 
+            estimatePrice.AutoSize = true;
+            estimatePrice.Font = new Font("Segoe UI", 14F);
+            estimatePrice.Location = new Point(515, 49);
+            estimatePrice.Name = "estimatePrice";
+            estimatePrice.Size = new Size(205, 25);
+            estimatePrice.TabIndex = 7;
+            estimatePrice.Text = "Estimated Price (NZD): ";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 808);
+            Controls.Add(estimatePrice);
             Controls.Add(requestSubmittedPanel);
             Controls.Add(label2);
             Controls.Add(commissionFormPanel);
@@ -508,7 +503,7 @@
         private Label label9;
         private Label commissionDetails;
         private Panel needbyDateInput;
-        private RadioButton radioButton1;
         private RadioButton inputBoolDateFalse;
+        private Label estimatePrice;
     }
 }

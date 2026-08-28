@@ -57,31 +57,51 @@ namespace ArtCommissionApplication_Prototype
             NeedByDate = needByDate;
         }
 
+        // Sienna - edited price estimate so it can be previewed without having all commission information completed
+        // Recalculate the stored estimate from current instance info
+        public void RecalculateEstimate()
+        {
+            EstimatedPrice = EstimatePriceFor(CropType, HasBackground, NumberOFCharacters);
+        }
+
+        // Instance method - delegates to the shared static implementation.
         public decimal EstimatePrice()
         {
-            decimal CalculateEstimatedPrice = 0;
+            return EstimatePriceFor(CropType, HasBackground, NumberOFCharacters);
+        }
 
-            switch(CropType)
-            { 
+        // Static helper to estimate price from the main pricing inputs (doesn't need date or description)
+        // The number of characters is clamped to at least 1 (since thats all that's possible) to allow estimate without full validation
+        public static decimal EstimatePriceFor(CharacterCrop crop, bool hasBackground, int numberOfCharacters = 1)
+        {
+            decimal basePrice = 0;
+
+            switch (crop)
+            {
                 case CharacterCrop.Headshot:
-                    CalculateEstimatedPrice += 30; 
+                    basePrice += 30;
                     break;
                 case CharacterCrop.Halfbody:
-                    CalculateEstimatedPrice += 50; 
+                    basePrice += 50;
                     break;
                 case CharacterCrop.Fullbody:
-                    CalculateEstimatedPrice += 60;
+                    basePrice += 60;
                     break;
             }
 
-            if (HasBackground)
-                CalculateEstimatedPrice += 15;
+            if (hasBackground)
+                basePrice += 15;
 
+            if (numberOfCharacters < 1)
+                numberOfCharacters = 1;
 
-            if (CalculateEstimatedPrice < 0)
+            // Scale price by number of characters.
+            var calculated = basePrice * numberOfCharacters;
+
+            if (calculated < 0)
                 throw new ArgumentException("Estimated price cannot be negative.");
 
-            return CalculateEstimatedPrice;
+            return calculated;
         }
     }
 }
