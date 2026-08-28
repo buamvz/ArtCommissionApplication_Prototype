@@ -6,7 +6,7 @@ namespace ArtCommissionApplication_Prototype
 {
     public class CommissionInformation
     {
-        public CharacterCrop CropType;
+        public CharacterCrop CropType { get; }
         public enum CharacterCrop
         {
             Headshot,

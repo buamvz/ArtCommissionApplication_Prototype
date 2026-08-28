@@ -118,7 +118,7 @@
             label2.Padding = new Padding(11, 13, 11, 13);
             label2.Size = new Size(598, 84);
             label2.TabIndex = 2;
-            label2.Text = "Welcome to the commission center...! If you would like to request a commissioned illustration from [Artist1], please press the button below.";
+            label2.Text = "Welcome to the commissionInfo center...! If you would like to request a commissioned illustration from [Artist1], please press the button below.";
             // 
             // tabInformation
             // 
