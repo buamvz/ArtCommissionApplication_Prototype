@@ -78,7 +78,7 @@ namespace GUI_prototype
 
             if (!cropSelected)
             {
-                estimatePrice.Text = "Estimated Price: -";
+                estimatePrice.Text = "Estimated Price (NZD): -";
                 return;
             }
             // determine number of characters selected
@@ -95,7 +95,7 @@ namespace GUI_prototype
             // (which would currently require description/date validations).
             decimal calculated = CommissionInformation.EstimatePriceFor(crop, hasBackground, numberOfCharacters);
 
-            estimatePrice.Text = $"Estimated Price: {calculated:C}";
+            estimatePrice.Text = $"Estimated Price (NZD): {calculated:C}";
         }
 
         // assignemt logic done after submit has been clicked
@@ -177,7 +177,7 @@ namespace GUI_prototype
                 "Number of Characters: " + commissionInfo.NumberOFCharacters + "\n" +
                 "Need by Date: " + commissionInfo.NeedByDate + "\n" +
                 "Description: " + commissionInfo.Description + "\n \n" +
-                "Estimated Price: " + commissionInfo.EstimatedPrice + "\n"
+                $"Estimated Price: {commissionInfo.EstimatedPrice:C}" +  "\n"
 
                 ;
 
