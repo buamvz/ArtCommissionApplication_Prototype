@@ -6,6 +6,8 @@ namespace ArtCommissionApplication_Prototype
 {
     public class CommissionRequest
     {
+        // database id for persistence
+        public int Id { get; set; }
         //having majority as get without set so that the program cannot change as theyre set in the constructor
 
         // sienna - moving info to indivisual classes

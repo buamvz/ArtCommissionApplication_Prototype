@@ -46,6 +46,15 @@ namespace GUI_prototype
 
             // update immediately to reflect any default selections
             UpdateEstimate();
+            // initialize the local database for storing commission requests
+            try
+            {
+                ArtCommissionApplication_Prototype.CommissionRepository.Initialize();
+            }
+            catch
+            {
+                // ignore initialization errors in the prototype UI
+            }
         }
 
         public void Update()
@@ -166,6 +175,17 @@ namespace GUI_prototype
             commission = new CommissionRequest(client, commissionInfo);
 
             commissionInfo.RecalculateEstimate(); // recalcultes estimate to be sure it's correct
+
+            try
+            {
+                var newId = ArtCommissionApplication_Prototype.CommissionRepository.AddCommission(commission);
+                // include id in confirmation text
+                finalCommissionDetails = "(Saved commission id: " + newId + ")\n\n" + finalCommissionDetails;
+            }
+            catch
+            {
+                // ignore persistence errors for prototype and continue to show confirmation
+            }
 
             finalCommissionDetails =
                 "=== Client (You) === \n" +
