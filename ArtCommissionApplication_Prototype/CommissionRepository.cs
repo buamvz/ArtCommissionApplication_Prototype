@@ -10,6 +10,7 @@ namespace ArtCommissionApplication_Prototype
     {
         private static string? dbPath;
 
+        // sienna - initialize the database
         public static void Initialize(string? databasePath = null)
         {
             if (!string.IsNullOrWhiteSpace(databasePath))
@@ -17,10 +18,13 @@ namespace ArtCommissionApplication_Prototype
 
             if (string.IsNullOrWhiteSpace(dbPath))
                 dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "commissions.db");
+            // sienna - sets up the database path based on what is given with a default option if none is given in the constructor
+
 
             using var connection = new SqliteConnection($"Data Source={dbPath}");
             connection.Open();
 
+            // sienna - uses command for db to set up if a table does not already exist
             using var cmd = connection.CreateCommand();
             cmd.CommandText = @"
 CREATE TABLE IF NOT EXISTS Commissions (
@@ -40,6 +44,7 @@ CREATE TABLE IF NOT EXISTS Commissions (
             cmd.ExecuteNonQuery();
         }
 
+        // sienna - adds a commission row - for when a commission request form is submitted or a commission is otherwise added
         public static long AddCommission(CommissionRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
@@ -54,6 +59,7 @@ CREATE TABLE IF NOT EXISTS Commissions (
  VALUES ($name, $email, $crop, $num, $bg, $desc, $price, $needBy, $status, $submitted);
  SELECT last_insert_rowid();";
 
+            // sienna - including all values to be stored - we want all the values input but the user in the request form
             cmd.Parameters.AddWithValue("$name", request.Client.ClientName);
             cmd.Parameters.AddWithValue("$email", request.Client.ClientEmail);
             cmd.Parameters.AddWithValue("$crop", request.CommissionType.CropType.ToString());
@@ -65,11 +71,13 @@ CREATE TABLE IF NOT EXISTS Commissions (
             cmd.Parameters.AddWithValue("$status", (int)request.Status);
             cmd.Parameters.AddWithValue("$submitted", request.SubmittedDate.ToString("o", CultureInfo.InvariantCulture));
 
+            // sienna - gives the commissions a unique ID
             var id = (long)cmd.ExecuteScalar();
             request.Id = (int)id;
             return id;
         }
 
+        // sienna - get all function to read rows of the db - for display in UI
         public static List<CommissionRequest> GetAll()
         {
             if (string.IsNullOrWhiteSpace(dbPath)) Initialize();
@@ -82,6 +90,7 @@ CREATE TABLE IF NOT EXISTS Commissions (
             using var cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT Id, ClientName, ClientEmail, CropType, NumberOfCharacters, HasBackground, Description, EstimatedPrice, NeedByDate, Status, SubmittedDate FROM Commissions ORDER BY SubmittedDate DESC;";
 
+            // sienna - reader collects the database information into a format that can be taken by the client, commission infor and data-time
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -129,6 +138,7 @@ CREATE TABLE IF NOT EXISTS Commissions (
             return result;
         }
 
+        // sienna - used to update the status of a commission based on its id
         public static void UpdateStatus(int id, CommissionStatus status)
         {
             if (string.IsNullOrWhiteSpace(dbPath)) Initialize();
