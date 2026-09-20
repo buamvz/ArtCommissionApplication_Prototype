@@ -38,5 +38,24 @@ namespace ArtCommissionApplication_Prototype
         //total of commissions in the queue
         public int Count => commissions.Count;
 
+
+
+        public void LoadFromDatabase()
+        {
+            commissions.Clear();
+
+            List<CommissionRequest> databaseCommissions = CommissionRepository.GetAll();
+
+            foreach (CommissionRequest commission in databaseCommissions)
+            {
+                AddCommission(commission);
+            }
+        }
+
     }
+
+
+
+
+
 }

@@ -164,5 +164,43 @@ namespace ArtCommisionApplication.Test
             Assert.AreEqual(2, queue.GetQueuePosition(request2));
         }
 
+        //testing database and queue intergration for loading a commission from new database Sienna made
+
+        [TestMethod]
+        public void CommissionQueue_LoadFromDatabase_LoadsStoredCommissions()
+        {
+            string testDatabasePath = System.IO.Path.Combine(
+                System.IO.Path.GetTempPath(),
+                "ArtCommissionTest.db");
+
+            CommissionRepository.Initialize(testDatabasePath);
+
+            var client = new Client(
+                "Yuji",
+                "yuji@gmail.com");
+
+            var commission = new CommissionInformation(
+                CharacterCrop.Fullbody,
+                2,
+                true,
+                "Me and Junpei having a picnic",
+                DateTime.Today.AddDays(7));
+
+            var request = new CommissionRequest(
+                client,
+                commission);
+
+            CommissionRepository.AddCommission(request);
+
+            var queue = new CommissionQueue();
+
+            queue.LoadFromDatabase();
+
+            Assert.AreEqual(1, queue.Count);
+            Assert.AreEqual(
+                "Yuji",
+                queue.Commissions[0].Client.ClientName);
+        }
+
     }
 }

@@ -25,32 +25,44 @@ namespace ArtCommissionApplication_Prototype
         public CommissionStatus Status { get; private set; }
         public DateTime SubmittedDate { get; }
 
+        //public CommissionRequest(Client client, CommissionInformation commissionInformation)
+        //{
+        //    Client = client ?? throw new ArgumentNullException(nameof(client));
+        //    CommissionType = commissionInformation ?? throw new ArgumentNullException(nameof(commissionInformation));
+
+        //    /* sienna - moved to client and commission classes
+             
+        //    if (string.IsNullOrWhiteSpace(commissionInformation))
+        //        throw new ArgumentException("Commission type is required.");
+            
+        //    if (string.IsNullOrWhiteSpace(description))
+        //        throw new ArgumentException("A description for the commission is required.");
+            
+        //    if (estimatedPrice < 0)
+        //        throw new ArgumentException("Estimated price cannot be negative.");
+            
+            
+        //    initialising properties with values needed
+
+        //    Client = client;
+        //    CommissionType = commissionInformation;
+
+        //    Description = description;
+        //    EstimatedPrice = estimatedPrice;
+
+        //    */
+
+        //    Status = CommissionStatus.Pending;
+        //    SubmittedDate = DateTime.Now;
+        //}
+
+        //hashing out constcutor before as that wasn't assigning estimated price
         public CommissionRequest(Client client, CommissionInformation commissionInformation)
         {
             Client = client ?? throw new ArgumentNullException(nameof(client));
             CommissionType = commissionInformation ?? throw new ArgumentNullException(nameof(commissionInformation));
 
-            /* sienna - moved to client and commission classes
-             
-            if (string.IsNullOrWhiteSpace(commissionInformation))
-                throw new ArgumentException("Commission type is required.");
-            
-            if (string.IsNullOrWhiteSpace(description))
-                throw new ArgumentException("A description for the commission is required.");
-            
-            if (estimatedPrice < 0)
-                throw new ArgumentException("Estimated price cannot be negative.");
-            
-            
-            initialising properties with values needed
-
-            Client = client;
-            CommissionType = commissionInformation;
-
-            Description = description;
-            EstimatedPrice = estimatedPrice;
-
-            */
+            EstimatedPrice = commissionInformation.EstimatedPrice;
 
             Status = CommissionStatus.Pending;
             SubmittedDate = DateTime.Now;
