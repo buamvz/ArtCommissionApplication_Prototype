@@ -33,40 +33,42 @@
             tabAll = new TabControl();
             tabHome = new TabPage();
             RequestComm = new Button();
-            label2 = new Label();
+            HomeParagraph = new Label();
             tabInformation = new TabPage();
-            label6 = new Label();
-            label5 = new Label();
+            Info_ProfilePicture = new PictureBox();
             label4 = new Label();
             label3 = new Label();
             tabTOS = new TabPage();
-            label8 = new Label();
-            label7 = new Label();
             tabSamples = new TabPage();
             label10 = new Label();
             pictureBox1 = new PictureBox();
-            label9 = new Label();
             tabQueue = new TabPage();
             label11 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
-            Info_ProfilePicture = new PictureBox();
             pictureBox2 = new PictureBox();
+            label2 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
             tabAll.SuspendLayout();
             tabHome.SuspendLayout();
             tabInformation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Info_ProfilePicture).BeginInit();
             tabTOS.SuspendLayout();
             tabSamples.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabQueue.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Info_ProfilePicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
-            label1.BackColor = Color.Transparent;
+            label1.BackColor = Color.LavenderBlush;
             label1.Dock = DockStyle.Top;
-            label1.Font = new Font("Microsoft Sans Serif", 32.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Lucida Fax", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DarkMagenta;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
             label1.Size = new Size(800, 55);
@@ -91,8 +93,9 @@
             // 
             // tabHome
             // 
+            tabHome.Controls.Add(label9);
             tabHome.Controls.Add(RequestComm);
-            tabHome.Controls.Add(label2);
+            tabHome.Controls.Add(HomeParagraph);
             tabHome.Location = new Point(4, 22);
             tabHome.Name = "tabHome";
             tabHome.Padding = new Padding(3);
@@ -104,30 +107,31 @@
             // RequestComm
             // 
             RequestComm.AccessibleName = "RequestComm";
-            RequestComm.Location = new Point(15, 90);
+            RequestComm.BackColor = Color.LavenderBlush;
+            RequestComm.Font = new Font("Candara", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            RequestComm.ForeColor = Color.Purple;
+            RequestComm.Location = new Point(8, 252);
             RequestComm.Name = "RequestComm";
-            RequestComm.Size = new Size(159, 46);
+            RequestComm.Size = new Size(252, 106);
             RequestComm.TabIndex = 0;
             RequestComm.Text = "Request Commission Form";
-            RequestComm.UseVisualStyleBackColor = true;
+            RequestComm.UseVisualStyleBackColor = false;
             RequestComm.Click += RequestComm_Click;
             // 
-            // label2
+            // HomeParagraph
             // 
-            label2.BackColor = Color.FromArgb(224, 224, 224);
-            label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(15, 12);
-            label2.Name = "label2";
-            label2.Padding = new Padding(10);
-            label2.Size = new Size(523, 63);
-            label2.TabIndex = 2;
-            label2.Text = "Welcome to the commissionInfo center...! If you would like to request a commissioned illustration from [Artist1], please press the button below.";
+            HomeParagraph.BackColor = Color.WhiteSmoke;
+            HomeParagraph.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            HomeParagraph.Location = new Point(8, 53);
+            HomeParagraph.Name = "HomeParagraph";
+            HomeParagraph.Padding = new Padding(10);
+            HomeParagraph.Size = new Size(760, 138);
+            HomeParagraph.TabIndex = 2;
+            HomeParagraph.Text = resources.GetString("HomeParagraph.Text");
             // 
             // tabInformation
             // 
             tabInformation.Controls.Add(Info_ProfilePicture);
-            tabInformation.Controls.Add(label6);
-            tabInformation.Controls.Add(label5);
             tabInformation.Controls.Add(label4);
             tabInformation.Controls.Add(label3);
             tabInformation.Location = new Point(4, 22);
@@ -138,32 +142,21 @@
             tabInformation.Text = "About JellyPhlox";
             tabInformation.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // Info_ProfilePicture
             // 
-            label6.BackColor = Color.FromArgb(224, 224, 224);
-            label6.Font = new Font("Segoe UI", 12F);
-            label6.Location = new Point(8, 182);
-            label6.Name = "label6";
-            label6.Padding = new Padding(10);
-            label6.Size = new Size(769, 70);
-            label6.TabIndex = 6;
-            label6.Text = "[wip]";
-            // 
-            // label5
-            // 
-            label5.BackColor = Color.FromArgb(224, 224, 224);
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label5.Location = new Point(8, 143);
-            label5.Name = "label5";
-            label5.Padding = new Padding(10);
-            label5.Size = new Size(769, 39);
-            label5.TabIndex = 5;
-            label5.Text = "Other Info (tbd)";
+            Info_ProfilePicture.BackgroundImage = (Image)resources.GetObject("Info_ProfilePicture.BackgroundImage");
+            Info_ProfilePicture.Image = Properties.Resources.JellyPhlox;
+            Info_ProfilePicture.Location = new Point(667, 14);
+            Info_ProfilePicture.Name = "Info_ProfilePicture";
+            Info_ProfilePicture.Size = new Size(110, 109);
+            Info_ProfilePicture.SizeMode = PictureBoxSizeMode.StretchImage;
+            Info_ProfilePicture.TabIndex = 7;
+            Info_ProfilePicture.TabStop = false;
             // 
             // label4
             // 
             label4.BackColor = Color.FromArgb(224, 224, 224);
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label4.Font = new Font("Lucida Fax", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.Location = new Point(8, 14);
             label4.Name = "label4";
             label4.Padding = new Padding(10);
@@ -173,20 +166,22 @@
             // 
             // label3
             // 
-            label3.BackColor = Color.FromArgb(224, 224, 224);
-            label3.Font = new Font("Segoe UI", 12F);
+            label3.BackColor = Color.WhiteSmoke;
+            label3.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(8, 53);
             label3.Name = "label3";
             label3.Padding = new Padding(10);
-            label3.Size = new Size(653, 70);
+            label3.Size = new Size(653, 179);
             label3.TabIndex = 3;
-            label3.Text = "This artist.....\r\n";
+            label3.Text = resources.GetString("label3.Text");
             label3.Click += label3_Click;
             // 
             // tabTOS
             // 
-            tabTOS.Controls.Add(label8);
             tabTOS.Controls.Add(label7);
+            tabTOS.Controls.Add(label6);
+            tabTOS.Controls.Add(label2);
+            tabTOS.Controls.Add(label5);
             tabTOS.Location = new Point(4, 22);
             tabTOS.Name = "tabTOS";
             tabTOS.Padding = new Padding(3);
@@ -195,33 +190,11 @@
             tabTOS.Text = "Terms Of Service";
             tabTOS.UseVisualStyleBackColor = true;
             // 
-            // label8
-            // 
-            label8.BackColor = Color.FromArgb(224, 224, 224);
-            label8.Font = new Font("Segoe UI", 12F);
-            label8.Location = new Point(8, 59);
-            label8.Name = "label8";
-            label8.Padding = new Padding(10);
-            label8.Size = new Size(769, 70);
-            label8.TabIndex = 6;
-            label8.Text = "[tos]";
-            // 
-            // label7
-            // 
-            label7.BackColor = Color.FromArgb(224, 224, 224);
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label7.Location = new Point(8, 14);
-            label7.Name = "label7";
-            label7.Padding = new Padding(10);
-            label7.Size = new Size(769, 39);
-            label7.TabIndex = 5;
-            label7.Text = "Terms Of Service";
-            // 
             // tabSamples
             // 
+            tabSamples.Controls.Add(label8);
             tabSamples.Controls.Add(label10);
             tabSamples.Controls.Add(pictureBox1);
-            tabSamples.Controls.Add(label9);
             tabSamples.Location = new Point(4, 22);
             tabSamples.Name = "tabSamples";
             tabSamples.Padding = new Padding(3);
@@ -244,23 +217,13 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Image = Properties.Resources.Untitled;
             pictureBox1.Location = new Point(8, 56);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(197, 231);
+            pictureBox1.Size = new Size(197, 203);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
-            // 
-            // label9
-            // 
-            label9.BackColor = Color.FromArgb(224, 224, 224);
-            label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label9.Location = new Point(8, 14);
-            label9.Name = "label9";
-            label9.Padding = new Padding(10);
-            label9.Size = new Size(769, 39);
-            label9.TabIndex = 6;
-            label9.Text = "Samples From JellyPhlox";
             // 
             // tabQueue
             // 
@@ -277,8 +240,8 @@
             // label11
             // 
             label11.BackColor = Color.FromArgb(224, 224, 224);
-            label11.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label11.Location = new Point(8, 15);
+            label11.Font = new Font("Lucida Fax", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Location = new Point(8, 14);
             label11.Name = "label11";
             label11.Padding = new Padding(10);
             label11.Size = new Size(769, 39);
@@ -301,27 +264,82 @@
             tableLayoutPanel1.TabIndex = 0;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
-            // Info_ProfilePicture
-            // 
-            Info_ProfilePicture.BackgroundImage = (Image)resources.GetObject("Info_ProfilePicture.BackgroundImage");
-            Info_ProfilePicture.Image = Properties.Resources.JellyPhlox;
-            Info_ProfilePicture.Location = new Point(667, 14);
-            Info_ProfilePicture.Name = "Info_ProfilePicture";
-            Info_ProfilePicture.Size = new Size(110, 109);
-            Info_ProfilePicture.SizeMode = PictureBoxSizeMode.StretchImage;
-            Info_ProfilePicture.TabIndex = 7;
-            Info_ProfilePicture.TabStop = false;
-            // 
             // pictureBox2
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.Image = Properties.Resources.JellyPhlox;
-            pictureBox2.Location = new Point(4, 6);
+            pictureBox2.Location = new Point(4, 4);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(47, 49);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.FromArgb(224, 224, 224);
+            label2.Font = new Font("Lucida Fax", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(8, 14);
+            label2.Name = "label2";
+            label2.Padding = new Padding(10);
+            label2.Size = new Size(776, 39);
+            label2.TabIndex = 10;
+            label2.Text = "Terms Of Service";
+            // 
+            // label5
+            // 
+            label5.BackColor = Color.WhiteSmoke;
+            label5.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(487, 53);
+            label5.Name = "label5";
+            label5.Padding = new Padding(10);
+            label5.Size = new Size(297, 307);
+            label5.TabIndex = 9;
+            label5.Text = "Will Draw\r\n\r\nWon't Draw\r\n";
+            // 
+            // label6
+            // 
+            label6.BackColor = Color.WhiteSmoke;
+            label6.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(8, 53);
+            label6.Name = "label6";
+            label6.Padding = new Padding(10);
+            label6.Size = new Size(473, 85);
+            label6.TabIndex = 11;
+            label6.Text = "TOS introduction\r\n";
+            // 
+            // label7
+            // 
+            label7.BackColor = Color.WhiteSmoke;
+            label7.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(8, 138);
+            label7.Name = "label7";
+            label7.Padding = new Padding(10);
+            label7.Size = new Size(473, 85);
+            label7.TabIndex = 12;
+            label7.Text = "TOS paragraph\r\n";
+            // 
+            // label8
+            // 
+            label8.BackColor = Color.FromArgb(224, 224, 224);
+            label8.Font = new Font("Lucida Fax", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(8, 14);
+            label8.Name = "label8";
+            label8.Padding = new Padding(10);
+            label8.Size = new Size(776, 39);
+            label8.TabIndex = 11;
+            label8.Text = "Samples of Work ~ JellyPhlox\r\n";
+            // 
+            // label9
+            // 
+            label9.BackColor = Color.FromArgb(224, 224, 224);
+            label9.Font = new Font("Lucida Fax", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(8, 14);
+            label9.Name = "label9";
+            label9.Padding = new Padding(10);
+            label9.Size = new Size(760, 39);
+            label9.TabIndex = 5;
+            label9.Text = "Commission Request";
             // 
             // Form1
             // 
@@ -337,11 +355,11 @@
             tabAll.ResumeLayout(false);
             tabHome.ResumeLayout(false);
             tabInformation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)Info_ProfilePicture).EndInit();
             tabTOS.ResumeLayout(false);
             tabSamples.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabQueue.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)Info_ProfilePicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
@@ -351,23 +369,24 @@
         private TabControl tabAll;
         private TabPage tabHome;
         private Button RequestComm;
-        private Label label2;
+        private Label HomeParagraph;
         private TabPage tabInformation;
         private TabPage tabTOS;
         private TabPage tabSamples;
         private TabPage tabQueue;
         private Label label4;
         private Label label3;
-        private Label label6;
-        private Label label5;
-        private Label label8;
-        private Label label7;
-        private Label label9;
         private PictureBox pictureBox1;
         private Label label10;
         private TableLayoutPanel tableLayoutPanel1;
         private Label label11;
         private PictureBox Info_ProfilePicture;
         private PictureBox pictureBox2;
+        private Label label7;
+        private Label label6;
+        private Label label2;
+        private Label label5;
+        private Label label8;
+        private Label label9;
     }
 }

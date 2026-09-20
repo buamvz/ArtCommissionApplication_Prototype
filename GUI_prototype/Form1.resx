@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="HomeParagraph.Text" xml:space="preserve">
+    <value>Welcome to JellyPhlox commissions page, have a look around! 
+
+If you're interested in an illustration commission from JellyPhlox, please read use the button bellow and fill out the form to place a request.
+Once your request is accepted, you'll be able to discuss the details of you commission with the artist.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Info_ProfilePicture.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -18343,6 +18349,14 @@
         y8C9eN67Y4y+/mM77Z+Vo9obiwiOaB43YcpdwvfQzcw5v3vHlpFw+7e7oLsCdbx2DUE9aAjoYdNwPRS0
         JwHuHCJ6mBjcNXiPje8I5nESwDxuaqsV53etgq1lHHD3wnIpBHdIfF47KqD/f7GncTWcLgdrAAAAAElF
         TkSuQmCC
+</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>♡ Jelly || she/her || ENG ♡
+
+Hi! I'm JellyPhlox, you can call me Jelly. I'm a digital artist from New Zealand passionate about art and animation. I'm most active on twitter, but you're welcome to contact me on any of my social media (or email) if you've got any questions. Thank you for stopping by!
+
+Please read my TOS before commissioning me! ♡♡
 </value>
   </data>
   <data name="pictureBox2.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
