@@ -126,5 +126,43 @@ namespace ArtCommisionApplication.Test
                 new CommissionInformation(CharacterCrop.Halfbody, -1, false, "Invalid negative", DateTime.Today.AddDays(7)));
         }
 
+        //queue prototype test
+        [TestMethod]
+        public void CommissionQueue_AddCommission_AddsToQueue()
+        {
+            var client = new Client("Yuji", "mahitohater67@gmail.com");
+
+            var commission = new CommissionInformation(CommissionInformation.CharacterCrop.Fullbody, 2, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(7));
+
+            var request = new CommissionRequest(client, commission);
+
+            var queue = new CommissionQueue();
+
+            queue.AddCommission(request);
+
+            Assert.AreEqual(1, queue.Count);
+        }
+
+        [TestMethod]
+        public void CommissionQueue_GetQueuePosition_ReturnsCorrectPosition()
+        {
+            var client1 = new Client("Yuji", "yuji@example.com");
+            var commission1 = new CommissionInformation(CommissionInformation.CharacterCrop.Headshot, 1, false, "First commission", DateTime.Today.AddDays(7));
+
+            var client2 = new Client("Megumi", "megumi@example.com");
+            var commission2 = new CommissionInformation(CommissionInformation.CharacterCrop.Fullbody, 1, true, "Second commission", DateTime.Today.AddDays(7));
+
+            var request1 = new CommissionRequest(client1, commission1);
+            var request2 = new CommissionRequest(client2, commission2);
+
+            var queue = new CommissionQueue();
+
+            queue.AddCommission(request1);
+            queue.AddCommission(request2);
+
+            Assert.AreEqual(1, queue.GetQueuePosition(request1));
+            Assert.AreEqual(2, queue.GetQueuePosition(request2));
+        }
+
     }
 }
