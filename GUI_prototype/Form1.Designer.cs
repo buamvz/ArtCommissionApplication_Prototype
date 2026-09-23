@@ -32,6 +32,7 @@
             label1 = new Label();
             tabAll = new TabControl();
             tabHome = new TabPage();
+            label9 = new Label();
             RequestComm = new Button();
             HomeParagraph = new Label();
             tabInformation = new TabPage();
@@ -39,19 +40,19 @@
             label4 = new Label();
             label3 = new Label();
             tabTOS = new TabPage();
+            label7 = new Label();
+            label6 = new Label();
+            label2 = new Label();
+            label5 = new Label();
             tabSamples = new TabPage();
+            label8 = new Label();
             label10 = new Label();
             pictureBox1 = new PictureBox();
             tabQueue = new TabPage();
+            publicQueueGrid = new DataGridView();
             label11 = new Label();
-            tableLayoutPanel1 = new TableLayoutPanel();
             pictureBox2 = new PictureBox();
-            label2 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            label9 = new Label();
+            reloadButton = new Button();
             tabAll.SuspendLayout();
             tabHome.SuspendLayout();
             tabInformation.SuspendLayout();
@@ -60,6 +61,7 @@
             tabSamples.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabQueue.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)publicQueueGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
@@ -67,7 +69,7 @@
             // 
             label1.BackColor = Color.LavenderBlush;
             label1.Dock = DockStyle.Top;
-            label1.Font = new Font("Lucida Fax", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Microsoft Sans Serif", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkMagenta;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
@@ -103,6 +105,17 @@
             tabHome.TabIndex = 0;
             tabHome.Text = "Home";
             tabHome.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            label9.BackColor = Color.FromArgb(224, 224, 224);
+            label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(8, 14);
+            label9.Name = "label9";
+            label9.Padding = new Padding(10);
+            label9.Size = new Size(760, 39);
+            label9.TabIndex = 5;
+            label9.Text = "Commission Request";
             // 
             // RequestComm
             // 
@@ -156,7 +169,7 @@
             // label4
             // 
             label4.BackColor = Color.FromArgb(224, 224, 224);
-            label4.Font = new Font("Lucida Fax", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.Location = new Point(8, 14);
             label4.Name = "label4";
             label4.Padding = new Padding(10);
@@ -190,6 +203,50 @@
             tabTOS.Text = "Terms Of Service";
             tabTOS.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            label7.BackColor = Color.WhiteSmoke;
+            label7.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(8, 138);
+            label7.Name = "label7";
+            label7.Padding = new Padding(10);
+            label7.Size = new Size(473, 85);
+            label7.TabIndex = 12;
+            label7.Text = "TOS paragraph\r\n";
+            // 
+            // label6
+            // 
+            label6.BackColor = Color.WhiteSmoke;
+            label6.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(8, 53);
+            label6.Name = "label6";
+            label6.Padding = new Padding(10);
+            label6.Size = new Size(473, 85);
+            label6.TabIndex = 11;
+            label6.Text = "TOS introduction\r\n";
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.FromArgb(224, 224, 224);
+            label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(8, 14);
+            label2.Name = "label2";
+            label2.Padding = new Padding(10);
+            label2.Size = new Size(776, 39);
+            label2.TabIndex = 10;
+            label2.Text = "Terms Of Service";
+            // 
+            // label5
+            // 
+            label5.BackColor = Color.WhiteSmoke;
+            label5.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(487, 53);
+            label5.Name = "label5";
+            label5.Padding = new Padding(10);
+            label5.Size = new Size(297, 307);
+            label5.TabIndex = 9;
+            label5.Text = "Will Draw\r\n\r\nWon't Draw\r\n";
+            // 
             // tabSamples
             // 
             tabSamples.Controls.Add(label8);
@@ -202,6 +259,17 @@
             tabSamples.TabIndex = 3;
             tabSamples.Text = "Samples Of Work";
             tabSamples.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            label8.BackColor = Color.FromArgb(224, 224, 224);
+            label8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(8, 14);
+            label8.Name = "label8";
+            label8.Padding = new Padding(10);
+            label8.Size = new Size(776, 39);
+            label8.TabIndex = 11;
+            label8.Text = "Samples of Work ~ JellyPhlox\r\n";
             // 
             // label10
             // 
@@ -227,8 +295,9 @@
             // 
             // tabQueue
             // 
+            tabQueue.Controls.Add(reloadButton);
+            tabQueue.Controls.Add(publicQueueGrid);
             tabQueue.Controls.Add(label11);
-            tabQueue.Controls.Add(tableLayoutPanel1);
             tabQueue.Location = new Point(4, 22);
             tabQueue.Name = "tabQueue";
             tabQueue.Padding = new Padding(3);
@@ -237,32 +306,25 @@
             tabQueue.Text = "Public Queue";
             tabQueue.UseVisualStyleBackColor = true;
             // 
+            // publicQueueGrid
+            // 
+            publicQueueGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            publicQueueGrid.Location = new Point(8, 56);
+            publicQueueGrid.Name = "publicQueueGrid";
+            publicQueueGrid.ReadOnly = true;
+            publicQueueGrid.Size = new Size(769, 302);
+            publicQueueGrid.TabIndex = 8;
+            // 
             // label11
             // 
             label11.BackColor = Color.FromArgb(224, 224, 224);
-            label11.Font = new Font("Lucida Fax", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.Location = new Point(8, 14);
             label11.Name = "label11";
             label11.Padding = new Padding(10);
             label11.Size = new Size(769, 39);
             label11.TabIndex = 7;
             label11.Text = "Public Queue\r\n";
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 4;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 159F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 158F));
-            tableLayoutPanel1.Location = new Point(8, 61);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(603, 100);
-            tableLayoutPanel1.TabIndex = 0;
-            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
             // pictureBox2
             // 
@@ -275,71 +337,15 @@
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
-            // label2
+            // reloadButton
             // 
-            label2.BackColor = Color.FromArgb(224, 224, 224);
-            label2.Font = new Font("Lucida Fax", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(8, 14);
-            label2.Name = "label2";
-            label2.Padding = new Padding(10);
-            label2.Size = new Size(776, 39);
-            label2.TabIndex = 10;
-            label2.Text = "Terms Of Service";
-            // 
-            // label5
-            // 
-            label5.BackColor = Color.WhiteSmoke;
-            label5.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(487, 53);
-            label5.Name = "label5";
-            label5.Padding = new Padding(10);
-            label5.Size = new Size(297, 307);
-            label5.TabIndex = 9;
-            label5.Text = "Will Draw\r\n\r\nWon't Draw\r\n";
-            // 
-            // label6
-            // 
-            label6.BackColor = Color.WhiteSmoke;
-            label6.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(8, 53);
-            label6.Name = "label6";
-            label6.Padding = new Padding(10);
-            label6.Size = new Size(473, 85);
-            label6.TabIndex = 11;
-            label6.Text = "TOS introduction\r\n";
-            // 
-            // label7
-            // 
-            label7.BackColor = Color.WhiteSmoke;
-            label7.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(8, 138);
-            label7.Name = "label7";
-            label7.Padding = new Padding(10);
-            label7.Size = new Size(473, 85);
-            label7.TabIndex = 12;
-            label7.Text = "TOS paragraph\r\n";
-            // 
-            // label8
-            // 
-            label8.BackColor = Color.FromArgb(224, 224, 224);
-            label8.Font = new Font("Lucida Fax", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(8, 14);
-            label8.Name = "label8";
-            label8.Padding = new Padding(10);
-            label8.Size = new Size(776, 39);
-            label8.TabIndex = 11;
-            label8.Text = "Samples of Work ~ JellyPhlox\r\n";
-            // 
-            // label9
-            // 
-            label9.BackColor = Color.FromArgb(224, 224, 224);
-            label9.Font = new Font("Lucida Fax", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(8, 14);
-            label9.Name = "label9";
-            label9.Padding = new Padding(10);
-            label9.Size = new Size(760, 39);
-            label9.TabIndex = 5;
-            label9.Text = "Commission Request";
+            reloadButton.Location = new Point(643, 27);
+            reloadButton.Name = "reloadButton";
+            reloadButton.Size = new Size(125, 23);
+            reloadButton.TabIndex = 9;
+            reloadButton.Text = "Reload Queue";
+            reloadButton.UseVisualStyleBackColor = true;
+            reloadButton.Click += reloadButton_Click;
             // 
             // Form1
             // 
@@ -360,6 +366,7 @@
             tabSamples.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabQueue.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)publicQueueGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
@@ -378,7 +385,6 @@
         private Label label3;
         private PictureBox pictureBox1;
         private Label label10;
-        private TableLayoutPanel tableLayoutPanel1;
         private Label label11;
         private PictureBox Info_ProfilePicture;
         private PictureBox pictureBox2;
@@ -388,5 +394,7 @@
         private Label label5;
         private Label label8;
         private Label label9;
+        private DataGridView publicQueueGrid;
+        private Button reloadButton;
     }
 }

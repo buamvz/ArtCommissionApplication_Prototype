@@ -430,7 +430,7 @@
             label9.Font = new Font("Segoe UI", 14F);
             label9.Location = new Point(15, 14);
             label9.Name = "label9";
-            label9.Size = new Size(708, 218);
+            label9.Size = new Size(708, 114);
             label9.TabIndex = 4;
             label9.Text = "Thank you for your commission! [Artist] will get back to you shortly about your acceptance. \r\n\r\nYour commission details are as follows:\r\n";
             // 
