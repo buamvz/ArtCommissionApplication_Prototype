@@ -202,5 +202,22 @@ namespace ArtCommisionApplication.Test
                 queue.Commissions[0].Client.ClientName);
         }
 
+        [TestMethod]
+        public void Constructor_Throws_On_Invalid_Email()
+        {
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                var c = new Client("Name", "not-an-email");
+            });
+        }
+
+        [TestMethod]
+        public void Constructor_Allows_Valid_Email()
+        {
+            var c = new Client("Name", "example@example.com");
+            Assert.AreEqual("Name", c.ClientName);
+            Assert.AreEqual("example@example.com", c.ClientEmail);
+        }
+
     }
 }

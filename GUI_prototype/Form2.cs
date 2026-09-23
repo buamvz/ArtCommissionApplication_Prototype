@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Net.Mail;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -22,13 +23,17 @@ namespace GUI_prototype
         private int inputCharactersNumber;
         private bool inputBackground;
         private string inputDescription;
-        private DateTime inputDate;
+        private DateTime? inputDate;
 
         private string finalCommissionDetails;
+
+        private readonly ErrorProvider errorProvider;
 
         public Form2()
         {
             InitializeComponent();
+
+            errorProvider = new ErrorProvider(this);
 
             // wire up change events so the estimate updates when inputs change
             cropTypeInputHeadshot.CheckedChanged += (s, e) => UpdateEstimate();
@@ -44,8 +49,25 @@ namespace GUI_prototype
             characterNumInput4.CheckedChanged += (s, e) => UpdateEstimate();
             characterNumInput5.CheckedChanged += (s, e) => UpdateEstimate();
 
+            nameInput.TextChanged += (s, e) => ValidateForm();
+            emailInput.TextChanged += (s, e) => ValidateForm();
+            descriptionInput.TextChanged += (s, e) => ValidateForm();
+            inputBoolDateTrue.CheckedChanged += (s, e) =>
+            {
+                inputNeedByDate.Enabled = inputBoolDateTrue.Checked;
+                if (inputBoolDateTrue.Checked)
+                {
+                    // enforce the minimum allowed date visually
+                    inputNeedByDate.MinDate = DateTime.Today.AddDays(7);
+                }
+                ValidateForm();
+            };
+            inputNeedByDate.ValueChanged += (s, e) => ValidateForm();
+
+
             // update immediately to reflect any default selections
             UpdateEstimate();
+            ValidateForm();
             // initialize the local database for storing commission requests
             try
             {
@@ -105,6 +127,64 @@ namespace GUI_prototype
             decimal calculated = CommissionInformation.EstimatePriceFor(crop, hasBackground, numberOfCharacters);
 
             estimatePrice.Text = $"Estimated Price (NZD): {calculated:C}";
+        }
+
+
+        private bool ValidateForm()
+        {
+            bool valid = true;
+            errorProvider.Clear();
+
+            // Name
+            if (string.IsNullOrWhiteSpace(nameInput.Text))
+            {
+                errorProvider.SetError(nameInput, "Name is required.");
+                valid = false;
+            }
+
+            // Email
+            if (string.IsNullOrWhiteSpace(emailInput.Text))
+            {
+                errorProvider.SetError(emailInput, "Email is required.");
+                valid = false;
+            }
+            else
+            {
+                try
+                {
+                    var m = new MailAddress(emailInput.Text);
+                    if (m.Address != emailInput.Text)
+                    {
+                        errorProvider.SetError(emailInput, "Enter a valid email address.");
+                        valid = false;
+                    }
+                }
+                catch
+                {
+                    errorProvider.SetError(emailInput, "Enter a valid email address.");
+                    valid = false;
+                }
+            }
+
+            // Description
+            if (string.IsNullOrWhiteSpace(descriptionInput.Text))
+            {
+                errorProvider.SetError(descriptionInput, "Description is required.");
+                valid = false;
+            }
+
+            // Need-by date, if set, must be at least one week out
+            if (inputBoolDateTrue.Checked)
+            {
+                if (inputNeedByDate.Value.Date < DateTime.Today.AddDays(7))
+                {
+                    errorProvider.SetError(inputNeedByDate, "One week notice is required at minimum.");
+                    valid = false;
+                }
+            }
+
+            SubmitRequestButton.Enabled = valid;
+            return valid;
         }
 
         // assignemt logic done after submit has been clicked
