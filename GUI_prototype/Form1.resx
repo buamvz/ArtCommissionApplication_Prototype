@@ -121,7 +121,7 @@
     <value>Welcome to JellyPhlox commissions page, have a look around! 
 
 If you're interested in an illustration commission from JellyPhlox, please read use the button bellow and fill out the form to place a request.
-Once your request is accepted, you'll be able to discuss the details of you commission with the artist.</value>
+Once your request is accepted, you'll be able to discuss the details of your commission with the artist.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Info_ProfilePicture.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

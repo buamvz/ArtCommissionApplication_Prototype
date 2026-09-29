@@ -49,10 +49,10 @@
             label10 = new Label();
             pictureBox1 = new PictureBox();
             tabQueue = new TabPage();
+            reloadButton = new Button();
             publicQueueGrid = new DataGridView();
             label11 = new Label();
             pictureBox2 = new PictureBox();
-            reloadButton = new Button();
             tabAll.SuspendLayout();
             tabHome.SuspendLayout();
             tabInformation.SuspendLayout();
@@ -87,7 +87,7 @@
             tabAll.Controls.Add(tabSamples);
             tabAll.Controls.Add(tabQueue);
             tabAll.Font = new Font("Segoe UI", 8F);
-            tabAll.Location = new Point(0, 58);
+            tabAll.Location = new Point(0, 59);
             tabAll.Name = "tabAll";
             tabAll.SelectedIndex = 0;
             tabAll.Size = new Size(800, 392);
@@ -306,6 +306,16 @@
             tabQueue.Text = "Public Queue";
             tabQueue.UseVisualStyleBackColor = true;
             // 
+            // reloadButton
+            // 
+            reloadButton.Location = new Point(643, 27);
+            reloadButton.Name = "reloadButton";
+            reloadButton.Size = new Size(125, 23);
+            reloadButton.TabIndex = 9;
+            reloadButton.Text = "Reload Queue";
+            reloadButton.UseVisualStyleBackColor = true;
+            reloadButton.Click += reloadButton_Click;
+            // 
             // publicQueueGrid
             // 
             publicQueueGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -337,21 +347,11 @@
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
-            // reloadButton
-            // 
-            reloadButton.Location = new Point(643, 27);
-            reloadButton.Name = "reloadButton";
-            reloadButton.Size = new Size(125, 23);
-            reloadButton.TabIndex = 9;
-            reloadButton.Text = "Reload Queue";
-            reloadButton.UseVisualStyleBackColor = true;
-            reloadButton.Click += reloadButton_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 457);
             Controls.Add(pictureBox2);
             Controls.Add(tabAll);
             Controls.Add(label1);

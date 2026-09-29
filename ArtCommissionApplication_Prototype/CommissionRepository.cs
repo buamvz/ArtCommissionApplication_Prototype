@@ -154,3 +154,4 @@ CREATE TABLE IF NOT EXISTS Commissions (
         }
     }
 }
+
