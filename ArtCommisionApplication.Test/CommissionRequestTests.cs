@@ -219,5 +219,103 @@ namespace ArtCommisionApplication.Test
             Assert.AreEqual("example@example.com", c.ClientEmail);
         }
 
+        //test cases for siennas sign up and login system - Brooke
+        //sign up creates a client
+        [TestMethod]
+        public void SignUp_ValidClient_CreatesClient()
+        {
+            string username = "testclient" + Guid.NewGuid().ToString("N").Substring(0, 8);
+            string password = "Password123";
+
+            User user = UserRepository.CreateUser(
+                username,
+                password,
+                SystemRole.Client);
+
+            Assert.IsNotNull(user);
+            Assert.AreEqual(username, user.Username);
+            Assert.AreEqual(SystemRole.Client, user.Role);
+        }
+
+        //valid logins succedding
+        [TestMethod]
+        public void Login_ValidCredentials_ReturnsTrue()
+        {
+            string username = "loginuser" + Guid.NewGuid().ToString("N").Substring(0, 8);
+            string password = "Password123";
+
+            UserRepository.CreateUser(username, password, SystemRole.Client);
+
+            bool result = SessionManager.Login(
+                username,
+                password,
+                SystemRole.Client);
+
+            Assert.IsTrue(result);
+            Assert.IsNotNull(SessionManager.CurrentActiveUser);
+            Assert.AreEqual(username, SessionManager.CurrentActiveUser.Username);
+        }
+
+        //wrong password will fail
+        [TestMethod]
+        public void Login_WrongPassword_ReturnsFalse()
+        {
+            string username = "wrongpass" + Guid.NewGuid().ToString("N").Substring(0, 8);
+
+            UserRepository.CreateUser(
+                username,
+                "CorrectPassword123",
+                SystemRole.Client);
+
+            bool result = SessionManager.Login(
+                username,
+                "WrongPassword123",
+                SystemRole.Client);
+
+            Assert.IsFalse(result);
+        }
+
+        //incorrect role will fail
+        [TestMethod]
+        public void Login_WrongRole_ReturnsFalse()
+        {
+            string username = "roleuser" + Guid.NewGuid().ToString("N").Substring(0, 8);
+
+            UserRepository.CreateUser(
+                username,
+                "Password123",
+                SystemRole.Client);
+
+            bool result = SessionManager.Login(
+                username,
+                "Password123",
+                SystemRole.Artist);
+
+            Assert.IsFalse(result);
+        }
+
+
+        //logout clears/kicks current user
+        [TestMethod]
+        public void Logout_ClearsCurrentUser()
+        {
+            string username = "logoutuser" + Guid.NewGuid().ToString("N").Substring(0, 8);
+
+            UserRepository.CreateUser(
+                username,
+                "Password123",
+                SystemRole.Client);
+
+            SessionManager.Login(
+                username,
+                "Password123",
+                SystemRole.Client);
+
+            SessionManager.Logout();
+
+            Assert.IsNull(SessionManager.CurrentActiveUser);
+        }
     }
+
+
 }

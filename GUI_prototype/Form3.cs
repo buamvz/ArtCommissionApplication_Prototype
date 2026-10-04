@@ -123,6 +123,9 @@ namespace GUI_prototype
             LoginPanel.Visible = false;
         }
 
- 
+        private void usernameInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
