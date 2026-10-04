@@ -19,10 +19,10 @@ namespace GUI_prototype
         {
             InitializeComponent();
             // create simple role-switch UI (for prototype/testing)
-            CreateRoleControls();
+            //CreateRoleControls();
             // subscribe to session changes so UI can react
-            SessionManager.UserChanged += OnUserChanged;
-            UpdateRoleUI();
+            //SessionManager.UserChanged += OnUserChanged;
+            //UpdateRoleUI();
         }
 
         private void Form1_Load(object sender, EventArgs e)

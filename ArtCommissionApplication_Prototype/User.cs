@@ -14,13 +14,19 @@ namespace ArtCommissionApplication_Prototype
         public string Username { get; set; }
 
         // Role assigned to the user (Client, Artist, Admin)
-        public Role Role { get; set; } = Role.Client;
+        public SystemRole Role { get; set; } = SystemRole.Client;
 
         // Backwards-compatible permission level (optional). Prefer Role.
         public int PermissionLevel { get; set; } = 0;
+
+        // Stored password hash (base64). Only used for authentication storage.
+        public string? PasswordHash { get; set; }
+
+        // Stored password salt (base64).
+        public string? PasswordSalt { get; set; }
     }
 
-    public enum Role
+    public enum SystemRole
     {
         Client = 0,
         Artist = 1,
