@@ -129,6 +129,9 @@ CREATE TABLE IF NOT EXISTS Commissions (
                 {
                     Id = id,
                 };
+                //now database restores the status and submitted date - Brooke
+
+                request.SetStatus((CommissionStatus)statusInt);
 
                 // set status via reflection of constructor default? we'll set via direct property if available
                 // CommissionRequest.Status is private set - we cannot set it here. Use repository only for read/display of pending requests.

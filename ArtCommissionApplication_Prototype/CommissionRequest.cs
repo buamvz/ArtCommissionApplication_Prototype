@@ -23,6 +23,11 @@ namespace ArtCommissionApplication_Prototype
         //private set for commision status will be used to update the status of the commission request
         //cant alow invaild transitions in status
         public CommissionStatus Status { get; private set; }
+        //method to update the status of the commission request - Brooke
+        public void SetStatus(CommissionStatus status)
+        {
+            Status = status;
+        }
         public DateTime SubmittedDate { get; }
 
         //public CommissionRequest(Client client, CommissionInformation commissionInformation)
