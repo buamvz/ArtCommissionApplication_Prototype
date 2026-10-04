@@ -134,10 +134,13 @@ CREATE TABLE IF NOT EXISTS Users (
         }
 
         // sienna - compare a given username and password to the stored hash and salt and returns a user (only after clearing the hash and salt so they are not exposed)
-        public static User? Authenticate(string username, string password)
+        public static User? Authenticate(string username, string password, SystemRole role)
         {
             var user = GetUserByUsername(username);
             if (user == null) return null;
+
+            if (user.Role != role)
+                return null;
 
             if (string.IsNullOrEmpty(user.PasswordSalt) || string.IsNullOrEmpty(user.PasswordHash))
                 return null;

@@ -100,8 +100,8 @@ namespace GUI_prototype
             username = usernameInput.Text;
             password = passwordInput.Text;
 
-            if (username != null && password != null)
-                SessionManager.Login(username, password);
+            if (username != null && password != null && claimedRole.HasValue)
+                SessionManager.Login(username, password, claimedRole.Value);
         }
 
         private void UpdateDebugLabel()

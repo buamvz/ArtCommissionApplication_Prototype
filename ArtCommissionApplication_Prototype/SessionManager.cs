@@ -29,7 +29,7 @@ namespace ArtCommissionApplication_Prototype
         public static bool IsAdmin() => CurrentActiveUser != null && CurrentActiveUser.Role == SystemRole.Admin;
 
         // Attempt to login with existing username/password - Returns true if successful.
-        public static bool Login(string username, string password)
+        public static bool Login(string username, string password, SystemRole role)
         {
             if (string.IsNullOrWhiteSpace(username) || password == null)
                 return false;
@@ -37,7 +37,7 @@ namespace ArtCommissionApplication_Prototype
             try
             {
                 UserRepository.Initialize();
-                var user = UserRepository.Authenticate(username, password);
+                var user = UserRepository.Authenticate(username, password, role);
                 if (user == null) return false;
 
                 SetUser(user);
