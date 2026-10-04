@@ -33,6 +33,7 @@
             AdminButton = new Button();
             UserTypePanel = new Panel();
             LoginPanel = new Panel();
+            backToSelectUserButton = new Button();
             usernameLable = new Label();
             passwordLabel = new Label();
             passwordInput = new TextBox();
@@ -40,7 +41,6 @@
             loginButton = new Button();
             signupButton = new Button();
             debugLabel = new Label();
-            backToSelectUserButton = new Button();
             UserTypePanel.SuspendLayout();
             LoginPanel.SuspendLayout();
             SuspendLayout();
@@ -103,6 +103,16 @@
             LoginPanel.TabIndex = 4;
             LoginPanel.Visible = false;
             // 
+            // backToSelectUserButton
+            // 
+            backToSelectUserButton.Location = new Point(12, 14);
+            backToSelectUserButton.Name = "backToSelectUserButton";
+            backToSelectUserButton.Size = new Size(75, 23);
+            backToSelectUserButton.TabIndex = 8;
+            backToSelectUserButton.Text = "Back";
+            backToSelectUserButton.UseVisualStyleBackColor = true;
+            backToSelectUserButton.Click += backToSelectUserButton_Click;
+            // 
             // usernameLable
             // 
             usernameLable.AutoSize = true;
@@ -145,6 +155,7 @@
             loginButton.TabIndex = 3;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = true;
+            loginButton.Click += loginButton_Click;
             // 
             // signupButton
             // 
@@ -155,7 +166,7 @@
             signupButton.TabIndex = 2;
             signupButton.Text = "Sign Up";
             signupButton.UseVisualStyleBackColor = true;
-            signupButton.Click += button3_Click;
+            signupButton.Click += signupButton_Click;
             // 
             // debugLabel
             // 
@@ -165,16 +176,6 @@
             debugLabel.Size = new Size(87, 15);
             debugLabel.TabIndex = 5;
             debugLabel.Text = "Current User Is:";
-            // 
-            // backToSelectUserButton
-            // 
-            backToSelectUserButton.Location = new Point(12, 14);
-            backToSelectUserButton.Name = "backToSelectUserButton";
-            backToSelectUserButton.Size = new Size(75, 23);
-            backToSelectUserButton.TabIndex = 8;
-            backToSelectUserButton.Text = "Back";
-            backToSelectUserButton.UseVisualStyleBackColor = true;
-            backToSelectUserButton.Click += backToSelectUserButton_Click;
             // 
             // Form3
             // 

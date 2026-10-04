@@ -11,7 +11,11 @@ namespace GUI_prototype
 {
     public partial class Form3 : Form
     {
+        // sienna - claimed role will track what the current user plans to sign in as and will be used for the debug label
         private SystemRole? claimedRole = null;
+
+        private string username;
+        private string password;
 
         public Form3()
         {
@@ -20,7 +24,8 @@ namespace GUI_prototype
 
 
             // update debug label when session changes
-            SessionManager.UserChanged += (u) => {
+            SessionManager.UserChanged += (u) =>
+            {
                 if (InvokeRequired) Invoke(new Action(() => UpdateDebugLabel())); else UpdateDebugLabel();
             };
         }
@@ -31,7 +36,7 @@ namespace GUI_prototype
 
             //newWindow.Show();
             //this.Hide();
-            
+
             claimedRole = SystemRole.Client;
             UserTypePanel.Visible = false;
             LoginPanel.Visible = true;
@@ -56,9 +61,47 @@ namespace GUI_prototype
             UpdateDebugLabel();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        // sienna - sign up with inputed in
+        private void signupButton_Click(object sender, EventArgs e)
         {
-            // sign in
+            // sienna - prevent username with special characters (numbers and letters only)
+            if (usernameInput.Text.Any(ch => !char.IsLetterOrDigit(ch)))
+            {
+                MessageBox.Show("Username can only contain letters and digits.");
+                return;
+            }
+            // sienna - make sure user has (more) secure password.
+            if (passwordInput.Text.Length < 8)
+            {
+                MessageBox.Show("Password must be at least 8 characters long.");
+                return;
+            }
+
+            username = usernameInput.Text;
+            password = passwordInput.Text;
+
+            if (username != null && password != null && claimedRole.HasValue)
+                SessionManager.SignUp(username, password, claimedRole.Value);
+        }
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+            if (usernameInput.Text.Any(ch => !char.IsLetterOrDigit(ch)))
+            {
+                MessageBox.Show("Username can only contain letters and digits.");
+                return;
+            }
+            // sienna - make sure user has (more) secure password.
+            if (passwordInput.Text.Length < 8)
+            {
+                MessageBox.Show("Password must be at least 8 characters long.");
+                return;
+            }
+
+            username = usernameInput.Text;
+            password = passwordInput.Text;
+
+            if (username != null && password != null)
+                SessionManager.Login(username, password);
         }
 
         private void UpdateDebugLabel()
@@ -69,11 +112,7 @@ namespace GUI_prototype
             }
             else if (claimedRole != null)
             {
-                debugLabel.Text = $"Claiming role: {claimedRole}";
-            }
-            else
-            {
-                debugLabel.Text = "Current User Is: None";
+                debugLabel.Text = $"Current User Is: {claimedRole}";
             }
 
         }
@@ -83,5 +122,7 @@ namespace GUI_prototype
             UserTypePanel.Visible = true;
             LoginPanel.Visible = false;
         }
+
+ 
     }
 }
