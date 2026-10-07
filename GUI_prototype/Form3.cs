@@ -17,11 +17,14 @@ namespace GUI_prototype
         private string username;
         private string password;
 
+        private readonly ErrorProvider errorProvider;
+
         public Form3()
         {
             InitializeComponent();
             LoginPanel.Visible = false;
 
+            errorProvider = new ErrorProvider(this);
 
             // update debug label when session changes
             SessionManager.UserChanged += (u) =>
@@ -67,13 +70,13 @@ namespace GUI_prototype
             // sienna - prevent username with special characters (numbers and letters only)
             if (usernameInput.Text.Any(ch => !char.IsLetterOrDigit(ch)))
             {
-                MessageBox.Show("Username can only contain letters and digits.");
+                errorProvider.SetError(usernameInput, "Username can only contain letters and digits.");
                 return;
             }
             // sienna - make sure user has (more) secure password.
             if (passwordInput.Text.Length < 8)
             {
-                MessageBox.Show("Password must be at least 8 characters long.");
+                errorProvider.SetError(passwordInput, "Password must be at least 8 characters long.");
                 return;
             }
 
@@ -87,13 +90,13 @@ namespace GUI_prototype
         {
             if (usernameInput.Text.Any(ch => !char.IsLetterOrDigit(ch)))
             {
-                MessageBox.Show("Username can only contain letters and digits.");
+                errorProvider.SetError(usernameInput, "Username can only contain letters and digits.");
                 return;
             }
             // sienna - make sure user has (more) secure password.
             if (passwordInput.Text.Length < 8)
             {
-                MessageBox.Show("Password must be at least 8 characters long.");
+                errorProvider.SetError(passwordInput, "Password must be at least 8 characters long.");
                 return;
             }
 
@@ -101,7 +104,16 @@ namespace GUI_prototype
             password = passwordInput.Text;
 
             if (username != null && password != null && claimedRole.HasValue)
+            {
+                if (!SessionManager.Login(username, password, claimedRole.Value))
+                {
+                    MessageBox.Show("User not found.");
+                    return;
+                }
                 SessionManager.Login(username, password, claimedRole.Value);
+                backToSelectUserButton.Text = "Logout";
+                continueButton.Enabled = true;
+            }
         }
 
         private void UpdateDebugLabel()
@@ -121,11 +133,30 @@ namespace GUI_prototype
         {
             UserTypePanel.Visible = true;
             LoginPanel.Visible = false;
+            SessionManager.Logout();
+            backToSelectUserButton.Text = "Back";
+            continueButton.Enabled = false;
         }
 
         private void usernameInput_TextChanged(object sender, EventArgs e)
         {
+            if (usernameInput.Text.Any(ch => !char.IsLetterOrDigit(ch)))
+            {
+                errorProvider.SetError(usernameInput, "Username can only contain letters and digits.");
+                return;
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
 
+        private void continueButton_Click(object sender, EventArgs e)
+        {
+            Form1 newWindow = new Form1();
+
+            newWindow.Show();
+            this.Hide();
         }
     }
 }

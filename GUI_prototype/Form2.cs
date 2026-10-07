@@ -33,6 +33,8 @@ namespace GUI_prototype
         {
             InitializeComponent();
 
+            nameInput.Text = SessionManager.CurrentActiveUser.Username;
+
             errorProvider = new ErrorProvider(this);
 
             // wire up change events so the estimate updates when inputs change

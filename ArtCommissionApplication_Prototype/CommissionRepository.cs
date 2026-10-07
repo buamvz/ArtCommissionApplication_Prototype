@@ -27,20 +27,20 @@ namespace ArtCommissionApplication_Prototype
             // sienna - uses command for db to set up if a table does not already exist
             using var cmd = connection.CreateCommand();
             cmd.CommandText = @"
-CREATE TABLE IF NOT EXISTS Commissions (
-    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-    ClientName TEXT NOT NULL,
-    ClientEmail TEXT NOT NULL,
-    CropType TEXT NOT NULL,
-    NumberOfCharacters INTEGER NOT NULL,
-    HasBackground INTEGER NOT NULL,
-    Description TEXT,
-    EstimatedPrice REAL NOT NULL,
-    NeedByDate TEXT,
-    Status INTEGER NOT NULL,
-    SubmittedDate TEXT NOT NULL
-);
-";
+    CREATE TABLE IF NOT EXISTS Commissions (
+        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+        ClientName TEXT NOT NULL,
+        ClientEmail TEXT NOT NULL,
+        CropType TEXT NOT NULL,
+        NumberOfCharacters INTEGER NOT NULL,
+        HasBackground INTEGER NOT NULL,
+        Description TEXT,
+        EstimatedPrice REAL NOT NULL,
+        NeedByDate TEXT,
+        Status INTEGER NOT NULL,
+        SubmittedDate TEXT NOT NULL
+    );
+    ";
             cmd.ExecuteNonQuery();
         }
 
@@ -154,6 +154,28 @@ CREATE TABLE IF NOT EXISTS Commissions (
             cmd.Parameters.AddWithValue("$status", (int)status);
             cmd.Parameters.AddWithValue("$id", id);
             cmd.ExecuteNonQuery();
+        }
+
+        // sienna - check if commission table exists in the database.
+        // Note: this does not call Initialize (which would create the table). It only inspects the database file.
+        public static bool CommissionTableExists()
+        {
+            // Determine path to DB without creating or initializing the schema.
+            var path = dbPath;
+            if (string.IsNullOrWhiteSpace(path))
+                path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "commissions.db");
+
+            using var connection = new SqliteConnection($"Data Source={path}");
+            connection.Open();
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT count(*) FROM sqlite_master WHERE type='table' AND name='Commissions';";
+
+            var result = cmd.ExecuteScalar();
+            if (result is long l) return l > 0;
+            if (result is int i) return i > 0;
+            if (result != null && int.TryParse(result.ToString(), out var parsed)) return parsed > 0;
+            return false;
         }
     }
 }

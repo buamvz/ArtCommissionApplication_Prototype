@@ -27,7 +27,8 @@ namespace GUI_prototype
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadQueueDatabaseData();
+            if (CommissionRepository.CommissionTableExists())
+                LoadQueueDatabaseData();
         }
 
         //private void OnUserChanged(User? user)
@@ -196,6 +197,11 @@ namespace GUI_prototype
         private void reloadButton_Click(object sender, EventArgs e)
         {
             ReloadQueue();
+        }
+
+        private void tabMyCommissions_Client_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

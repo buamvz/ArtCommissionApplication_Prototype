@@ -52,6 +52,12 @@
             reloadButton = new Button();
             publicQueueGrid = new DataGridView();
             label11 = new Label();
+            tabMyCommissions_Client = new TabPage();
+            myCommissionsView = new FlowLayoutPanel();
+            labelMyComms = new Label();
+            splitContainer1 = new SplitContainer();
+            label12 = new Label();
+            labelStatus = new Label();
             pictureBox2 = new PictureBox();
             tabAll.SuspendLayout();
             tabHome.SuspendLayout();
@@ -62,6 +68,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabQueue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)publicQueueGrid).BeginInit();
+            tabMyCommissions_Client.SuspendLayout();
+            myCommissionsView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
@@ -86,6 +97,7 @@
             tabAll.Controls.Add(tabTOS);
             tabAll.Controls.Add(tabSamples);
             tabAll.Controls.Add(tabQueue);
+            tabAll.Controls.Add(tabMyCommissions_Client);
             tabAll.Font = new Font("Segoe UI", 8F);
             tabAll.Location = new Point(0, 59);
             tabAll.Name = "tabAll";
@@ -318,10 +330,16 @@
             // 
             // publicQueueGrid
             // 
+            publicQueueGrid.AllowUserToAddRows = false;
+            publicQueueGrid.AllowUserToDeleteRows = false;
+            publicQueueGrid.AllowUserToResizeColumns = false;
+            publicQueueGrid.AllowUserToResizeRows = false;
+            publicQueueGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             publicQueueGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             publicQueueGrid.Location = new Point(8, 56);
             publicQueueGrid.Name = "publicQueueGrid";
             publicQueueGrid.ReadOnly = true;
+            publicQueueGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             publicQueueGrid.Size = new Size(769, 302);
             publicQueueGrid.TabIndex = 8;
             // 
@@ -335,6 +353,78 @@
             label11.Size = new Size(769, 39);
             label11.TabIndex = 7;
             label11.Text = "Public Queue\r\n";
+            // 
+            // tabMyCommissions_Client
+            // 
+            tabMyCommissions_Client.Controls.Add(myCommissionsView);
+            tabMyCommissions_Client.Location = new Point(4, 22);
+            tabMyCommissions_Client.Name = "tabMyCommissions_Client";
+            tabMyCommissions_Client.Padding = new Padding(3);
+            tabMyCommissions_Client.Size = new Size(792, 366);
+            tabMyCommissions_Client.TabIndex = 5;
+            tabMyCommissions_Client.Text = "My Commissions";
+            tabMyCommissions_Client.UseVisualStyleBackColor = true;
+            tabMyCommissions_Client.Click += tabMyCommissions_Client_Click;
+            // 
+            // myCommissionsView
+            // 
+            myCommissionsView.AutoScroll = true;
+            myCommissionsView.Controls.Add(labelMyComms);
+            myCommissionsView.Controls.Add(splitContainer1);
+            myCommissionsView.Location = new Point(0, 17);
+            myCommissionsView.Name = "myCommissionsView";
+            myCommissionsView.Size = new Size(792, 353);
+            myCommissionsView.TabIndex = 2;
+            // 
+            // labelMyComms
+            // 
+            labelMyComms.BackColor = Color.FromArgb(224, 224, 224);
+            labelMyComms.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelMyComms.Location = new Point(3, 0);
+            labelMyComms.Name = "labelMyComms";
+            labelMyComms.Padding = new Padding(10);
+            labelMyComms.Size = new Size(786, 39);
+            labelMyComms.TabIndex = 8;
+            labelMyComms.Text = "My Commissions";
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Location = new Point(3, 42);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.AutoScroll = true;
+            splitContainer1.Panel1.BackColor = Color.Gainsboro;
+            splitContainer1.Panel1.Controls.Add(label12);
+            splitContainer1.Panel1.Controls.Add(labelStatus);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.BackColor = Color.WhiteSmoke;
+            splitContainer1.Size = new Size(786, 130);
+            splitContainer1.SplitterDistance = 359;
+            splitContainer1.TabIndex = 2;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 10F);
+            label12.Location = new Point(5, 31);
+            label12.Name = "label12";
+            label12.Size = new Size(132, 133);
+            label12.TabIndex = 1;
+            label12.Text = "Name:\r\nEmail:\r\nCommission Details:\r\n\r\nDescription:\r\n\r\nThank you!";
+            // 
+            // labelStatus
+            // 
+            labelStatus.AutoSize = true;
+            labelStatus.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelStatus.Location = new Point(5, 12);
+            labelStatus.Name = "labelStatus";
+            labelStatus.Size = new Size(112, 19);
+            labelStatus.TabIndex = 0;
+            labelStatus.Text = "Status: Pending";
             // 
             // pictureBox2
             // 
@@ -367,6 +457,12 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabQueue.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)publicQueueGrid).EndInit();
+            tabMyCommissions_Client.ResumeLayout(false);
+            myCommissionsView.ResumeLayout(false);
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
@@ -396,5 +492,11 @@
         private Label label9;
         private DataGridView publicQueueGrid;
         private Button reloadButton;
+        private TabPage tabMyCommissions_Client;
+        private FlowLayoutPanel myCommissionsView;
+        private SplitContainer splitContainer1;
+        private Label labelMyComms;
+        private Label labelStatus;
+        private Label label12;
     }
 }
