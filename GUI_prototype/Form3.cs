@@ -105,12 +105,14 @@ namespace GUI_prototype
 
             if (username != null && password != null && claimedRole.HasValue)
             {
-                if (!SessionManager.Login(username, password, claimedRole.Value))
+                // Call Login once and act on the result. The previous code called Login twice.
+                bool loggedIn = SessionManager.Login(username, password, claimedRole.Value);
+                if (!loggedIn)
                 {
                     MessageBox.Show("User not found.");
                     return;
                 }
-                SessionManager.Login(username, password, claimedRole.Value);
+
                 backToSelectUserButton.Text = "Logout";
                 continueButton.Enabled = true;
             }
@@ -166,6 +168,7 @@ namespace GUI_prototype
             // Choose the destination based on the authenticated user's role.
             switch (SessionManager.CurrentActiveUser.Role)
             {
+                //Pulls roles from User emuns
                 case SystemRole.Admin:
                     nextForm = new AdminDashboard();
                     break;

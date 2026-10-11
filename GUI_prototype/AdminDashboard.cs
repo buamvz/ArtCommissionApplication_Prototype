@@ -4,36 +4,11 @@ using ArtCommissionApplication_Prototype;
 
 namespace GUI_prototype
 {
-    public class AdminDashboard : Form
+    public partial class AdminDashboard : Form
     {
-        private Label headerLabel;
-
         public AdminDashboard()
         {
             InitializeComponent();
-        }
-
-        private void InitializeComponent()
-        {
-            this.headerLabel = new Label();
-            this.SuspendLayout();
-            // 
-            // headerLabel
-            // 
-            this.headerLabel.AutoSize = true;
-            this.headerLabel.Location = new System.Drawing.Point(16, 16);
-            this.headerLabel.Name = "headerLabel";
-            this.headerLabel.Size = new System.Drawing.Size(200, 20);
-            this.headerLabel.Text = "Admin Dashboard";
-            // 
-            // AdminDashboard
-            // 
-            this.ClientSize = new System.Drawing.Size(600, 400);
-            this.Controls.Add(this.headerLabel);
-            this.Name = "AdminDashboard";
-            this.Text = "Admin Dashboard";
-            this.ResumeLayout(false);
-            this.PerformLayout();
         }
 
         // Test helper: allows unit tests to check policy without creating a form instance
@@ -54,5 +29,16 @@ namespace GUI_prototype
 
             // Continue normal load for admins...
         }
+
+        private void AdminDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        // Stubs for designer-wired events (keeps designer-generated wiring intact)
+        private void tabHome_Click(object sender, EventArgs e) { }
+        private void label9_Click(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) { }
+        private void pictureBox2_Click(object sender, EventArgs e) { }
     }
 }
