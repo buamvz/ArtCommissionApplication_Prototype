@@ -151,11 +151,39 @@ namespace GUI_prototype
             }
         }
 
+        //Brooke - Adding in continue cases for different roles so that the continue button can open different forms base off of the buinuess role rules
         private void continueButton_Click(object sender, EventArgs e)
         {
-            Form1 newWindow = new Form1();
+            // Make sure a user is actually logged in.
+            if (SessionManager.CurrentActiveUser == null)
+            {
+                MessageBox.Show("Please log in before continuing.");
+                return;
+            }
 
-            newWindow.Show();
+            Form nextForm;
+
+            // Choose the destination based on the authenticated user's role.
+            switch (SessionManager.CurrentActiveUser.Role)
+            {
+                case SystemRole.Admin:
+                    nextForm = new AdminDashboard();
+                    break;
+
+                    //SIENNAAA CHANGE WHAT FORMS THESE ROLES GO TO LATER!!!!!!!!!!!
+                case SystemRole.Client:
+                case SystemRole.Artist:
+                    // Keep the existing destination for now.
+                    // Replace this with the separate role-specific forms later.
+                    nextForm = new Form1();
+                    break;
+
+                default:
+                    MessageBox.Show("Your account does not have a valid role.");
+                    return;
+            }
+
+            nextForm.Show();
             this.Hide();
         }
     }

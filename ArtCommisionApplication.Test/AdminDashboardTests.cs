@@ -42,5 +42,55 @@ namespace ArtCommisionApplication.Test
             Assert.IsFalse(SessionManager.IsAdmin());
             Assert.IsTrue(SessionManager.IsClient());
         }
+
+        [TestMethod]
+        public void Admin_AccessAllowed()
+        {
+            var admin = new User
+            {
+                Username = "unit_test_admin",
+                Role = SystemRole.Admin
+            };
+
+            SessionManager.SetUser(admin);
+
+            Assert.IsTrue(SessionManager.IsAdmin(), "Admin should be recognised as admin for access checks.");
+        }
+
+        [TestMethod]
+        public void Client_AccessDenied()
+        {
+            var client = new User
+            {
+                Username = "unit_test_client",
+                Role = SystemRole.Client
+            };
+
+            SessionManager.SetUser(client);
+
+            Assert.IsFalse(SessionManager.IsAdmin(), "Client must not be allowed admin access.");
+        }
+
+        [TestMethod]
+        public void Artist_AccessDenied()
+        {
+            var artist = new User
+            {
+                Username = "unit_test_artist",
+                Role = SystemRole.Artist
+            };
+
+            SessionManager.SetUser(artist);
+
+            Assert.IsFalse(SessionManager.IsAdmin(), "Artist must not be allowed admin access.");
+        }
+
+        [TestMethod]
+        public void Unauthenticated_AccessDenied()
+        {
+            SessionManager.Logout();
+
+            Assert.IsFalse(SessionManager.IsAdmin(), "Unauthenticated users must not be allowed admin access.");
+        }
     }
 }
