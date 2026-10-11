@@ -2,6 +2,7 @@ using Microsoft.Data.Sqlite;
 using System.Data;
 using ArtCommissionApplication_Prototype;
 using System.Drawing;
+using System.Linq;
 
 
 namespace GUI_prototype
@@ -9,20 +10,10 @@ namespace GUI_prototype
     public partial class Form1 : Form
     {
         // UI elements for simple role switching in the prototype
-        private Label currentUserLabel;
-        private Button signInClientButton;
-        private Button signInArtistButton;
-        private Button signInAdminButton;
-        private Button signOutButton;
 
         public Form1()
         {
             InitializeComponent();
-            // create simple role-switch UI (for prototype/testing)
-            //CreateRoleControls();
-            // subscribe to session changes so UI can react
-            //SessionManager.UserChanged += OnUserChanged;
-            //UpdateRoleUI();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -31,97 +22,85 @@ namespace GUI_prototype
                 LoadQueueDatabaseData();
         }
 
-        //private void OnUserChanged(User? user)
-        //{
-        //    if (InvokeRequired)
-        //    {
-        //        Invoke(new Action(() => OnUserChanged(user)));
-        //        return;
-        //    }
+        // Load commissions for the currently active user into the "My Commissions" view.
+        private void LoadMyCommissions()
+        {
+            if (SessionManager.CurrentActiveUser == null)
+                return;
 
-        //    UpdateRoleUI();
-        //}
+            // Keep the header label (labelMyComms) and remove other dynamic controls
+            for (int i = myCommissionsView.Controls.Count - 1; i >= 0; i--)
+            {
+                var c = myCommissionsView.Controls[i];
+                if (c == labelMyComms)
+                    continue;
+                myCommissionsView.Controls.RemoveAt(i);
+                c.Dispose();
+            }
 
-        //private void CreateRoleControls()
-        //{
-        //    // Current user label
-        //    currentUserLabel = new Label
-        //    {
-        //        AutoSize = true,
-        //        Location = new Point(520, 10),
-        //        Name = "currentUserLabel",
-        //        Text = "Not signed in",
-        //        Font = new Font(Font.FontFamily, 9, FontStyle.Bold)
-        //    };
-        //    Controls.Add(currentUserLabel);
+            try
+            {
+                var all = CommissionRepository.GetAll();
+                var mine = all.Where(r => r.Client.ClientName == SessionManager.CurrentActiveUser.Username);
+                foreach (var req in mine)
+                {
+                    AddCommissionToMyCommissions(req);
+                }
+            }
+            catch
+            {
+                // ignore for prototype
+            }
+        }
 
-        //    // Sign in as client
-        //    signInClientButton = new Button
-        //    {
-        //        Location = new Point(520, 40),
-        //        Size = new Size(120, 28),
-        //        Text = "Sign in Client"
-        //    };
-        //    signInClientButton.Click += (s, e) =>
-        //    {
-        //        var user = new User { Username = "client_user", Role = Role.Client };
-        //        SessionManager.SetUser(user);
-        //    };
-        //    Controls.Add(signInClientButton);
+        // Public helper so other forms can ask Form1 to show a new commission in the "My Commissions" tab
+        public void AddCommissionToMyCommissions(ArtCommissionApplication_Prototype.CommissionRequest req)
+        {
+            if (req == null) return;
 
-        //    // Sign in as artist
-        //    signInArtistButton = new Button
-        //    {
-        //        Location = new Point(520, 72),
-        //        Size = new Size(120, 28),
-        //        Text = "Sign in Artist"
-        //    };
-        //    signInArtistButton.Click += (s, e) =>
-        //    {
-        //        var user = new User { Username = "artist_user", Role = Role.Artist };
-        //        SessionManager.SetUser(user);
-        //    };
-        //    Controls.Add(signInArtistButton);
+            var sc = new SplitContainer();
+            sc.Orientation = Orientation.Vertical; // side-by-side panels like the designer template
+            sc.Size = new Size(786, 130);
+            sc.SplitterDistance = 359; // match designer template distance (approx)
+            sc.Panel1.BackColor = Color.Gainsboro;
+            sc.Panel2.BackColor = Color.WhiteSmoke;
 
-        //    // Sign in as admin
-        //    signInAdminButton = new Button
-        //    {
-        //        Location = new Point(520, 104),
-        //        Size = new Size(120, 28),
-        //        Text = "Sign in Admin"
-        //    };
-        //    signInAdminButton.Click += (s, e) =>
-        //    {
-        //        var user = new User { Username = "admin_user", Role = Role.Admin };
-        //        SessionManager.SetUser(user);
-        //    };
-        //    Controls.Add(signInAdminButton);
+            var statusLabel = new Label();
+            statusLabel.AutoSize = true;
+            statusLabel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            statusLabel.Location = new Point(5, 6);
+            statusLabel.Text = "Status: " + req.Status.ToString();
 
-        //    signOutButton = new Button
-        //    {
-        //        Location = new Point(520, 136),
-        //        Size = new Size(120, 28),
-        //        Text = "Sign out"
-        //    };
-        //    signOutButton.Click += (s, e) => SessionManager.Logout();
-        //    Controls.Add(signOutButton);
-        //}
+            var detailsLabel = new Label();
+            detailsLabel.AutoSize = true;
+            detailsLabel.Font = new Font("Segoe UI", 10F);
+            detailsLabel.Location = new Point(5, 30);
+            detailsLabel.MaximumSize = new Size(340, 0);
+            var ci = req.CommissionType;
+            detailsLabel.Text =
+                $"Name: {req.Client.ClientName}\n" +
+                $"Email: {req.Client.ClientEmail}\n" +
+                "Commission Details:\n" +
+                $"Crop: {ci.CropType}\n" +
+                $"Number of Characters: {ci.NumberOFCharacters}\n" +
+                $"Has Background: {ci.HasBackground}\n" +
+                $"Description: {ci.Description}\n\n" +
+                $"Estimated Price: {ci.EstimatedPrice:C}";
 
-        //private void UpdateRoleUI()
-        //{
-        //    var user = SessionManager.LoggedInUser;
-        //    if (user == null)
-        //    {
-        //        currentUserLabel.Text = "Not signed in";
-        //        RequestComm.Enabled = true; // allow anonymous to request? keep enabled for prototype
-        //    }
-        //    else
-        //    {
-        //        currentUserLabel.Text = $"Signed in: {user.Username} ({user.Role})";
-        //        // Only clients can create commission requests in this model
-        //        RequestComm.Enabled = SessionManager.IsClient();
-        //    }
-        //}
+            sc.Panel1.Controls.Add(statusLabel);
+            sc.Panel1.Controls.Add(detailsLabel);
+
+            // Optionally put a short summary in panel2
+            var rightSummary = new Label();
+            rightSummary.AutoSize = true;
+            rightSummary.Font = new Font("Segoe UI", 10F);
+            rightSummary.Location = new Point(5, 6);
+            rightSummary.Text = $"Submitted: {req.SubmittedDate:g}\nID: {req.Id}";
+            sc.Panel2.Controls.Add(rightSummary);
+
+            myCommissionsView.Controls.Add(sc);
+        }
+
 
         private void RequestComm_Click(object sender, EventArgs e)
         {
@@ -201,7 +180,13 @@ namespace GUI_prototype
 
         private void tabMyCommissions_Client_Click(object sender, EventArgs e)
         {
-
+            LoadMyCommissions();
         }
+
+        private void reloadCommissionsButton_Click(object sender, EventArgs e)
+        {
+            LoadMyCommissions();
+        }
+        
     }
 }

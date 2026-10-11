@@ -55,10 +55,11 @@
             tabMyCommissions_Client = new TabPage();
             myCommissionsView = new FlowLayoutPanel();
             labelMyComms = new Label();
-            splitContainer1 = new SplitContainer();
+            userCommissionObject = new SplitContainer();
             label12 = new Label();
             labelStatus = new Label();
             pictureBox2 = new PictureBox();
+            reloadCommissionsButton = new Button();
             tabAll.SuspendLayout();
             tabHome.SuspendLayout();
             tabInformation.SuspendLayout();
@@ -70,9 +71,9 @@
             ((System.ComponentModel.ISupportInitialize)publicQueueGrid).BeginInit();
             tabMyCommissions_Client.SuspendLayout();
             myCommissionsView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.Panel1.SuspendLayout();
-            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)userCommissionObject).BeginInit();
+            userCommissionObject.Panel1.SuspendLayout();
+            userCommissionObject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
@@ -356,6 +357,7 @@
             // 
             // tabMyCommissions_Client
             // 
+            tabMyCommissions_Client.Controls.Add(reloadCommissionsButton);
             tabMyCommissions_Client.Controls.Add(myCommissionsView);
             tabMyCommissions_Client.Location = new Point(4, 22);
             tabMyCommissions_Client.Name = "tabMyCommissions_Client";
@@ -370,7 +372,7 @@
             // 
             myCommissionsView.AutoScroll = true;
             myCommissionsView.Controls.Add(labelMyComms);
-            myCommissionsView.Controls.Add(splitContainer1);
+            myCommissionsView.Controls.Add(userCommissionObject);
             myCommissionsView.Location = new Point(0, 17);
             myCommissionsView.Name = "myCommissionsView";
             myCommissionsView.Size = new Size(792, 353);
@@ -387,30 +389,30 @@
             labelMyComms.TabIndex = 8;
             labelMyComms.Text = "My Commissions";
             // 
-            // splitContainer1
+            // userCommissionObject
             // 
-            splitContainer1.Location = new Point(3, 42);
-            splitContainer1.Name = "splitContainer1";
+            userCommissionObject.Location = new Point(3, 42);
+            userCommissionObject.Name = "userCommissionObject";
             // 
-            // splitContainer1.Panel1
+            // userCommissionObject.Panel1
             // 
-            splitContainer1.Panel1.AutoScroll = true;
-            splitContainer1.Panel1.BackColor = Color.Gainsboro;
-            splitContainer1.Panel1.Controls.Add(label12);
-            splitContainer1.Panel1.Controls.Add(labelStatus);
+            userCommissionObject.Panel1.AutoScroll = true;
+            userCommissionObject.Panel1.BackColor = Color.Gainsboro;
+            userCommissionObject.Panel1.Controls.Add(label12);
+            userCommissionObject.Panel1.Controls.Add(labelStatus);
             // 
-            // splitContainer1.Panel2
+            // userCommissionObject.Panel2
             // 
-            splitContainer1.Panel2.BackColor = Color.WhiteSmoke;
-            splitContainer1.Size = new Size(786, 130);
-            splitContainer1.SplitterDistance = 359;
-            splitContainer1.TabIndex = 2;
+            userCommissionObject.Panel2.BackColor = Color.WhiteSmoke;
+            userCommissionObject.Size = new Size(786, 130);
+            userCommissionObject.SplitterDistance = 359;
+            userCommissionObject.TabIndex = 2;
             // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 10F);
-            label12.Location = new Point(5, 31);
+            label12.Location = new Point(5, 34);
             label12.Name = "label12";
             label12.Size = new Size(132, 133);
             label12.TabIndex = 1;
@@ -437,6 +439,16 @@
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
+            // reloadCommissionsButton
+            // 
+            reloadCommissionsButton.Location = new Point(577, 0);
+            reloadCommissionsButton.Name = "reloadCommissionsButton";
+            reloadCommissionsButton.Size = new Size(212, 23);
+            reloadCommissionsButton.TabIndex = 10;
+            reloadCommissionsButton.Text = "Reload My Commissions";
+            reloadCommissionsButton.UseVisualStyleBackColor = true;
+            reloadCommissionsButton.Click += reloadCommissionsButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -459,10 +471,10 @@
             ((System.ComponentModel.ISupportInitialize)publicQueueGrid).EndInit();
             tabMyCommissions_Client.ResumeLayout(false);
             myCommissionsView.ResumeLayout(false);
-            splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
+            userCommissionObject.Panel1.ResumeLayout(false);
+            userCommissionObject.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)userCommissionObject).EndInit();
+            userCommissionObject.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
@@ -494,9 +506,10 @@
         private Button reloadButton;
         private TabPage tabMyCommissions_Client;
         private FlowLayoutPanel myCommissionsView;
-        private SplitContainer splitContainer1;
+        private SplitContainer userCommissionObject;
         private Label labelMyComms;
         private Label labelStatus;
         private Label label12;
+        private Button reloadCommissionsButton;
     }
 }

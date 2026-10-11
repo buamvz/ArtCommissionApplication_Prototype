@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace GUI_prototype
 {
@@ -263,6 +264,17 @@ namespace GUI_prototype
                 var newId = ArtCommissionApplication_Prototype.CommissionRepository.AddCommission(commission);
                 // include id in confirmation text
                 finalCommissionDetails = "(Saved commission id: " + newId + ")\n\n" + finalCommissionDetails;
+
+                // Notify the main form so the new commission appears in the "My Commissions" view.
+                try
+                {
+                    var main = Application.OpenForms.OfType<Form1>().FirstOrDefault();
+                    main?.AddCommissionToMyCommissions(commission);
+                }
+                catch
+                {
+                    // ignore UI notification errors in prototype
+                }
             }
             catch
             {
