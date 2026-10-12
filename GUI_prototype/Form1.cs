@@ -3,6 +3,7 @@ using System.Data;
 using ArtCommissionApplication_Prototype;
 using System.Drawing;
 using System.Linq;
+using System;
 
 
 namespace GUI_prototype
@@ -28,13 +29,14 @@ namespace GUI_prototype
             if (SessionManager.CurrentActiveUser == null)
                 return;
 
-            // Keep the header label (labelMyComms) and remove other dynamic controls
-            for (int i = myCommissionsView.Controls.Count - 1; i >= 0; i--)
+            // Keep the header label (labelMyComms) and the explicit reload button (reloadCommissionsButton)
+            for (int i = userMyCommissionsList.Controls.Count - 1; i >= 0; i--)
             {
-                var c = myCommissionsView.Controls[i];
-                if (c == labelMyComms)
+                var c = userMyCommissionsList.Controls[i];
+                if (c == labelMyComms || c == reloadCommissionsButton)
                     continue;
-                myCommissionsView.Controls.RemoveAt(i);
+
+                userMyCommissionsList.Controls.RemoveAt(i);
                 c.Dispose();
             }
 
@@ -53,11 +55,12 @@ namespace GUI_prototype
             }
         }
 
-        // Public helper so other forms can ask Form1 to show a new commission in the "My Commissions" tab
+        // sienna - public helper so other forms can ask to show a new commission in the "My Commissions" tab
         public void AddCommissionToMyCommissions(ArtCommissionApplication_Prototype.CommissionRequest req)
         {
             if (req == null) return;
 
+            // sienna - creates containter and objects inside - right and left panels
             var sc = new SplitContainer();
             sc.Orientation = Orientation.Vertical; // side-by-side panels like the designer template
             sc.Size = new Size(786, 130);
@@ -89,6 +92,7 @@ namespace GUI_prototype
 
             sc.Panel1.Controls.Add(statusLabel);
             sc.Panel1.Controls.Add(detailsLabel);
+            sc.Panel1.AutoScroll = true;
 
             // Optionally put a short summary in panel2
             var rightSummary = new Label();
@@ -98,7 +102,7 @@ namespace GUI_prototype
             rightSummary.Text = $"Submitted: {req.SubmittedDate:g}\nID: {req.Id}";
             sc.Panel2.Controls.Add(rightSummary);
 
-            myCommissionsView.Controls.Add(sc);
+            userMyCommissionsList.Controls.Add(sc);
         }
 
 
@@ -183,10 +187,9 @@ namespace GUI_prototype
             LoadMyCommissions();
         }
 
-        private void reloadCommissionsButton_Click(object sender, EventArgs e)
+        private void reloadCommissionsButton_Click_1(object sender, EventArgs e)
         {
             LoadMyCommissions();
         }
-        
     }
 }

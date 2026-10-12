@@ -52,14 +52,21 @@
             reloadButton = new Button();
             publicQueueGrid = new DataGridView();
             label11 = new Label();
-            tabMyCommissions_Client = new TabPage();
-            myCommissionsView = new FlowLayoutPanel();
-            labelMyComms = new Label();
-            userCommissionObject = new SplitContainer();
-            label12 = new Label();
-            labelStatus = new Label();
             pictureBox2 = new PictureBox();
+            clientTabs = new TabControl();
+            artistPagesTab = new TabPage();
+            clientPagesTab = new TabPage();
+            tabControl1 = new TabControl();
+            userMyCommissionsView = new TabPage();
+            userMyCommissionsList = new Panel();
+            splitContainer1 = new SplitContainer();
+            label14 = new Label();
+            label15 = new Label();
             reloadCommissionsButton = new Button();
+            labelMyComms = new Label();
+            userProfile = new TabPage();
+            labelUserProfile = new Label();
+            label12 = new Label();
             tabAll.SuspendLayout();
             tabHome.SuspendLayout();
             tabInformation.SuspendLayout();
@@ -69,12 +76,17 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabQueue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)publicQueueGrid).BeginInit();
-            tabMyCommissions_Client.SuspendLayout();
-            myCommissionsView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)userCommissionObject).BeginInit();
-            userCommissionObject.Panel1.SuspendLayout();
-            userCommissionObject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            clientTabs.SuspendLayout();
+            artistPagesTab.SuspendLayout();
+            clientPagesTab.SuspendLayout();
+            tabControl1.SuspendLayout();
+            userMyCommissionsView.SuspendLayout();
+            userMyCommissionsList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            userProfile.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -83,9 +95,9 @@
             label1.Dock = DockStyle.Top;
             label1.Font = new Font("Microsoft Sans Serif", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkMagenta;
-            label1.Location = new Point(0, 0);
+            label1.Location = new Point(3, 3);
             label1.Name = "label1";
-            label1.Size = new Size(800, 55);
+            label1.Size = new Size(786, 55);
             label1.TabIndex = 3;
             label1.Text = "Commission @JellyPhlox";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -98,12 +110,12 @@
             tabAll.Controls.Add(tabTOS);
             tabAll.Controls.Add(tabSamples);
             tabAll.Controls.Add(tabQueue);
-            tabAll.Controls.Add(tabMyCommissions_Client);
+            tabAll.Dock = DockStyle.Fill;
             tabAll.Font = new Font("Segoe UI", 8F);
-            tabAll.Location = new Point(0, 59);
+            tabAll.Location = new Point(3, 58);
             tabAll.Name = "tabAll";
             tabAll.SelectedIndex = 0;
-            tabAll.Size = new Size(800, 392);
+            tabAll.Size = new Size(786, 408);
             tabAll.TabIndex = 3;
             // 
             // tabHome
@@ -114,7 +126,7 @@
             tabHome.Location = new Point(4, 22);
             tabHome.Name = "tabHome";
             tabHome.Padding = new Padding(3);
-            tabHome.Size = new Size(792, 366);
+            tabHome.Size = new Size(778, 382);
             tabHome.TabIndex = 0;
             tabHome.Text = "Home";
             tabHome.UseVisualStyleBackColor = true;
@@ -163,7 +175,7 @@
             tabInformation.Location = new Point(4, 22);
             tabInformation.Name = "tabInformation";
             tabInformation.Padding = new Padding(3);
-            tabInformation.Size = new Size(792, 366);
+            tabInformation.Size = new Size(778, 382);
             tabInformation.TabIndex = 1;
             tabInformation.Text = "About JellyPhlox";
             tabInformation.UseVisualStyleBackColor = true;
@@ -211,7 +223,7 @@
             tabTOS.Location = new Point(4, 22);
             tabTOS.Name = "tabTOS";
             tabTOS.Padding = new Padding(3);
-            tabTOS.Size = new Size(792, 366);
+            tabTOS.Size = new Size(778, 382);
             tabTOS.TabIndex = 2;
             tabTOS.Text = "Terms Of Service";
             tabTOS.UseVisualStyleBackColor = true;
@@ -268,7 +280,7 @@
             tabSamples.Location = new Point(4, 22);
             tabSamples.Name = "tabSamples";
             tabSamples.Padding = new Padding(3);
-            tabSamples.Size = new Size(792, 366);
+            tabSamples.Size = new Size(778, 382);
             tabSamples.TabIndex = 3;
             tabSamples.Text = "Samples Of Work";
             tabSamples.UseVisualStyleBackColor = true;
@@ -314,7 +326,7 @@
             tabQueue.Location = new Point(4, 22);
             tabQueue.Name = "tabQueue";
             tabQueue.Padding = new Padding(3);
-            tabQueue.Size = new Size(792, 366);
+            tabQueue.Size = new Size(778, 382);
             tabQueue.TabIndex = 4;
             tabQueue.Text = "Public Queue";
             tabQueue.UseVisualStyleBackColor = true;
@@ -355,108 +367,184 @@
             label11.TabIndex = 7;
             label11.Text = "Public Queue\r\n";
             // 
-            // tabMyCommissions_Client
-            // 
-            tabMyCommissions_Client.Controls.Add(reloadCommissionsButton);
-            tabMyCommissions_Client.Controls.Add(myCommissionsView);
-            tabMyCommissions_Client.Location = new Point(4, 22);
-            tabMyCommissions_Client.Name = "tabMyCommissions_Client";
-            tabMyCommissions_Client.Padding = new Padding(3);
-            tabMyCommissions_Client.Size = new Size(792, 366);
-            tabMyCommissions_Client.TabIndex = 5;
-            tabMyCommissions_Client.Text = "My Commissions";
-            tabMyCommissions_Client.UseVisualStyleBackColor = true;
-            tabMyCommissions_Client.Click += tabMyCommissions_Client_Click;
-            // 
-            // myCommissionsView
-            // 
-            myCommissionsView.AutoScroll = true;
-            myCommissionsView.Controls.Add(labelMyComms);
-            myCommissionsView.Controls.Add(userCommissionObject);
-            myCommissionsView.Location = new Point(0, 17);
-            myCommissionsView.Name = "myCommissionsView";
-            myCommissionsView.Size = new Size(792, 353);
-            myCommissionsView.TabIndex = 2;
-            // 
-            // labelMyComms
-            // 
-            labelMyComms.BackColor = Color.FromArgb(224, 224, 224);
-            labelMyComms.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelMyComms.Location = new Point(3, 0);
-            labelMyComms.Name = "labelMyComms";
-            labelMyComms.Padding = new Padding(10);
-            labelMyComms.Size = new Size(786, 39);
-            labelMyComms.TabIndex = 8;
-            labelMyComms.Text = "My Commissions";
-            // 
-            // userCommissionObject
-            // 
-            userCommissionObject.Location = new Point(3, 42);
-            userCommissionObject.Name = "userCommissionObject";
-            // 
-            // userCommissionObject.Panel1
-            // 
-            userCommissionObject.Panel1.AutoScroll = true;
-            userCommissionObject.Panel1.BackColor = Color.Gainsboro;
-            userCommissionObject.Panel1.Controls.Add(label12);
-            userCommissionObject.Panel1.Controls.Add(labelStatus);
-            // 
-            // userCommissionObject.Panel2
-            // 
-            userCommissionObject.Panel2.BackColor = Color.WhiteSmoke;
-            userCommissionObject.Size = new Size(786, 130);
-            userCommissionObject.SplitterDistance = 359;
-            userCommissionObject.TabIndex = 2;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 10F);
-            label12.Location = new Point(5, 34);
-            label12.Name = "label12";
-            label12.Size = new Size(132, 133);
-            label12.TabIndex = 1;
-            label12.Text = "Name:\r\nEmail:\r\nCommission Details:\r\n\r\nDescription:\r\n\r\nThank you!";
-            // 
-            // labelStatus
-            // 
-            labelStatus.AutoSize = true;
-            labelStatus.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            labelStatus.Location = new Point(5, 12);
-            labelStatus.Name = "labelStatus";
-            labelStatus.Size = new Size(112, 19);
-            labelStatus.TabIndex = 0;
-            labelStatus.Text = "Status: Pending";
-            // 
             // pictureBox2
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.Image = Properties.Resources.JellyPhlox;
-            pictureBox2.Location = new Point(4, 4);
+            pictureBox2.Location = new Point(7, 6);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(47, 49);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
+            // clientTabs
+            // 
+            clientTabs.Controls.Add(artistPagesTab);
+            clientTabs.Controls.Add(clientPagesTab);
+            clientTabs.Location = new Point(0, 0);
+            clientTabs.Name = "clientTabs";
+            clientTabs.SelectedIndex = 0;
+            clientTabs.Size = new Size(800, 497);
+            clientTabs.SizeMode = TabSizeMode.Fixed;
+            clientTabs.TabIndex = 9;
+            // 
+            // artistPagesTab
+            // 
+            artistPagesTab.Controls.Add(pictureBox2);
+            artistPagesTab.Controls.Add(tabAll);
+            artistPagesTab.Controls.Add(label1);
+            artistPagesTab.Location = new Point(4, 24);
+            artistPagesTab.Name = "artistPagesTab";
+            artistPagesTab.Padding = new Padding(3);
+            artistPagesTab.Size = new Size(792, 469);
+            artistPagesTab.TabIndex = 0;
+            artistPagesTab.Text = "JellyPhlox";
+            artistPagesTab.UseVisualStyleBackColor = true;
+            // 
+            // clientPagesTab
+            // 
+            clientPagesTab.Controls.Add(tabControl1);
+            clientPagesTab.Location = new Point(4, 24);
+            clientPagesTab.Name = "clientPagesTab";
+            clientPagesTab.Padding = new Padding(3);
+            clientPagesTab.Size = new Size(792, 469);
+            clientPagesTab.TabIndex = 1;
+            clientPagesTab.Text = "My Profile";
+            clientPagesTab.UseVisualStyleBackColor = true;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(userMyCommissionsView);
+            tabControl1.Controls.Add(userProfile);
+            tabControl1.Location = new Point(3, 6);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(793, 467);
+            tabControl1.TabIndex = 0;
+            // 
+            // userMyCommissionsView
+            // 
+            userMyCommissionsView.Controls.Add(userMyCommissionsList);
+            userMyCommissionsView.Controls.Add(reloadCommissionsButton);
+            userMyCommissionsView.Controls.Add(labelMyComms);
+            userMyCommissionsView.Location = new Point(4, 24);
+            userMyCommissionsView.Name = "userMyCommissionsView";
+            userMyCommissionsView.Padding = new Padding(3);
+            userMyCommissionsView.Size = new Size(785, 439);
+            userMyCommissionsView.TabIndex = 6;
+            userMyCommissionsView.Text = "My Commission Requests";
+            userMyCommissionsView.UseVisualStyleBackColor = true;
+            // 
+            // userMyCommissionsList
+            // 
+            userMyCommissionsList.Controls.Add(splitContainer1);
+            userMyCommissionsList.Dock = DockStyle.Fill;
+            userMyCommissionsList.Location = new Point(3, 42);
+            userMyCommissionsList.Name = "userMyCommissionsList";
+            userMyCommissionsList.Size = new Size(779, 394);
+            userMyCommissionsList.TabIndex = 11;
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Location = new Point(3, 3);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.AutoScroll = true;
+            splitContainer1.Panel1.BackColor = Color.Gainsboro;
+            splitContainer1.Panel1.Controls.Add(label14);
+            splitContainer1.Panel1.Controls.Add(label15);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.BackColor = Color.WhiteSmoke;
+            splitContainer1.Size = new Size(785, 130);
+            splitContainer1.SplitterDistance = 358;
+            splitContainer1.TabIndex = 2;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 10F);
+            label14.Location = new Point(5, 34);
+            label14.Name = "label14";
+            label14.Size = new Size(132, 133);
+            label14.TabIndex = 1;
+            label14.Text = "Name:\r\nEmail:\r\nCommission Details:\r\n\r\nDescription:\r\n\r\nThank you!";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            label15.Location = new Point(5, 12);
+            label15.Name = "label15";
+            label15.Size = new Size(112, 19);
+            label15.TabIndex = 0;
+            label15.Text = "Status: Pending";
+            // 
             // reloadCommissionsButton
             // 
-            reloadCommissionsButton.Location = new Point(577, 0);
+            reloadCommissionsButton.Location = new Point(547, 6);
             reloadCommissionsButton.Name = "reloadCommissionsButton";
-            reloadCommissionsButton.Size = new Size(212, 23);
+            reloadCommissionsButton.Size = new Size(230, 23);
             reloadCommissionsButton.TabIndex = 10;
             reloadCommissionsButton.Text = "Reload My Commissions";
             reloadCommissionsButton.UseVisualStyleBackColor = true;
-            reloadCommissionsButton.Click += reloadCommissionsButton_Click;
+            reloadCommissionsButton.Click += reloadCommissionsButton_Click_1;
+            // 
+            // labelMyComms
+            // 
+            labelMyComms.BackColor = Color.FromArgb(224, 224, 224);
+            labelMyComms.Dock = DockStyle.Top;
+            labelMyComms.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelMyComms.Location = new Point(3, 3);
+            labelMyComms.Name = "labelMyComms";
+            labelMyComms.Padding = new Padding(10);
+            labelMyComms.Size = new Size(779, 39);
+            labelMyComms.TabIndex = 8;
+            labelMyComms.Text = "My Commissions";
+            // 
+            // userProfile
+            // 
+            userProfile.Controls.Add(label12);
+            userProfile.Controls.Add(labelUserProfile);
+            userProfile.Location = new Point(4, 24);
+            userProfile.Name = "userProfile";
+            userProfile.Padding = new Padding(3);
+            userProfile.Size = new Size(785, 439);
+            userProfile.TabIndex = 1;
+            userProfile.Text = "User Profile";
+            userProfile.UseVisualStyleBackColor = true;
+            // 
+            // labelUserProfile
+            // 
+            labelUserProfile.BackColor = Color.FromArgb(224, 224, 224);
+            labelUserProfile.Dock = DockStyle.Top;
+            labelUserProfile.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelUserProfile.Location = new Point(3, 3);
+            labelUserProfile.Name = "labelUserProfile";
+            labelUserProfile.Padding = new Padding(10);
+            labelUserProfile.Size = new Size(779, 39);
+            labelUserProfile.TabIndex = 9;
+            labelUserProfile.Text = "User Profile";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(6, 52);
+            label12.Name = "label12";
+            label12.Size = new Size(197, 120);
+            label12.TabIndex = 10;
+            label12.Text = "Username:\r\nPassword: ********* (however many)\r\n\r\n[Reset password]\r\n\r\n[default email?]\r\n\r\n[last active?]\r\n";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 457);
-            Controls.Add(pictureBox2);
-            Controls.Add(tabAll);
-            Controls.Add(label1);
+            ClientSize = new Size(800, 495);
+            Controls.Add(clientTabs);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -469,13 +557,19 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabQueue.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)publicQueueGrid).EndInit();
-            tabMyCommissions_Client.ResumeLayout(false);
-            myCommissionsView.ResumeLayout(false);
-            userCommissionObject.Panel1.ResumeLayout(false);
-            userCommissionObject.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)userCommissionObject).EndInit();
-            userCommissionObject.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            clientTabs.ResumeLayout(false);
+            artistPagesTab.ResumeLayout(false);
+            clientPagesTab.ResumeLayout(false);
+            tabControl1.ResumeLayout(false);
+            userMyCommissionsView.ResumeLayout(false);
+            userMyCommissionsList.ResumeLayout(false);
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            userProfile.ResumeLayout(false);
+            userProfile.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -504,12 +598,20 @@
         private Label label9;
         private DataGridView publicQueueGrid;
         private Button reloadButton;
-        private TabPage tabMyCommissions_Client;
-        private FlowLayoutPanel myCommissionsView;
-        private SplitContainer userCommissionObject;
-        private Label labelMyComms;
-        private Label labelStatus;
-        private Label label12;
+        private TabControl clientTabs;
+        private TabPage clientPagesTab;
+        private TabPage artistPagesTab;
+        private TabControl tabControl1;
+        private TabPage userProfile;
+        private TabPage userMyCommissionsView;
         private Button reloadCommissionsButton;
+        private Label labelMyComms;
+        private SplitContainer splitContainer1;
+        private Label label14;
+        private Label label15;
+        private Panel panel1;
+        private Panel userMyCommissionsList;
+        private Label label12;
+        private Label labelUserProfile;
     }
 }
