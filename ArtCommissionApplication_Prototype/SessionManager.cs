@@ -57,7 +57,11 @@ namespace ArtCommissionApplication_Prototype
 
             try
             {
+                // ensure DB is ready and username is unique across all roles
                 UserRepository.Initialize();
+                if (UserRepository.GetUserByUsername(username) != null)
+                    return false;
+
                 var created = UserRepository.CreateUser(username, password, role);
                 if (created == null) return false;
                 SetUser(created);

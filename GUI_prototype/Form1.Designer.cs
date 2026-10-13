@@ -58,6 +58,7 @@
             clientPagesTab = new TabPage();
             clientProfileTabs = new TabControl();
             userMyCommissionsView = new TabPage();
+            userMyCommissionsList = new FlowLayoutPanel();
             splitContainer1 = new SplitContainer();
             label14 = new Label();
             label15 = new Label();
@@ -66,7 +67,6 @@
             userProfile = new TabPage();
             clientProfileLabel = new Label();
             labelUserProfile = new Label();
-            userMyCommissionsList = new FlowLayoutPanel();
             tabAll.SuspendLayout();
             tabHome.SuspendLayout();
             tabInformation.SuspendLayout();
@@ -82,11 +82,11 @@
             clientPagesTab.SuspendLayout();
             clientProfileTabs.SuspendLayout();
             userMyCommissionsView.SuspendLayout();
+            userMyCommissionsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.SuspendLayout();
             userProfile.SuspendLayout();
-            userMyCommissionsList.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -435,6 +435,15 @@
             userMyCommissionsView.Text = "My Commission Requests";
             userMyCommissionsView.UseVisualStyleBackColor = true;
             // 
+            // userMyCommissionsList
+            // 
+            userMyCommissionsList.Controls.Add(splitContainer1);
+            userMyCommissionsList.Dock = DockStyle.Fill;
+            userMyCommissionsList.Location = new Point(3, 42);
+            userMyCommissionsList.Name = "userMyCommissionsList";
+            userMyCommissionsList.Size = new Size(779, 394);
+            userMyCommissionsList.TabIndex = 11;
+            // 
             // splitContainer1
             // 
             splitContainer1.Location = new Point(3, 3);
@@ -513,9 +522,9 @@
             clientProfileLabel.AutoSize = true;
             clientProfileLabel.Location = new Point(6, 52);
             clientProfileLabel.Name = "clientProfileLabel";
-            clientProfileLabel.Size = new Size(197, 120);
+            clientProfileLabel.Size = new Size(240, 90);
             clientProfileLabel.TabIndex = 10;
-            clientProfileLabel.Text = "Username:\r\nPassword: ********* (however many)\r\n\r\n[Reset password]\r\n\r\n[default email?]\r\n\r\n[last active?]\r\n";
+            clientProfileLabel.Text = "Username:\r\nPassword: *** (try change to however many)\r\n\r\nAssociated Emails:\r\n\r\n[Reset password]\r\n";
             // 
             // labelUserProfile
             // 
@@ -528,15 +537,6 @@
             labelUserProfile.Size = new Size(779, 39);
             labelUserProfile.TabIndex = 9;
             labelUserProfile.Text = "User Profile";
-            // 
-            // userMyCommissionsList
-            // 
-            userMyCommissionsList.Controls.Add(splitContainer1);
-            userMyCommissionsList.Dock = DockStyle.Fill;
-            userMyCommissionsList.Location = new Point(3, 42);
-            userMyCommissionsList.Name = "userMyCommissionsList";
-            userMyCommissionsList.Size = new Size(779, 394);
-            userMyCommissionsList.TabIndex = 11;
             // 
             // Form1
             // 
@@ -562,13 +562,13 @@
             clientPagesTab.ResumeLayout(false);
             clientProfileTabs.ResumeLayout(false);
             userMyCommissionsView.ResumeLayout(false);
+            userMyCommissionsList.ResumeLayout(false);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             userProfile.ResumeLayout(false);
             userProfile.PerformLayout();
-            userMyCommissionsList.ResumeLayout(false);
             ResumeLayout(false);
         }
 

@@ -84,7 +84,18 @@ namespace GUI_prototype
             password = passwordInput.Text;
 
             if (username != null && password != null && claimedRole.HasValue)
-                SessionManager.SignUp(username, password, claimedRole.Value);
+            {
+                bool created = SessionManager.SignUp(username, password, claimedRole.Value);
+                if (!created)
+                {
+                    errorProvider.SetError(usernameInput, "Username already exists.");
+                    return;
+                }
+
+                // on success, update UI similar to login
+                backToSelectUserButton.Text = "Logout";
+                continueButton.Enabled = true;
+            }
         }
         private void loginButton_Click(object sender, EventArgs e)
         {
