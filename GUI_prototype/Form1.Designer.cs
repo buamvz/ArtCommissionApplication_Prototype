@@ -56,17 +56,17 @@
             clientTabs = new TabControl();
             artistPagesTab = new TabPage();
             clientPagesTab = new TabPage();
-            tabControl1 = new TabControl();
+            clientProfileTabs = new TabControl();
             userMyCommissionsView = new TabPage();
-            userMyCommissionsList = new Panel();
             splitContainer1 = new SplitContainer();
             label14 = new Label();
             label15 = new Label();
             reloadCommissionsButton = new Button();
             labelMyComms = new Label();
             userProfile = new TabPage();
+            clientProfileLabel = new Label();
             labelUserProfile = new Label();
-            label12 = new Label();
+            userMyCommissionsList = new FlowLayoutPanel();
             tabAll.SuspendLayout();
             tabHome.SuspendLayout();
             tabInformation.SuspendLayout();
@@ -80,13 +80,13 @@
             clientTabs.SuspendLayout();
             artistPagesTab.SuspendLayout();
             clientPagesTab.SuspendLayout();
-            tabControl1.SuspendLayout();
+            clientProfileTabs.SuspendLayout();
             userMyCommissionsView.SuspendLayout();
-            userMyCommissionsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.SuspendLayout();
             userProfile.SuspendLayout();
+            userMyCommissionsList.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -101,7 +101,6 @@
             label1.TabIndex = 3;
             label1.Text = "Commission @JellyPhlox";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.Click += label1_Click;
             // 
             // tabAll
             // 
@@ -212,7 +211,6 @@
             label3.Size = new Size(653, 179);
             label3.TabIndex = 3;
             label3.Text = resources.GetString("label3.Text");
-            label3.Click += label3_Click;
             // 
             // tabTOS
             // 
@@ -404,7 +402,7 @@
             // 
             // clientPagesTab
             // 
-            clientPagesTab.Controls.Add(tabControl1);
+            clientPagesTab.Controls.Add(clientProfileTabs);
             clientPagesTab.Location = new Point(4, 24);
             clientPagesTab.Name = "clientPagesTab";
             clientPagesTab.Padding = new Padding(3);
@@ -413,15 +411,16 @@
             clientPagesTab.Text = "My Profile";
             clientPagesTab.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
+            // clientProfileTabs
             // 
-            tabControl1.Controls.Add(userMyCommissionsView);
-            tabControl1.Controls.Add(userProfile);
-            tabControl1.Location = new Point(3, 6);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(793, 467);
-            tabControl1.TabIndex = 0;
+            clientProfileTabs.Controls.Add(userMyCommissionsView);
+            clientProfileTabs.Controls.Add(userProfile);
+            clientProfileTabs.Location = new Point(3, 6);
+            clientProfileTabs.Name = "clientProfileTabs";
+            clientProfileTabs.SelectedIndex = 0;
+            clientProfileTabs.Size = new Size(793, 467);
+            clientProfileTabs.TabIndex = 0;
+            clientProfileTabs.SelectedIndexChanged += clientProfileTabs_SelectedIndexChanged;
             // 
             // userMyCommissionsView
             // 
@@ -435,15 +434,6 @@
             userMyCommissionsView.TabIndex = 6;
             userMyCommissionsView.Text = "My Commission Requests";
             userMyCommissionsView.UseVisualStyleBackColor = true;
-            // 
-            // userMyCommissionsList
-            // 
-            userMyCommissionsList.Controls.Add(splitContainer1);
-            userMyCommissionsList.Dock = DockStyle.Fill;
-            userMyCommissionsList.Location = new Point(3, 42);
-            userMyCommissionsList.Name = "userMyCommissionsList";
-            userMyCommissionsList.Size = new Size(779, 394);
-            userMyCommissionsList.TabIndex = 11;
             // 
             // splitContainer1
             // 
@@ -460,8 +450,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = Color.WhiteSmoke;
-            splitContainer1.Size = new Size(785, 130);
-            splitContainer1.SplitterDistance = 358;
+            splitContainer1.Size = new Size(776, 130);
+            splitContainer1.SplitterDistance = 353;
             splitContainer1.TabIndex = 2;
             // 
             // label14
@@ -508,7 +498,7 @@
             // 
             // userProfile
             // 
-            userProfile.Controls.Add(label12);
+            userProfile.Controls.Add(clientProfileLabel);
             userProfile.Controls.Add(labelUserProfile);
             userProfile.Location = new Point(4, 24);
             userProfile.Name = "userProfile";
@@ -517,6 +507,15 @@
             userProfile.TabIndex = 1;
             userProfile.Text = "User Profile";
             userProfile.UseVisualStyleBackColor = true;
+            // 
+            // clientProfileLabel
+            // 
+            clientProfileLabel.AutoSize = true;
+            clientProfileLabel.Location = new Point(6, 52);
+            clientProfileLabel.Name = "clientProfileLabel";
+            clientProfileLabel.Size = new Size(197, 120);
+            clientProfileLabel.TabIndex = 10;
+            clientProfileLabel.Text = "Username:\r\nPassword: ********* (however many)\r\n\r\n[Reset password]\r\n\r\n[default email?]\r\n\r\n[last active?]\r\n";
             // 
             // labelUserProfile
             // 
@@ -530,14 +529,14 @@
             labelUserProfile.TabIndex = 9;
             labelUserProfile.Text = "User Profile";
             // 
-            // label12
+            // userMyCommissionsList
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(6, 52);
-            label12.Name = "label12";
-            label12.Size = new Size(197, 120);
-            label12.TabIndex = 10;
-            label12.Text = "Username:\r\nPassword: ********* (however many)\r\n\r\n[Reset password]\r\n\r\n[default email?]\r\n\r\n[last active?]\r\n";
+            userMyCommissionsList.Controls.Add(splitContainer1);
+            userMyCommissionsList.Dock = DockStyle.Fill;
+            userMyCommissionsList.Location = new Point(3, 42);
+            userMyCommissionsList.Name = "userMyCommissionsList";
+            userMyCommissionsList.Size = new Size(779, 394);
+            userMyCommissionsList.TabIndex = 11;
             // 
             // Form1
             // 
@@ -561,15 +560,15 @@
             clientTabs.ResumeLayout(false);
             artistPagesTab.ResumeLayout(false);
             clientPagesTab.ResumeLayout(false);
-            tabControl1.ResumeLayout(false);
+            clientProfileTabs.ResumeLayout(false);
             userMyCommissionsView.ResumeLayout(false);
-            userMyCommissionsList.ResumeLayout(false);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             userProfile.ResumeLayout(false);
             userProfile.PerformLayout();
+            userMyCommissionsList.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -601,7 +600,7 @@
         private TabControl clientTabs;
         private TabPage clientPagesTab;
         private TabPage artistPagesTab;
-        private TabControl tabControl1;
+        private TabControl clientProfileTabs;
         private TabPage userProfile;
         private TabPage userMyCommissionsView;
         private Button reloadCommissionsButton;
@@ -610,8 +609,8 @@
         private Label label14;
         private Label label15;
         private Panel panel1;
-        private Panel userMyCommissionsList;
-        private Label label12;
+        private Label clientProfileLabel;
         private Label labelUserProfile;
+        private FlowLayoutPanel userMyCommissionsList;
     }
 }

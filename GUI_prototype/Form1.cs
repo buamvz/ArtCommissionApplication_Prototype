@@ -114,36 +114,6 @@ namespace GUI_prototype
             // this.Hide();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         // load queue from data base into visuals
         private string connectionString = @"Data Source=commissions.db;"; // sienna - will need to update to the path it makes
         private DataTable dataTable;
@@ -190,6 +160,37 @@ namespace GUI_prototype
         private void reloadCommissionsButton_Click_1(object sender, EventArgs e)
         {
             LoadMyCommissions();
+        }
+
+        private void clientProfileTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Check which tab is currently selected
+            int index = clientProfileTabs.SelectedIndex;
+            TabPage currentTab = clientProfileTabs.SelectedTab;
+
+            if (currentTab == userProfile)
+            {
+                updateProfile();
+            }
+        }
+        private void updateProfile()
+        {
+            List<string> userEmails = new List<string>();
+
+            var all = CommissionRepository.GetAll();
+            var mine = all.Where(r => r.Client.ClientName == SessionManager.CurrentActiveUser.Username);
+            foreach (var req in mine)
+            {
+                userEmails.Add(req.Client.ClientEmail);
+            }
+
+            if (SessionManager.CurrentActiveUser.Role == SystemRole.Client)
+            {
+                clientProfileLabel.Text =
+                    "Username: " + SessionManager.CurrentActiveUser.Username + "\n" +
+                    "Password: " + "***" + "\n \n" +
+                    "Associated Emails: \n" + string.Join("\n", userEmails) + "\n";
+            }
         }
     }
 }
