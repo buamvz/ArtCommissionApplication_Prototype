@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label2 = new Label();
             nameInput = new TextBox();
             SubmitRequestButton = new Button();
@@ -62,6 +63,7 @@
             commissionDetails = new Label();
             label9 = new Label();
             estimatePrice = new Label();
+            toolTip1 = new ToolTip(components);
             commissionFormPanel.SuspendLayout();
             needbyDateInput.SuspendLayout();
             backgroundBool.SuspendLayout();
@@ -85,9 +87,11 @@
             // 
             nameInput.Location = new Point(11, 31);
             nameInput.Name = "nameInput";
+            nameInput.ReadOnly = true;
             nameInput.Size = new Size(365, 23);
             nameInput.TabIndex = 2;
             nameInput.Text = "Yuji";
+            nameInput.MouseHover += nameInput_MouseHover;
             // 
             // SubmitRequestButton
             // 
@@ -505,5 +509,6 @@
         private Panel needbyDateInput;
         private RadioButton inputBoolDateFalse;
         private Label estimatePrice;
+        private ToolTip toolTip1;
     }
 }

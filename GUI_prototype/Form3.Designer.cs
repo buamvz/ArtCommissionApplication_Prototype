@@ -197,6 +197,7 @@
             // 
             // usernameErrorProvider
             // 
+            usernameErrorProvider.BlinkRate = 150;
             usernameErrorProvider.ContainerControl = this;
             // 
             // Form3

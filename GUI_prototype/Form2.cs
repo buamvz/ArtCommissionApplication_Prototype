@@ -1,14 +1,15 @@
 ﻿using ArtCommissionApplication_Prototype;
-using static ArtCommissionApplication_Prototype.CommissionInformation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Net.Mail;
 using System.Drawing;
+using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Windows.Forms;
-using System.Linq;
+using static ArtCommissionApplication_Prototype.CommissionInformation;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI_prototype
 {
@@ -291,7 +292,7 @@ namespace GUI_prototype
                 "Number of Characters: " + commissionInfo.NumberOFCharacters + "\n" +
                 "Need by Date: " + commissionInfo.NeedByDate + "\n" +
                 "Description: " + commissionInfo.Description + "\n \n" +
-                $"Estimated Price: {commissionInfo.EstimatedPrice:C}" +  "\n"
+                $"Estimated Price: {commissionInfo.EstimatedPrice:C}" + "\n"
 
                 ;
 
@@ -305,5 +306,11 @@ namespace GUI_prototype
             commissionDetails.Text = finalCommissionDetails;
         }
 
+        // sienna - tooltip as text box for name is no longer editable, because the name/username is how things are tracked to a user in the databases
+        private void nameInput_MouseHover(object sender, EventArgs e)
+        {
+            // Explicitly forces the tooltip to display right at the control's coordinates
+            toolTip1.Show("Username cannot be edited in request form.", nameInput, 0, nameInput.Height);
+        }
     }
 }

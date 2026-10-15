@@ -68,6 +68,8 @@ namespace GUI_prototype
         private void signupButton_Click(object sender, EventArgs e)
         {
             // sienna - prevent username with special characters (numbers and letters only)
+            errorProvider.Clear();
+
             if (usernameInput.Text.Any(ch => !char.IsLetterOrDigit(ch)))
             {
                 errorProvider.SetError(usernameInput, "Username can only contain letters and digits.");
@@ -99,6 +101,8 @@ namespace GUI_prototype
         }
         private void loginButton_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear();
+
             if (usernameInput.Text.Any(ch => !char.IsLetterOrDigit(ch)))
             {
                 errorProvider.SetError(usernameInput, "Username can only contain letters and digits.");
