@@ -11,6 +11,7 @@ using System.Globalization;
 namespace ArtCommisionApplication.Test
 {
     [TestClass]
+    [DoNotParallelize]
     public class CommissionRequestTests
     {
         [TestMethod]
@@ -169,41 +170,41 @@ namespace ArtCommisionApplication.Test
 
         //testing database and queue intergration for loading a commission from new database Sienna made
 
-        //[TestMethod]
-        //public void CommissionQueue_LoadFromDatabase_LoadsStoredCommissions()
-        //{
-        //    string testDatabasePath = System.IO.Path.Combine(
-        //        System.IO.Path.GetTempPath(),
-        //        Guid.NewGuid().ToString() + ".db");
+        [TestMethod]
+        public void CommissionQueue_LoadFromDatabase_LoadsStoredCommissions()
+        {
+            string testDatabasePath = System.IO.Path.Combine(
+                System.IO.Path.GetTempPath(),
+                Guid.NewGuid().ToString() + ".db");
 
-        //    CommissionRepository.Initialize(testDatabasePath);
+            CommissionRepository.Initialize(testDatabasePath);
 
-        //    var client = new Client(
-        //        "Yuji",
-        //        "yuji@gmail.com");
+            var client = new Client(
+                "Yuji",
+                "yuji@gmail.com");
 
-        //    var commission = new CommissionInformation(
-        //        CharacterCrop.Fullbody,
-        //        2,
-        //        true,
-        //        "Me and Junpei having a picnic",
-        //        DateTime.Today.AddDays(7));
+            var commission = new CommissionInformation(
+                CharacterCrop.Fullbody,
+                2,
+                true,
+                "Me and Junpei having a picnic",
+                DateTime.Today.AddDays(7));
 
-        //    var request = new CommissionRequest(
-        //        client,
-        //        commission);
+            var request = new CommissionRequest(
+                client,
+                commission);
 
-        //    CommissionRepository.AddCommission(request);
+            CommissionRepository.AddCommission(request);
 
-        //    var queue = new CommissionQueue();
+            var queue = new CommissionQueue();
 
-        //    queue.LoadFromDatabase();
+            queue.LoadFromDatabase();
 
-        //    Assert.AreEqual(1, queue.Count);
-        //    Assert.AreEqual(
-        //        "Yuji",
-        //        queue.Commissions[0].Client.ClientName);
-        //}
+            Assert.AreEqual(1, queue.Count);
+            Assert.AreEqual(
+                "Yuji",
+                queue.Commissions[0].Client.ClientName);
+        }
 
         [TestMethod]
         public void Constructor_Throws_On_Invalid_Email()

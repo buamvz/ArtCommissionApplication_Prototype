@@ -1,6 +1,14 @@
-using System;
-using System.Windows.Forms;
 using ArtCommissionApplication_Prototype;
+using Microsoft.Data.Sqlite;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using static ArtCommissionApplication_Prototype.CommissionInformation;
 
 namespace GUI_prototype
 {
@@ -35,10 +43,72 @@ namespace GUI_prototype
 
         }
 
-        // Stubs for designer-wired events (keeps designer-generated wiring intact)
-        private void tabHome_Click(object sender, EventArgs e) { }
-        private void label9_Click(object sender, EventArgs e) { }
-        private void label1_Click(object sender, EventArgs e) { }
-        private void pictureBox2_Click(object sender, EventArgs e) { }
+
+        private readonly string connectionString = $"Data Source={DatabaseConfig.DatabasePath}";
+        private DataTable dataTable;
+
+        private void LoadQueueDatabaseData()
+        {
+            try
+            {
+                using var connection = new SqliteConnection(connectionString);
+                connection.Open();
+
+                using var cmd = connection.CreateCommand();
+                cmd.CommandText = "SELECT Id, ClientName, ClientEmail, CropType, NumberOfCharacters, HasBackground, EstimatedPrice, NeedByDate, Status FROM Commissions;";
+
+                using var reader = cmd.ExecuteReader();
+
+                dataTable = new DataTable();
+                dataTable.Load(reader);
+
+                adminViewQueueGrid.DataSource = dataTable;
+
+                adminViewQueueGrid.Columns["EstimatedPrice"].DefaultCellStyle.Format = "C";
+            }
+            catch (Exception ex)
+            {
+                // error box for failed load
+                MessageBox.Show($"Failed to load queue from database: {ex.Message}", "Database error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AdminViewQueueGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            string columnName =
+                adminViewQueueGrid.Columns[e.ColumnIndex].Name;
+
+            if (columnName == "Status" && e.Value != null && e.Value != DBNull.Value)
+            {
+                e.Value = ((CommissionStatus)Convert.ToInt32(e.Value)).ToString();
+                e.FormattingApplied = true;
+            }
+
+            if (columnName == "HasBackground" && e.Value != null && e.Value != DBNull.Value)
+            {
+                e.Value = Convert.ToInt32(e.Value) == 1 ? "Yes" : "No";
+                e.FormattingApplied = true;
+            }
+
+            if (columnName == "NeedByDate" && e.Value != null && e.Value != DBNull.Value)
+            {
+                if (DateTime.TryParse(e.Value.ToString(), out DateTime dt))
+                {
+                    e.Value = dt.ToString("dd/MM/yyyy");
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
+
+        private void ReloadQueue()
+        {
+            LoadQueueDatabaseData();
+        }
+
+        private void reloadQueueButton_Click(object sender, EventArgs e)
+        {
+            ReloadQueue();
+        }
     }
 }

@@ -8,6 +8,7 @@ using static ArtCommissionApplication_Prototype.CommissionInformation;
 namespace ArtCommisionApplication.Test
 {
     [TestClass]
+    [DoNotParallelize]
     public class AdminDashboardTests
     {
         [TestInitialize]
@@ -23,12 +24,13 @@ namespace ArtCommisionApplication.Test
             SessionManager.Logout();
         }
 
+
         [TestMethod]
         public void SetUser_AdminRole_IsRecognisedAsAdmin()
         {
             var admin = new User
             {
-                Username = "testadmin",
+                Username = "Admin",
                 Role = SystemRole.Admin
             };
 
@@ -132,7 +134,7 @@ namespace ArtCommisionApplication.Test
         {
             string testDatabasePath = Path.Combine(
                 Path.GetTempPath(),
-                Guid.NewGuid().ToString() + ".db");
+                $"ArtCommissionTest_{Guid.NewGuid()}.db");
             try
             {
                 CommissionRepository.Initialize(testDatabasePath);
