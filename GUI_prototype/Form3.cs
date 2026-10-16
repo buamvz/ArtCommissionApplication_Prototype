@@ -67,9 +67,9 @@ namespace GUI_prototype
         // sienna - sign up with inputed in
         private void signupButton_Click(object sender, EventArgs e)
         {
-            // sienna - prevent username with special characters (numbers and letters only)
-            errorProvider.Clear();
 
+            errorProvider.Clear();
+            // sienna - prevent username with special characters (numbers and letters only)
             if (usernameInput.Text.Any(ch => !char.IsLetterOrDigit(ch)))
             {
                 errorProvider.SetError(usernameInput, "Username can only contain letters and digits.");
@@ -90,7 +90,7 @@ namespace GUI_prototype
                 bool created = SessionManager.SignUp(username, password, claimedRole.Value);
                 if (!created)
                 {
-                    errorProvider.SetError(usernameInput, "Username already exists.");
+                    errorProvider.SetError(usernameInput, "Username or Role already exists.");
                     return;
                 }
 
@@ -188,12 +188,15 @@ namespace GUI_prototype
                     nextForm = new AdminDashboard();
                     break;
 
-                    //SIENNAAA CHANGE WHAT FORMS THESE ROLES GO TO LATER!!!!!!!!!!!
+                    //SIENNAAA CHANGE WHAT FORMS THESE ROLES GO TO LATER!!!!!!!!!!! 
+                    // sienna - OKAY I MADE ARTIST FORM
                 case SystemRole.Client:
+                    nextForm = new Form1();
+                    break;
                 case SystemRole.Artist:
                     // Keep the existing destination for now.
                     // Replace this with the separate role-specific forms later.
-                    nextForm = new Form1();
+                    nextForm = new ArtistDashboard();
                     break;
 
                 default:

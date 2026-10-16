@@ -133,11 +133,12 @@
             // label9
             // 
             label9.BackColor = Color.FromArgb(224, 224, 224);
+            label9.Dock = DockStyle.Top;
             label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(8, 14);
+            label9.Location = new Point(3, 3);
             label9.Name = "label9";
             label9.Padding = new Padding(10);
-            label9.Size = new Size(760, 39);
+            label9.Size = new Size(772, 39);
             label9.TabIndex = 5;
             label9.Text = "Commission Request";
             // 
@@ -183,7 +184,7 @@
             // 
             Info_ProfilePicture.BackgroundImage = (Image)resources.GetObject("Info_ProfilePicture.BackgroundImage");
             Info_ProfilePicture.Image = Properties.Resources.JellyPhlox;
-            Info_ProfilePicture.Location = new Point(667, 14);
+            Info_ProfilePicture.Location = new Point(659, 45);
             Info_ProfilePicture.Name = "Info_ProfilePicture";
             Info_ProfilePicture.Size = new Size(110, 109);
             Info_ProfilePicture.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -193,11 +194,12 @@
             // label4
             // 
             label4.BackColor = Color.FromArgb(224, 224, 224);
+            label4.Dock = DockStyle.Top;
             label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(8, 14);
+            label4.Location = new Point(3, 3);
             label4.Name = "label4";
             label4.Padding = new Padding(10);
-            label4.Size = new Size(653, 39);
+            label4.Size = new Size(772, 39);
             label4.TabIndex = 4;
             label4.Text = "About the Artist";
             // 
@@ -205,7 +207,7 @@
             // 
             label3.BackColor = Color.WhiteSmoke;
             label3.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(8, 53);
+            label3.Location = new Point(6, 42);
             label3.Name = "label3";
             label3.Padding = new Padding(10);
             label3.Size = new Size(653, 179);
@@ -251,11 +253,12 @@
             // label2
             // 
             label2.BackColor = Color.FromArgb(224, 224, 224);
+            label2.Dock = DockStyle.Top;
             label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(8, 14);
+            label2.Location = new Point(3, 3);
             label2.Name = "label2";
             label2.Padding = new Padding(10);
-            label2.Size = new Size(776, 39);
+            label2.Size = new Size(772, 39);
             label2.TabIndex = 10;
             label2.Text = "Terms Of Service";
             // 
@@ -286,13 +289,14 @@
             // label8
             // 
             label8.BackColor = Color.FromArgb(224, 224, 224);
+            label8.Dock = DockStyle.Top;
             label8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(8, 14);
+            label8.Location = new Point(3, 3);
             label8.Name = "label8";
             label8.Padding = new Padding(10);
-            label8.Size = new Size(776, 39);
+            label8.Size = new Size(772, 39);
             label8.TabIndex = 11;
-            label8.Text = "Samples of Work ~ JellyPhlox\r\n";
+            label8.Text = "Samples of Work";
             // 
             // label10
             // 
@@ -331,7 +335,7 @@
             // 
             // reloadButton
             // 
-            reloadButton.Location = new Point(643, 27);
+            reloadButton.Location = new Point(642, 11);
             reloadButton.Name = "reloadButton";
             reloadButton.Size = new Size(125, 23);
             reloadButton.TabIndex = 9;
@@ -347,21 +351,23 @@
             publicQueueGrid.AllowUserToResizeRows = false;
             publicQueueGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             publicQueueGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            publicQueueGrid.Location = new Point(8, 56);
+            publicQueueGrid.Dock = DockStyle.Fill;
+            publicQueueGrid.Location = new Point(3, 42);
             publicQueueGrid.Name = "publicQueueGrid";
             publicQueueGrid.ReadOnly = true;
             publicQueueGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            publicQueueGrid.Size = new Size(769, 302);
+            publicQueueGrid.Size = new Size(772, 337);
             publicQueueGrid.TabIndex = 8;
             // 
             // label11
             // 
             label11.BackColor = Color.FromArgb(224, 224, 224);
+            label11.Dock = DockStyle.Top;
             label11.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(8, 14);
+            label11.Location = new Point(3, 3);
             label11.Name = "label11";
             label11.Padding = new Padding(10);
-            label11.Size = new Size(769, 39);
+            label11.Size = new Size(772, 39);
             label11.TabIndex = 7;
             label11.Text = "Public Queue\r\n";
             // 
