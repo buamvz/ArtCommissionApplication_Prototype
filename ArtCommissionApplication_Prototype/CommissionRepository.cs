@@ -17,8 +17,8 @@ namespace ArtCommissionApplication_Prototype
                 dbPath = databasePath;
 
             if (string.IsNullOrWhiteSpace(dbPath))
-                dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "commissions.db");
-            // sienna - sets up the database path based on what is given with a default option if none is given in the constructor
+                dbPath = DatabaseConfig.DatabasePath;
+            // sienna - edit: made a file location for the database so git doesn't ignore it and it is shared
 
 
             using var connection = new SqliteConnection($"Data Source={dbPath}");

@@ -18,7 +18,7 @@ namespace ArtCommissionApplication_Prototype
                 dbPath = databasePath;
 
             if (string.IsNullOrWhiteSpace(dbPath))
-                dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "commissions.db");
+                dbPath = DatabaseConfig.DatabasePath;
 
             using var connection = new SqliteConnection($"Data Source={dbPath}");
             connection.Open();
