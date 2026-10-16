@@ -179,6 +179,15 @@ namespace ArtCommissionApplication_Prototype
             if (result != null && int.TryParse(result.ToString(), out var parsed)) return parsed > 0;
             return false;
         }
+
+        // sienna - show database path (we are having some database confusion)
+        public static string GetDatabasePath()
+        {
+            if (string.IsNullOrWhiteSpace(dbPath))
+                Initialize();
+
+            return dbPath!;
+        }
     }
 }
 

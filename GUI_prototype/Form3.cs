@@ -23,6 +23,7 @@ namespace GUI_prototype
         {
             InitializeComponent();
             LoginPanel.Visible = false;
+            userListPanel.Visible = false;
 
             errorProvider = new ErrorProvider(this);
 
@@ -148,7 +149,13 @@ namespace GUI_prototype
 
         private void backToSelectUserButton_Click(object sender, EventArgs e)
         {
+            backToSelectUser();
+        }
+
+        private void backToSelectUser()
+        {
             UserTypePanel.Visible = true;
+            userListPanel.Visible = false;
             LoginPanel.Visible = false;
             SessionManager.Logout();
             backToSelectUserButton.Text = "Back";
@@ -188,8 +195,8 @@ namespace GUI_prototype
                     nextForm = new AdminDashboard();
                     break;
 
-                    //SIENNAAA CHANGE WHAT FORMS THESE ROLES GO TO LATER!!!!!!!!!!! 
-                    // sienna - OKAY I MADE ARTIST FORM
+                //SIENNAAA CHANGE WHAT FORMS THESE ROLES GO TO LATER!!!!!!!!!!! 
+                // sienna - OKAY I MADE ARTIST FORM
                 case SystemRole.Client:
                     nextForm = new Form1();
                     break;
@@ -206,6 +213,53 @@ namespace GUI_prototype
 
             nextForm.Show();
             this.Hide();
+        }
+
+        private void ShowAllUsers()
+        {
+            UserTypePanel.Visible = false;
+            LoginPanel.Visible = false;
+            userListPanel.Visible = true;
+
+            loadUsers();
+        }
+
+        private void allUsersButton_Click(object sender, EventArgs e)
+        {
+            ShowAllUsers();
+        }
+
+        private void loadUsersButton_Click(object sender, EventArgs e)
+        {
+            backToSelectUser();
+        }
+
+        private void loadUsers()
+        {
+            var users = UserRepository.GetAllUsers();
+
+            userListGrid.Rows.Clear();
+
+            userListGrid.Columns.Add("Username", "Username");
+            userListGrid.Columns.Add("Role", "Role");
+            userListGrid.Columns.Add("Permission", "Permission");
+            userListGrid.Columns.Add("Hash", "Password Hash");
+            userListGrid.Columns.Add("Salt", "Password Salt");
+            foreach (var user in users)
+            {
+                userListGrid.Rows.Add(
+                    user.Username,
+                    user.Role.ToString(),
+                    user.PermissionLevel,
+                    user.PasswordHash,
+                    user.PasswordSalt
+                );
+            }
+        }
+
+        private void debugButton1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(UserRepository.GetDatabasePath());
         }
     }
 }

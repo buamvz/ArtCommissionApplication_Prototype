@@ -177,5 +177,14 @@ CREATE TABLE IF NOT EXISTS Users (
             for (int i = 0; i < a.Length; i++) diff |= a[i] ^ b[i];
             return diff == 0;
         }
+
+        // sienna - show database path (we are having some database confusion)
+        public static string GetDatabasePath()
+        {
+            if (string.IsNullOrWhiteSpace(dbPath))
+                Initialize();
+
+            return dbPath!;
+        }
     }
 }

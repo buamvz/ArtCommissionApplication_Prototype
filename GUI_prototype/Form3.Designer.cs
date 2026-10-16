@@ -42,11 +42,22 @@
             usernameInput = new TextBox();
             loginButton = new Button();
             signupButton = new Button();
+            allUsersButton = new Button();
             debugLabel = new Label();
             usernameErrorProvider = new ErrorProvider(components);
+            userListPanel = new Panel();
+            loadUsersButton = new Button();
+            backToLogin = new Button();
+            usersListLabel = new Label();
+            panel1 = new Panel();
+            userListGrid = new DataGridView();
+            debugButton1 = new Button();
             UserTypePanel.SuspendLayout();
             LoginPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)usernameErrorProvider).BeginInit();
+            userListPanel.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)userListGrid).BeginInit();
             SuspendLayout();
             // 
             // ClientButton
@@ -85,8 +96,10 @@
             // UserTypePanel
             // 
             UserTypePanel.Controls.Add(ClientButton);
+            UserTypePanel.Controls.Add(LoginPanel);
             UserTypePanel.Controls.Add(AdminButton);
             UserTypePanel.Controls.Add(ArtistButton);
+            UserTypePanel.Controls.Add(allUsersButton);
             UserTypePanel.Location = new Point(12, 12);
             UserTypePanel.Name = "UserTypePanel";
             UserTypePanel.Size = new Size(676, 314);
@@ -102,7 +115,7 @@
             LoginPanel.Controls.Add(usernameInput);
             LoginPanel.Controls.Add(loginButton);
             LoginPanel.Controls.Add(signupButton);
-            LoginPanel.Location = new Point(12, 12);
+            LoginPanel.Location = new Point(0, 0);
             LoginPanel.Name = "LoginPanel";
             LoginPanel.Size = new Size(676, 314);
             LoginPanel.TabIndex = 4;
@@ -186,6 +199,17 @@
             signupButton.UseVisualStyleBackColor = true;
             signupButton.Click += signupButton_Click;
             // 
+            // allUsersButton
+            // 
+            allUsersButton.Location = new Point(18, 17);
+            allUsersButton.Margin = new Padding(3, 2, 3, 2);
+            allUsersButton.Name = "allUsersButton";
+            allUsersButton.Size = new Size(127, 34);
+            allUsersButton.TabIndex = 5;
+            allUsersButton.Text = "See All Users";
+            allUsersButton.UseVisualStyleBackColor = true;
+            allUsersButton.Click += allUsersButton_Click;
+            // 
             // debugLabel
             // 
             debugLabel.AutoSize = true;
@@ -200,13 +224,84 @@
             usernameErrorProvider.BlinkRate = 150;
             usernameErrorProvider.ContainerControl = this;
             // 
+            // userListPanel
+            // 
+            userListPanel.Controls.Add(debugButton1);
+            userListPanel.Controls.Add(panel1);
+            userListPanel.Controls.Add(backToLogin);
+            userListPanel.Location = new Point(12, 12);
+            userListPanel.Name = "userListPanel";
+            userListPanel.Size = new Size(676, 314);
+            userListPanel.TabIndex = 10;
+            // 
+            // loadUsersButton
+            // 
+            loadUsersButton.Location = new Point(526, 10);
+            loadUsersButton.Name = "loadUsersButton";
+            loadUsersButton.Size = new Size(132, 23);
+            loadUsersButton.TabIndex = 12;
+            loadUsersButton.Text = "Load Users";
+            loadUsersButton.UseVisualStyleBackColor = true;
+            // 
+            // backToLogin
+            // 
+            backToLogin.Location = new Point(18, 14);
+            backToLogin.Name = "backToLogin";
+            backToLogin.Size = new Size(132, 23);
+            backToLogin.TabIndex = 11;
+            backToLogin.Text = "Back to Login";
+            backToLogin.UseVisualStyleBackColor = true;
+            backToLogin.Click += loadUsersButton_Click;
+            // 
+            // usersListLabel
+            // 
+            usersListLabel.BackColor = Color.FromArgb(224, 224, 224);
+            usersListLabel.Dock = DockStyle.Top;
+            usersListLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            usersListLabel.Location = new Point(0, 0);
+            usersListLabel.Name = "usersListLabel";
+            usersListLabel.Padding = new Padding(10);
+            usersListLabel.Size = new Size(676, 39);
+            usersListLabel.TabIndex = 8;
+            usersListLabel.Text = "Users List";
+            // 
+            // panel1
+            // 
+            panel1.AutoScroll = true;
+            panel1.Controls.Add(userListGrid);
+            panel1.Controls.Add(loadUsersButton);
+            panel1.Controls.Add(usersListLabel);
+            panel1.Location = new Point(0, 43);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(676, 271);
+            panel1.TabIndex = 14;
+            // 
+            // userListGrid
+            // 
+            userListGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            userListGrid.Dock = DockStyle.Fill;
+            userListGrid.Location = new Point(0, 39);
+            userListGrid.Name = "userListGrid";
+            userListGrid.Size = new Size(676, 232);
+            userListGrid.TabIndex = 14;
+            // 
+            // debugButton1
+            // 
+            debugButton1.Location = new Point(526, 14);
+            debugButton1.Name = "debugButton1";
+            debugButton1.Size = new Size(132, 23);
+            debugButton1.TabIndex = 15;
+            debugButton1.Text = "Debug - db path";
+            debugButton1.UseVisualStyleBackColor = true;
+            debugButton1.Click += debugButton1_Click;
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 359);
+            Controls.Add(userListPanel);
             Controls.Add(debugLabel);
-            Controls.Add(LoginPanel);
             Controls.Add(UserTypePanel);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form3";
@@ -215,6 +310,9 @@
             LoginPanel.ResumeLayout(false);
             LoginPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)usernameErrorProvider).EndInit();
+            userListPanel.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)userListGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -236,5 +334,13 @@
         private Button backToSelectUserButton;
         private Button continueButton;
         private ErrorProvider usernameErrorProvider;
+        private Button allUsersButton;
+        private Panel userListPanel;
+        private Button backToLogin;
+        private Label usersListLabel;
+        private Button loadUsersButton;
+        private Panel panel1;
+        private DataGridView userListGrid;
+        private Button debugButton1;
     }
 }
