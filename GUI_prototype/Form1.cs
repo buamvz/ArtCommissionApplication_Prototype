@@ -32,7 +32,7 @@ namespace GUI_prototype
 
         // === Public Queue ===
         // load queue from data base into visuals
-        private string connectionString = @"Data Source=commissions.db;"; // sienna - will need to update to the path it makes
+        private string connectionString = DatabaseConfig.DatabasePath; // sienna - will need to update to the path it makes
         private DataTable dataTable;
 
         private void LoadQueueDatabaseData()
