@@ -3,6 +3,9 @@ using ArtCommissionApplication_Prototype;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Numerics;
 using static ArtCommissionApplication_Prototype.CommissionInformation;
+using Microsoft.Data.Sqlite;
+using System.IO;
+using System.Globalization;
 
 
 namespace ArtCommisionApplication.Test
@@ -351,6 +354,116 @@ namespace ArtCommisionApplication.Test
                 CommissionStatus.Accepted,
                 commissions[0].Status);
         }
+
+        [TestMethod]
+        public void CommissionRepository_Loads_OldDeadline_PreservesFields()
+        {
+            string testDatabasePath = Path.Combine(
+                Path.GetTempPath(),
+                Guid.NewGuid().ToString() + ".db");
+
+            try
+            {
+                CommissionRepository.Initialize(testDatabasePath);
+
+                var client = new Client("Yuji", "yuji@example.com");
+                var commission = new CommissionInformation(
+                    CharacterCrop.Fullbody,
+                    2,
+                    true,
+                    "Test commission",
+                    DateTime.Today.AddDays(7));
+
+                var request = new CommissionRequest(client, commission);
+                CommissionRepository.AddCommission(request);
+
+                // Modify stored row to simulate an old deadline and preserved price/submitted date
+                var yesterday = DateTime.Today.AddDays(-1);
+                var storedSubmitted = new DateTime(2020, 1, 2, 3, 4, 5, DateTimeKind.Utc);
+                var storedPrice = 123.45m;
+                var storedStatus = (int)CommissionStatus.Accepted;
+
+                using (var conn = new SqliteConnection($"Data Source={testDatabasePath}"))
+                {
+                    conn.Open();
+                    using var cmd = conn.CreateCommand();
+                    cmd.CommandText = "UPDATE Commissions SET NeedByDate = $need, SubmittedDate = $submitted, EstimatedPrice = $price, Status = $status WHERE Id = $id;";
+                    cmd.Parameters.AddWithValue("$need", yesterday.ToString("o", CultureInfo.InvariantCulture));
+                    cmd.Parameters.AddWithValue("$submitted", storedSubmitted.ToString("o", CultureInfo.InvariantCulture));
+                    cmd.Parameters.AddWithValue("$price", (double)storedPrice);
+                    cmd.Parameters.AddWithValue("$status", storedStatus);
+                    cmd.Parameters.AddWithValue("$id", request.Id);
+                    cmd.ExecuteNonQuery();
+                }
+
+                var commissions = CommissionRepository.GetAll();
+                Assert.AreEqual(1, commissions.Count);
+                var loaded = commissions[0];
+
+                Assert.IsNotNull(loaded.CommissionType.NeedByDate);
+                Assert.AreEqual(yesterday.Date, loaded.CommissionType.NeedByDate.Value.Date);
+
+                // SubmittedDate should be preserved
+                Assert.AreEqual(storedSubmitted, loaded.SubmittedDate.ToUniversalTime());
+
+                // Estimated price preserved
+                Assert.AreEqual(storedPrice, loaded.EstimatedPrice);
+
+                // Status preserved
+                Assert.AreEqual(CommissionStatus.Accepted, loaded.Status);
+            }
+            finally
+            {
+                try { System.IO.File.Delete(testDatabasePath); } catch { }
+            }
+        }
+
+        [TestMethod]
+        public void CommissionRepository_Loads_NullDeadline()
+        {
+            string testDatabasePath = Path.Combine(
+                Path.GetTempPath(),
+                Guid.NewGuid().ToString() + ".db");
+
+            try
+            {
+                CommissionRepository.Initialize(testDatabasePath);
+
+                var client = new Client("Yuji", "yuji@example.com");
+                var commission = new CommissionInformation(
+                    CharacterCrop.Fullbody,
+                    2,
+                    true,
+                    "Test commission",
+                    DateTime.Today.AddDays(7));
+
+                var request = new CommissionRequest(client, commission);
+                CommissionRepository.AddCommission(request);
+
+                // Set NeedByDate to empty string to represent null in DB
+                using (var conn = new SqliteConnection($"Data Source={testDatabasePath}"))
+                {
+                    conn.Open();
+                    using var cmd = conn.CreateCommand();
+                    cmd.CommandText = "UPDATE Commissions SET NeedByDate = $need WHERE Id = $id;";
+                    cmd.Parameters.AddWithValue("$need", string.Empty);
+                    cmd.Parameters.AddWithValue("$id", request.Id);
+                    cmd.ExecuteNonQuery();
+                }
+
+                var commissions = CommissionRepository.GetAll();
+                Assert.AreEqual(1, commissions.Count);
+                var loaded = commissions[0];
+
+                Assert.IsNull(loaded.CommissionType.NeedByDate);
+            }
+            finally
+            {
+                try { System.IO.File.Delete(testDatabasePath); } catch { }
+            }
+        }
+
+        
     }
 
 

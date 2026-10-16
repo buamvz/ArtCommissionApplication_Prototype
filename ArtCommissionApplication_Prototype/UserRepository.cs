@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS Users (
             cmd.ExecuteNonQuery();
         }
 
+
+
         public static User? GetUserByUsername(string username)
         {
             if (string.IsNullOrWhiteSpace(dbPath)) Initialize();

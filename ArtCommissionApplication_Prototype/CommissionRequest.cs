@@ -28,7 +28,7 @@ namespace ArtCommissionApplication_Prototype
         {
             Status = status;
         }
-        public DateTime SubmittedDate { get; }
+        public DateTime SubmittedDate { get; internal set; }
 
         //public CommissionRequest(Client client, CommissionInformation commissionInformation)
         //{

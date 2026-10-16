@@ -121,20 +121,22 @@ namespace ArtCommissionApplication_Prototype
                     crop = CommissionInformation.CharacterCrop.Headshot;
 
                 var client = new Client(name, email);
-                var commissionInfo = new CommissionInformation(crop, number, hasBg, desc, needBy);
-                // ensure stored price is used
-                commissionInfo.RecalculateEstimate();
+
+                // Use internal constructor to rehydrate CommissionInformation preserving stored EstimatedPrice
+                var commissionInfo = new CommissionInformation(crop, number, hasBg, desc, needBy, price);
 
                 var request = new CommissionRequest(client, commissionInfo)
                 {
                     Id = id,
                 };
-                //now database restores the status and submitted date - Brooke
 
+                // Restore submitted date from stored value
+                if (DateTime.TryParse(submittedText, null, DateTimeStyles.RoundtripKind, out var parsedSubmitted))
+                    request.SubmittedDate = parsedSubmitted;
+
+                // Restore status
                 request.SetStatus((CommissionStatus)statusInt);
 
-                // set status via reflection of constructor default? we'll set via direct property if available
-                // CommissionRequest.Status is private set - we cannot set it here. Use repository only for read/display of pending requests.
                 result.Add(request);
             }
 

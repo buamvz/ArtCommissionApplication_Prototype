@@ -20,6 +20,18 @@ namespace ArtCommissionApplication_Prototype
         public decimal EstimatedPrice { get; private set; }
         public DateTime? NeedByDate { get; }
 
+        // Internal constructor used when rehydrating objects from persisted storage.
+        // This bypasses the public validation rules and preserves stored EstimatedPrice and NeedByDate.
+        internal CommissionInformation(CharacterCrop characterCrop, int numberOfCharacters, bool hasBackground, string description, DateTime? needByDate, decimal storedEstimatedPrice)
+        {
+            CropType = characterCrop;
+            NumberOFCharacters = numberOfCharacters;
+            HasBackground = hasBackground;
+            Description = description;
+            EstimatedPrice = storedEstimatedPrice;
+            NeedByDate = needByDate;
+        }
+
         public CommissionInformation(CharacterCrop characterCrop, int numberOfCharacters, bool hasBackground, string description, DateTime? needByDate) 
         {
             // check given character crop type is valid
