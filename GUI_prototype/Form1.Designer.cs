@@ -358,6 +358,7 @@
             publicQueueGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             publicQueueGrid.Size = new Size(772, 337);
             publicQueueGrid.TabIndex = 8;
+            publicQueueGrid.CellFormatting += PublicQueueGrid_CellFormatting;
             // 
             // label11
             // 

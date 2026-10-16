@@ -193,34 +193,41 @@ namespace GUI_prototype
                 dataTable = new DataTable();
                 dataTable.Load(reader);
 
-                dataTable = new DataTable();
-                dataTable.Load(reader);
-
-                // Convert status numbers to enum names
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    row["Status"] = ((CommissionStatus)Convert.ToInt32(row["Status"])).ToString();
-
-                    // Format date if present
-                    if (row["NeedByDate"] != DBNull.Value)
-                    {
-                        if (DateTime.TryParse(row["NeedByDate"].ToString(), out DateTime date))
-                        {
-                            row["NeedByDate"] = date.ToShortDateString();
-                        }
-                    }
-
-                    // Optional: Yes/No instead of 1/0
-                    row["HasBackground"] =
-                        Convert.ToInt32(row["HasBackground"]) == 1 ? "Yes" : "No";
-                }
-
                 artistViewQueueGrid.DataSource = dataTable;
+
+                artistViewQueueGrid.Columns["EstimatedPrice"].DefaultCellStyle.Format = "C";
             }
             catch (Exception ex)
             {
                 // error box for failed load
                 MessageBox.Show($"Failed to load queue from database: {ex.Message}", "Database error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ArtistViewQueueGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            string columnName =
+                artistViewQueueGrid.Columns[e.ColumnIndex].Name;
+
+            if (columnName == "Status" && e.Value != null && e.Value != DBNull.Value)
+            {
+                e.Value = ((CommissionStatus)Convert.ToInt32(e.Value)).ToString();
+                e.FormattingApplied = true;
+            }
+
+            if (columnName == "HasBackground" && e.Value != null && e.Value != DBNull.Value)
+            {
+                e.Value = Convert.ToInt32(e.Value) == 1 ? "Yes" : "No";
+                e.FormattingApplied = true;
+            }
+
+            if (columnName == "NeedByDate" && e.Value != null && e.Value != DBNull.Value)
+            {
+                if (DateTime.TryParse(e.Value.ToString(), out DateTime dt))
+                {
+                    e.Value = dt.ToString("dd/MM/yyyy");
+                    e.FormattingApplied = true;
+                }
             }
         }
 

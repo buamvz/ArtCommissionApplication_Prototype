@@ -246,6 +246,7 @@
             // 
             // publicQueue
             // 
+            publicQueue.AutoScroll = true;
             publicQueue.Controls.Add(reloadQueueButton);
             publicQueue.Controls.Add(artistViewQueueGrid);
             publicQueue.Controls.Add(label4);
@@ -268,6 +269,10 @@
             // 
             // artistViewQueueGrid
             // 
+            artistViewQueueGrid.AllowUserToAddRows = false;
+            artistViewQueueGrid.AllowUserToDeleteRows = false;
+            artistViewQueueGrid.AllowUserToResizeColumns = false;
+            artistViewQueueGrid.AllowUserToResizeRows = false;
             artistViewQueueGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             artistViewQueueGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             artistViewQueueGrid.Dock = DockStyle.Fill;
@@ -275,6 +280,7 @@
             artistViewQueueGrid.Name = "artistViewQueueGrid";
             artistViewQueueGrid.Size = new Size(778, 337);
             artistViewQueueGrid.TabIndex = 11;
+            artistViewQueueGrid.CellFormatting += ArtistViewQueueGrid_CellFormatting;
             // 
             // label4
             // 
