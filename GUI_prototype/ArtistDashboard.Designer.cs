@@ -264,10 +264,11 @@
             reloadQueueButton.TabIndex = 12;
             reloadQueueButton.Text = "Reload Queue";
             reloadQueueButton.UseVisualStyleBackColor = true;
+            reloadQueueButton.Click += reloadQueueButton_Click;
             // 
             // artistViewQueueGrid
             // 
-            artistViewQueueGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            artistViewQueueGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             artistViewQueueGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             artistViewQueueGrid.Dock = DockStyle.Fill;
             artistViewQueueGrid.Location = new Point(0, 39);
@@ -461,7 +462,7 @@
         private Label acceptedCommissionsLabel;
         private Button reloadAcceptedCommsButton;
         private Label label4;
-        private DataGridView artistViewQueueGrid;
         private Button reloadQueueButton;
+        private DataGridView artistViewQueueGrid;
     }
 }

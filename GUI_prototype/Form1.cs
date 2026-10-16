@@ -32,7 +32,7 @@ namespace GUI_prototype
 
         // === Public Queue ===
         // load queue from data base into visuals
-        private string connectionString = DatabaseConfig.DatabasePath; // sienna - will need to update to the path it makes
+        private readonly string connectionString = $"Data Source={DatabaseConfig.DatabasePath}";
         private DataTable dataTable;
 
         private void LoadQueueDatabaseData()
@@ -49,6 +49,28 @@ namespace GUI_prototype
 
                 dataTable = new DataTable();
                 dataTable.Load(reader);
+
+                dataTable = new DataTable();
+                dataTable.Load(reader);
+
+                // Convert status numbers to enum names
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    row["Status"] = ((CommissionStatus)Convert.ToInt32(row["Status"])).ToString();
+
+                    // Format date if present
+                    if (row["NeedByDate"] != DBNull.Value)
+                    {
+                        if (DateTime.TryParse(row["NeedByDate"].ToString(), out DateTime date))
+                        {
+                            row["NeedByDate"] = date.ToShortDateString();
+                        }
+                    }
+
+                    // Optional: Yes/No instead of 1/0
+                    row["HasBackground"] =
+                        Convert.ToInt32(row["HasBackground"]) == 1 ? "Yes" : "No";
+                }
 
                 publicQueueGrid.DataSource = dataTable;
             }
