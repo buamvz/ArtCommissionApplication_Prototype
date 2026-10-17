@@ -346,7 +346,7 @@
             pictureBox1.Image = Properties.Resources.dottore;
             pictureBox1.Location = new Point(3, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(173, 215);
+            pictureBox1.Size = new Size(189, 239);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -354,9 +354,9 @@
             // pictureBox4
             // 
             pictureBox4.Image = Properties.Resources.paradise;
-            pictureBox4.Location = new Point(182, 3);
+            pictureBox4.Location = new Point(198, 3);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(172, 215);
+            pictureBox4.Size = new Size(197, 239);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 1;
             pictureBox4.TabStop = false;
@@ -364,9 +364,9 @@
             // pictureBox5
             // 
             pictureBox5.Image = Properties.Resources.kpopdh_zine;
-            pictureBox5.Location = new Point(360, 3);
+            pictureBox5.Location = new Point(401, 3);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(306, 215);
+            pictureBox5.Size = new Size(342, 239);
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 2;
             pictureBox5.TabStop = false;
@@ -374,9 +374,9 @@
             // pictureBox8
             // 
             pictureBox8.Image = Properties.Resources.artfight_3again2;
-            pictureBox8.Location = new Point(3, 224);
+            pictureBox8.Location = new Point(3, 248);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(296, 237);
+            pictureBox8.Size = new Size(313, 253);
             pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox8.TabIndex = 5;
             pictureBox8.TabStop = false;
@@ -384,9 +384,9 @@
             // pictureBox6
             // 
             pictureBox6.Image = Properties.Resources.corazon_zine;
-            pictureBox6.Location = new Point(305, 224);
+            pictureBox6.Location = new Point(322, 248);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(170, 237);
+            pictureBox6.Size = new Size(187, 263);
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 3;
             pictureBox6.TabStop = false;
@@ -394,9 +394,9 @@
             // pictureBox7
             // 
             pictureBox7.Image = Properties.Resources.artfight;
-            pictureBox7.Location = new Point(481, 224);
+            pictureBox7.Location = new Point(515, 248);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(209, 237);
+            pictureBox7.Size = new Size(226, 259);
             pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox7.TabIndex = 4;
             pictureBox7.TabStop = false;

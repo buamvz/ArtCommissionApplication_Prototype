@@ -447,6 +447,9 @@ namespace GUI_prototype
             }
         }
 
-
+        private void editPfpButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Feature not yet implemented.", "Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

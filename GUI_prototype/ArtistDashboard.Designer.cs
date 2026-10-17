@@ -86,6 +86,7 @@
             label6 = new Label();
             labelTermsOfService = new Label();
             galleryEditor = new TabPage();
+            pictureBox4 = new PictureBox();
             artistTabs.SuspendLayout();
             workspaceTab.SuspendLayout();
             ArtistCommissionsDashboardTabs.SuspendLayout();
@@ -105,6 +106,7 @@
             artistProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tosEditor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // artistTabs
@@ -125,6 +127,7 @@
             workspaceTab.Controls.Add(ArtistCommissionsDashboardTabs);
             workspaceTab.Controls.Add(pictureBox2);
             workspaceTab.Controls.Add(label1);
+            workspaceTab.Controls.Add(pictureBox4);
             workspaceTab.Location = new Point(4, 24);
             workspaceTab.Name = "workspaceTab";
             workspaceTab.Padding = new Padding(3);
@@ -142,10 +145,10 @@
             ArtistCommissionsDashboardTabs.Controls.Add(completedCommissions);
             ArtistCommissionsDashboardTabs.Controls.Add(rejectedCommissions);
             ArtistCommissionsDashboardTabs.Dock = DockStyle.Fill;
-            ArtistCommissionsDashboardTabs.Location = new Point(3, 58);
+            ArtistCommissionsDashboardTabs.Location = new Point(3, 104);
             ArtistCommissionsDashboardTabs.Name = "ArtistCommissionsDashboardTabs";
             ArtistCommissionsDashboardTabs.SelectedIndex = 0;
-            ArtistCommissionsDashboardTabs.Size = new Size(786, 430);
+            ArtistCommissionsDashboardTabs.Size = new Size(786, 384);
             ArtistCommissionsDashboardTabs.TabIndex = 9;
             ArtistCommissionsDashboardTabs.SelectedIndexChanged += ArtistCommissionsDashboardTabs_SelectedIndexChanged;
             // 
@@ -157,7 +160,7 @@
             artistQueue.Controls.Add(label4);
             artistQueue.Location = new Point(4, 24);
             artistQueue.Name = "artistQueue";
-            artistQueue.Size = new Size(778, 402);
+            artistQueue.Size = new Size(778, 356);
             artistQueue.TabIndex = 7;
             artistQueue.Text = "Commissions Queue";
             artistQueue.UseVisualStyleBackColor = true;
@@ -184,7 +187,7 @@
             artistViewQueueGrid.Location = new Point(0, 39);
             artistViewQueueGrid.Name = "artistViewQueueGrid";
             artistViewQueueGrid.ReadOnly = true;
-            artistViewQueueGrid.Size = new Size(778, 363);
+            artistViewQueueGrid.Size = new Size(778, 317);
             artistViewQueueGrid.TabIndex = 11;
             artistViewQueueGrid.CellFormatting += ArtistViewQueueGrid_CellFormatting;
             // 
@@ -208,7 +211,7 @@
             incomingCommissions.Location = new Point(4, 24);
             incomingCommissions.Name = "incomingCommissions";
             incomingCommissions.Padding = new Padding(3);
-            incomingCommissions.Size = new Size(778, 402);
+            incomingCommissions.Size = new Size(778, 356);
             incomingCommissions.TabIndex = 6;
             incomingCommissions.Text = "Incoming Commissions";
             incomingCommissions.UseVisualStyleBackColor = true;
@@ -220,7 +223,7 @@
             artistPendingCommissionsList.Dock = DockStyle.Fill;
             artistPendingCommissionsList.Location = new Point(3, 42);
             artistPendingCommissionsList.Name = "artistPendingCommissionsList";
-            artistPendingCommissionsList.Size = new Size(772, 357);
+            artistPendingCommissionsList.Size = new Size(772, 311);
             artistPendingCommissionsList.TabIndex = 11;
             // 
             // splitContainer2
@@ -294,7 +297,7 @@
             acceptedCommissions.Location = new Point(4, 24);
             acceptedCommissions.Name = "acceptedCommissions";
             acceptedCommissions.Padding = new Padding(3);
-            acceptedCommissions.Size = new Size(778, 402);
+            acceptedCommissions.Size = new Size(778, 356);
             acceptedCommissions.TabIndex = 1;
             acceptedCommissions.Text = "Accepted Commissions";
             acceptedCommissions.UseVisualStyleBackColor = true;
@@ -315,7 +318,7 @@
             artistAcceptedCommissionsList.Dock = DockStyle.Fill;
             artistAcceptedCommissionsList.Location = new Point(3, 42);
             artistAcceptedCommissionsList.Name = "artistAcceptedCommissionsList";
-            artistAcceptedCommissionsList.Size = new Size(772, 357);
+            artistAcceptedCommissionsList.Size = new Size(772, 311);
             artistAcceptedCommissionsList.TabIndex = 12;
             // 
             // acceptedCommissionsLabel
@@ -334,7 +337,7 @@
             // 
             conversationTab.Location = new Point(4, 24);
             conversationTab.Name = "conversationTab";
-            conversationTab.Size = new Size(778, 402);
+            conversationTab.Size = new Size(778, 356);
             conversationTab.TabIndex = 8;
             conversationTab.Text = "Conversation";
             conversationTab.UseVisualStyleBackColor = true;
@@ -346,7 +349,7 @@
             completedCommissions.Controls.Add(completedCommissionsLabel);
             completedCommissions.Location = new Point(4, 24);
             completedCommissions.Name = "completedCommissions";
-            completedCommissions.Size = new Size(778, 402);
+            completedCommissions.Size = new Size(778, 356);
             completedCommissions.TabIndex = 10;
             completedCommissions.Text = "Completed Commissions";
             completedCommissions.UseVisualStyleBackColor = true;
@@ -357,7 +360,7 @@
             artistCompletedCommissionsList.Dock = DockStyle.Fill;
             artistCompletedCommissionsList.Location = new Point(0, 39);
             artistCompletedCommissionsList.Name = "artistCompletedCommissionsList";
-            artistCompletedCommissionsList.Size = new Size(778, 363);
+            artistCompletedCommissionsList.Size = new Size(778, 317);
             artistCompletedCommissionsList.TabIndex = 13;
             // 
             // reloadCompletedCommsButton
@@ -391,7 +394,7 @@
             rejectedCommissions.ForeColor = Color.Gray;
             rejectedCommissions.Location = new Point(4, 24);
             rejectedCommissions.Name = "rejectedCommissions";
-            rejectedCommissions.Size = new Size(778, 402);
+            rejectedCommissions.Size = new Size(778, 356);
             rejectedCommissions.TabIndex = 9;
             rejectedCommissions.Text = "Rejected Commissions";
             rejectedCommissions.UseVisualStyleBackColor = true;
@@ -402,7 +405,7 @@
             artistRejectedCommissionsList.Dock = DockStyle.Fill;
             artistRejectedCommissionsList.Location = new Point(0, 39);
             artistRejectedCommissionsList.Name = "artistRejectedCommissionsList";
-            artistRejectedCommissionsList.Size = new Size(778, 363);
+            artistRejectedCommissionsList.Size = new Size(778, 317);
             artistRejectedCommissionsList.TabIndex = 14;
             // 
             // reloadRejectedCommsButton
@@ -431,7 +434,7 @@
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.Image = Properties.Resources.JellyPhlox;
-            pictureBox2.Location = new Point(7, 6);
+            pictureBox2.Location = new Point(737, 52);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(47, 49);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -442,9 +445,9 @@
             // 
             label1.BackColor = Color.LavenderBlush;
             label1.Dock = DockStyle.Top;
-            label1.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Microsoft Sans Serif", 26F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkMagenta;
-            label1.Location = new Point(3, 3);
+            label1.Location = new Point(3, 49);
             label1.Name = "label1";
             label1.Size = new Size(786, 55);
             label1.TabIndex = 3;
@@ -526,6 +529,7 @@
             editPfpButton.TabIndex = 20;
             editPfpButton.Text = "Edit Profile Picture";
             editPfpButton.UseVisualStyleBackColor = true;
+            editPfpButton.Click += editPfpButton_Click;
             // 
             // labelImagSize
             // 
@@ -547,9 +551,11 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Image = Properties.Resources.JellyPhlox;
             pictureBox1.Location = new Point(454, 82);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(140, 140);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 17;
             pictureBox1.TabStop = false;
             // 
@@ -741,6 +747,18 @@
             galleryEditor.Text = "Gallery Images";
             galleryEditor.UseVisualStyleBackColor = true;
             // 
+            // pictureBox4
+            // 
+            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
+            pictureBox4.Dock = DockStyle.Top;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(3, 3);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(786, 46);
+            pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox4.TabIndex = 24;
+            pictureBox4.TabStop = false;
+            // 
             // ArtistDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -771,6 +789,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tosEditor.ResumeLayout(false);
             tosEditor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
         }
 
@@ -836,5 +855,6 @@
         private Label completedCommissionsLabel;
         private Button reloadCompletedCommsButton;
         private FlowLayoutPanel artistCompletedCommissionsList;
+        private PictureBox pictureBox4;
     }
 }
