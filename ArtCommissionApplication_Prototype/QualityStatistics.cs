@@ -83,5 +83,18 @@ namespace ArtCommissionApplication_Prototype
 
             return result;
         }
+
+        // Calculate estimated tax based on stored EstimatedPrice for Accepted commissions
+        // Returns rounded value to 2 decimal places (bankers rounding default)
+        public static decimal CalculateEstimatedTax(decimal taxRate = 0.105m)
+        {
+            var all = CommissionRepository.GetAll() ?? new List<CommissionRequest>();
+            var accepted = all.Where(r => r.Status == CommissionStatus.Accepted).ToList();
+
+            decimal sum = accepted.Sum(r => r.CommissionType?.EstimatedPrice ?? 0m);
+
+            var tax = sum * taxRate;
+            return Math.Round(tax, 2);
+        }
     }
 }

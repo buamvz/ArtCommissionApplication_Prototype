@@ -7,6 +7,7 @@ using static ArtCommissionApplication_Prototype.CommissionInformation;
 namespace ArtCommisionApplication.Test
 {
     [TestClass]
+    [DoNotParallelize]
     public class QualityStatisticsTests
     {
         private string testDbPath = string.Empty;
@@ -135,5 +136,42 @@ namespace ArtCommisionApplication.Test
             Assert.AreEqual(12, s2024.MonthlyCounts.Length);
             Assert.AreEqual(1, s2024.MonthlyCounts[5]); // June
         }
+
+
+        [TestMethod]
+        public void CalculateEstimatedTax_NoAccepted_ReturnsZero()
+        {
+            var client = new Client("A", "a@example.com");
+            var r = new CommissionRequest(client, new CommissionInformation(CharacterCrop.Headshot, 1, false, "d", DateTime.Today.AddDays(7)));
+            CommissionRepository.AddCommission(r); // Pending by default
+
+            var tax = QualityStatisticsService.CalculateEstimatedTax();
+            Assert.AreEqual(0m, tax);
+        }
+
+        [TestMethod]
+        public void CalculateEstimatedTax_WithAccepted_ComputesCorrectly()
+        {
+            var client = new Client("A", "a@example.com");
+
+            var r1 = new CommissionRequest(client, new CommissionInformation(CharacterCrop.Headshot, 1, false, "d1", DateTime.Today.AddDays(7)));
+            CommissionRepository.AddCommission(r1);
+
+            var r2 = new CommissionRequest(client, new CommissionInformation(CharacterCrop.Fullbody, 2, true, "d2", DateTime.Today.AddDays(7)));
+            CommissionRepository.AddCommission(r2);
+
+            CommissionRepository.UpdateStatus(r1.Id, CommissionStatus.Accepted);
+            CommissionRepository.UpdateStatus(r2.Id, CommissionStatus.Accepted);
+
+            // Tax = (r1.EstimatedPrice + r2.EstimatedPrice) * 0.105
+            decimal expected = Math.Round((r1.CommissionType.EstimatedPrice + r2.CommissionType.EstimatedPrice) * 0.105m, 2);
+
+            var tax = QualityStatisticsService.CalculateEstimatedTax();
+            Assert.AreEqual(expected, tax);
+        }
+
     }
+
+
+
 }
