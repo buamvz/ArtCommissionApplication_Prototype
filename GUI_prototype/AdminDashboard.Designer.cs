@@ -29,26 +29,37 @@ namespace GUI_prototype
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             splitContainer1 = new SplitContainer();
             label12 = new Label();
             labelStatus = new Label();
             adminTabs = new TabControl();
             workspaceTab = new TabPage();
-            ArtistCommissionsDashboard = new TabControl();
+            AdminCommissionsDashboard = new TabControl();
             commissionOverview = new TabPage();
             artistAdminViewCommissionsList = new FlowLayoutPanel();
             reloadCommOverviewButton = new Button();
             commissionOverviewLabel = new Label();
-            acceptedCommissions = new TabPage();
-            reloadAcceptedCommsButton = new Button();
-            artistAcceptedCommissionsList = new FlowLayoutPanel();
-            acceptedCommissionsLabel = new Label();
+            commissionTypeDashboard = new TabPage();
+            reloadTypeDashboardButton = new Button();
+            adminTypeQualityDashboardChart = new FlowLayoutPanel();
+            typeCommissionsPieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            typeQualityDashboardLabel = new Label();
+            yearlyCommissionsChart = new TabPage();
+            reloadYearlyDashboardButton = new Button();
+            adminYearQualityDashboardChart = new FlowLayoutPanel();
+            yearlyCommissionsLineChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            yearlyQualityDashboardLabel = new Label();
             publicQueue = new TabPage();
             reloadQueueButton = new Button();
             adminViewQueueGrid = new DataGridView();
             label4 = new Label();
-            conversationTab = new TabPage();
             pictureBox2 = new PictureBox();
             label1 = new Label();
             artistInformationTab = new TabPage();
@@ -61,11 +72,14 @@ namespace GUI_prototype
             splitContainer1.SuspendLayout();
             adminTabs.SuspendLayout();
             workspaceTab.SuspendLayout();
-            ArtistCommissionsDashboard.SuspendLayout();
+            AdminCommissionsDashboard.SuspendLayout();
             commissionOverview.SuspendLayout();
-            artistAdminViewCommissionsList.SuspendLayout();
-            // splitContainer2 removed; dynamic sections will be created at runtime
-            acceptedCommissions.SuspendLayout();
+            commissionTypeDashboard.SuspendLayout();
+            adminTypeQualityDashboardChart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)typeCommissionsPieChart).BeginInit();
+            yearlyCommissionsChart.SuspendLayout();
+            adminYearQualityDashboardChart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)yearlyCommissionsLineChart).BeginInit();
             publicQueue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)adminViewQueueGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -118,7 +132,7 @@ namespace GUI_prototype
             // 
             // workspaceTab
             // 
-            workspaceTab.Controls.Add(ArtistCommissionsDashboard);
+            workspaceTab.Controls.Add(AdminCommissionsDashboard);
             workspaceTab.Controls.Add(pictureBox2);
             workspaceTab.Controls.Add(label1);
             workspaceTab.Location = new Point(4, 29);
@@ -130,19 +144,19 @@ namespace GUI_prototype
             workspaceTab.Text = "Workspace";
             workspaceTab.UseVisualStyleBackColor = true;
             // 
-            // ArtistCommissionsDashboard
+            // AdminCommissionsDashboard
             // 
-            ArtistCommissionsDashboard.Controls.Add(commissionOverview);
-            ArtistCommissionsDashboard.Controls.Add(acceptedCommissions);
-            ArtistCommissionsDashboard.Controls.Add(publicQueue);
-            ArtistCommissionsDashboard.Controls.Add(conversationTab);
-            ArtistCommissionsDashboard.Dock = DockStyle.Fill;
-            ArtistCommissionsDashboard.Location = new Point(3, 77);
-            ArtistCommissionsDashboard.Margin = new Padding(3, 4, 3, 4);
-            ArtistCommissionsDashboard.Name = "ArtistCommissionsDashboard";
-            ArtistCommissionsDashboard.SelectedIndex = 0;
-            ArtistCommissionsDashboard.Size = new Size(900, 495);
-            ArtistCommissionsDashboard.TabIndex = 10;
+            AdminCommissionsDashboard.Controls.Add(commissionOverview);
+            AdminCommissionsDashboard.Controls.Add(commissionTypeDashboard);
+            AdminCommissionsDashboard.Controls.Add(yearlyCommissionsChart);
+            AdminCommissionsDashboard.Controls.Add(publicQueue);
+            AdminCommissionsDashboard.Dock = DockStyle.Fill;
+            AdminCommissionsDashboard.Location = new Point(3, 77);
+            AdminCommissionsDashboard.Margin = new Padding(3, 4, 3, 4);
+            AdminCommissionsDashboard.Name = "AdminCommissionsDashboard";
+            AdminCommissionsDashboard.SelectedIndex = 0;
+            AdminCommissionsDashboard.Size = new Size(900, 495);
+            AdminCommissionsDashboard.TabIndex = 10;
             // 
             // commissionOverview
             // 
@@ -168,23 +182,6 @@ namespace GUI_prototype
             artistAdminViewCommissionsList.Size = new Size(886, 402);
             artistAdminViewCommissionsList.TabIndex = 11;
             // 
-            // splitContainer2 removed; placeholder controls label2/label3 no longer used
-            // 
-            // label2
-            // 
-            // label2 removed
-            // 
-            // label3
-            // 
-            //label3.AutoSize = true;
-            //label3.Dock = DockStyle.Fill;
-            //label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            //label3.Location = new Point(0, 0);
-            //label3.Name = "label3";
-            //label3.Size = new Size(135, 23);
-            //label3.TabIndex = 0;
-            //label3.Text = "Status: Pending";
-            // 
             // reloadCommOverviewButton
             // 
             reloadCommOverviewButton.Location = new Point(600, 17);
@@ -208,51 +205,139 @@ namespace GUI_prototype
             commissionOverviewLabel.TabIndex = 8;
             commissionOverviewLabel.Text = "Admin Commission Overview";
             // 
-            // acceptedCommissions
+            // commissionTypeDashboard
             // 
-            acceptedCommissions.Controls.Add(reloadAcceptedCommsButton);
-            acceptedCommissions.Controls.Add(artistAcceptedCommissionsList);
-            acceptedCommissions.Controls.Add(acceptedCommissionsLabel);
-            acceptedCommissions.Location = new Point(4, 29);
-            acceptedCommissions.Margin = new Padding(3, 4, 3, 4);
-            acceptedCommissions.Name = "acceptedCommissions";
-            acceptedCommissions.Padding = new Padding(3, 4, 3, 4);
-            acceptedCommissions.Size = new Size(892, 462);
-            acceptedCommissions.TabIndex = 1;
-            acceptedCommissions.Text = "Accepted Commissions";
-            acceptedCommissions.UseVisualStyleBackColor = true;
+            commissionTypeDashboard.Controls.Add(reloadTypeDashboardButton);
+            commissionTypeDashboard.Controls.Add(adminTypeQualityDashboardChart);
+            commissionTypeDashboard.Controls.Add(typeQualityDashboardLabel);
+            commissionTypeDashboard.Location = new Point(4, 29);
+            commissionTypeDashboard.Margin = new Padding(3, 4, 3, 4);
+            commissionTypeDashboard.Name = "commissionTypeDashboard";
+            commissionTypeDashboard.Padding = new Padding(3, 4, 3, 4);
+            commissionTypeDashboard.Size = new Size(892, 462);
+            commissionTypeDashboard.TabIndex = 1;
+            commissionTypeDashboard.Text = "Commission Type Chart";
+            commissionTypeDashboard.UseVisualStyleBackColor = true;
             // 
-            // reloadAcceptedCommsButton
+            // reloadTypeDashboardButton
             // 
-            reloadAcceptedCommsButton.Location = new Point(600, 8);
-            reloadAcceptedCommsButton.Margin = new Padding(3, 4, 3, 4);
-            reloadAcceptedCommsButton.Name = "reloadAcceptedCommsButton";
-            reloadAcceptedCommsButton.Size = new Size(263, 31);
-            reloadAcceptedCommsButton.TabIndex = 11;
-            reloadAcceptedCommsButton.Text = "Reload My Commissions";
-            reloadAcceptedCommsButton.UseVisualStyleBackColor = true;
+            reloadTypeDashboardButton.Location = new Point(600, 17);
+            reloadTypeDashboardButton.Margin = new Padding(3, 4, 3, 4);
+            reloadTypeDashboardButton.Name = "reloadTypeDashboardButton";
+            reloadTypeDashboardButton.Size = new Size(263, 31);
+            reloadTypeDashboardButton.TabIndex = 11;
+            reloadTypeDashboardButton.Text = "Reload Quality Dashboard";
+            reloadTypeDashboardButton.UseVisualStyleBackColor = true;
+            reloadTypeDashboardButton.Click += reloadTypeDashboardButton_Click;
             // 
-            // artistAcceptedCommissionsList
+            // adminTypeQualityDashboardChart
             // 
-            artistAcceptedCommissionsList.AutoScroll = true;
-            artistAcceptedCommissionsList.Dock = DockStyle.Fill;
-            artistAcceptedCommissionsList.Location = new Point(3, 56);
-            artistAcceptedCommissionsList.Margin = new Padding(3, 4, 3, 4);
-            artistAcceptedCommissionsList.Name = "artistAcceptedCommissionsList";
-            artistAcceptedCommissionsList.Size = new Size(886, 402);
-            artistAcceptedCommissionsList.TabIndex = 12;
+            adminTypeQualityDashboardChart.AutoScroll = true;
+            adminTypeQualityDashboardChart.Controls.Add(typeCommissionsPieChart);
+            adminTypeQualityDashboardChart.Dock = DockStyle.Fill;
+            adminTypeQualityDashboardChart.Location = new Point(3, 56);
+            adminTypeQualityDashboardChart.Margin = new Padding(3, 4, 3, 4);
+            adminTypeQualityDashboardChart.Name = "adminTypeQualityDashboardChart";
+            adminTypeQualityDashboardChart.Size = new Size(886, 402);
+            adminTypeQualityDashboardChart.TabIndex = 12;
             // 
-            // acceptedCommissionsLabel
+            // typeCommissionsPieChart
             // 
-            acceptedCommissionsLabel.BackColor = Color.FromArgb(224, 224, 224);
-            acceptedCommissionsLabel.Dock = DockStyle.Top;
-            acceptedCommissionsLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            acceptedCommissionsLabel.Location = new Point(3, 4);
-            acceptedCommissionsLabel.Name = "acceptedCommissionsLabel";
-            acceptedCommissionsLabel.Padding = new Padding(11, 13, 11, 13);
-            acceptedCommissionsLabel.Size = new Size(886, 52);
-            acceptedCommissionsLabel.TabIndex = 9;
-            acceptedCommissionsLabel.Text = "Accepted Commissions";
+            chartArea1.Name = "ChartArea1";
+            typeCommissionsPieChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            typeCommissionsPieChart.Legends.Add(legend1);
+            typeCommissionsPieChart.Location = new Point(3, 3);
+            typeCommissionsPieChart.Name = "typeCommissionsPieChart";
+            typeCommissionsPieChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series1.YValuesPerPoint = 2;
+            typeCommissionsPieChart.Series.Add(series1);
+            typeCommissionsPieChart.Size = new Size(573, 375);
+            typeCommissionsPieChart.TabIndex = 0;
+            typeCommissionsPieChart.Text = "typeCommissionsPieChart";
+            // 
+            // typeQualityDashboardLabel
+            // 
+            typeQualityDashboardLabel.BackColor = Color.FromArgb(224, 224, 224);
+            typeQualityDashboardLabel.Dock = DockStyle.Top;
+            typeQualityDashboardLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            typeQualityDashboardLabel.Location = new Point(3, 4);
+            typeQualityDashboardLabel.Name = "typeQualityDashboardLabel";
+            typeQualityDashboardLabel.Padding = new Padding(11, 13, 11, 13);
+            typeQualityDashboardLabel.Size = new Size(886, 52);
+            typeQualityDashboardLabel.TabIndex = 9;
+            typeQualityDashboardLabel.Text = "Commission Type Quality Dashboard";
+            // 
+            // yearlyCommissionsChart
+            // 
+            yearlyCommissionsChart.Controls.Add(reloadYearlyDashboardButton);
+            yearlyCommissionsChart.Controls.Add(adminYearQualityDashboardChart);
+            yearlyCommissionsChart.Controls.Add(yearlyQualityDashboardLabel);
+            yearlyCommissionsChart.Location = new Point(4, 29);
+            yearlyCommissionsChart.Name = "yearlyCommissionsChart";
+            yearlyCommissionsChart.Padding = new Padding(3);
+            yearlyCommissionsChart.Size = new Size(892, 462);
+            yearlyCommissionsChart.TabIndex = 8;
+            yearlyCommissionsChart.Text = "Annual Commissions Chart";
+            yearlyCommissionsChart.UseVisualStyleBackColor = true;
+            // 
+            // reloadYearlyDashboardButton
+            // 
+            reloadYearlyDashboardButton.Location = new Point(600, 17);
+            reloadYearlyDashboardButton.Margin = new Padding(3, 4, 3, 4);
+            reloadYearlyDashboardButton.Name = "reloadYearlyDashboardButton";
+            reloadYearlyDashboardButton.Size = new Size(263, 31);
+            reloadYearlyDashboardButton.TabIndex = 15;
+            reloadYearlyDashboardButton.Text = "Reload Quality Dashboard";
+            reloadYearlyDashboardButton.UseVisualStyleBackColor = true;
+            reloadYearlyDashboardButton.Click += reloadYearlyDashboardButton_Click;
+            // 
+            // adminYearQualityDashboardChart
+            // 
+            adminYearQualityDashboardChart.AutoScroll = true;
+            adminYearQualityDashboardChart.Controls.Add(yearlyCommissionsLineChart);
+            adminYearQualityDashboardChart.Dock = DockStyle.Fill;
+            adminYearQualityDashboardChart.Location = new Point(3, 55);
+            adminYearQualityDashboardChart.Margin = new Padding(3, 4, 3, 4);
+            adminYearQualityDashboardChart.Name = "adminYearQualityDashboardChart";
+            adminYearQualityDashboardChart.Size = new Size(886, 404);
+            adminYearQualityDashboardChart.TabIndex = 14;
+            // 
+            // yearlyCommissionsLineChart
+            // 
+            chartArea2.Name = "ChartArea2";
+            yearlyCommissionsLineChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            yearlyCommissionsLineChart.Legends.Add(legend2);
+            yearlyCommissionsLineChart.Location = new Point(3, 3);
+            yearlyCommissionsLineChart.Name = "yearlyCommissionsLineChart";
+            yearlyCommissionsLineChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series2.ChartArea = "ChartArea2";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.YValuesPerPoint = 2;
+            yearlyCommissionsLineChart.Series.Add(series2);
+            yearlyCommissionsLineChart.Size = new Size(573, 375);
+            yearlyCommissionsLineChart.TabIndex = 0;
+            yearlyCommissionsLineChart.Text = "yearlyCommissionsLineChart";
+            // 
+            // yearlyQualityDashboardLabel
+            // 
+            yearlyQualityDashboardLabel.BackColor = Color.FromArgb(224, 224, 224);
+            yearlyQualityDashboardLabel.Dock = DockStyle.Top;
+            yearlyQualityDashboardLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            yearlyQualityDashboardLabel.Location = new Point(3, 3);
+            yearlyQualityDashboardLabel.Name = "yearlyQualityDashboardLabel";
+            yearlyQualityDashboardLabel.Padding = new Padding(11, 13, 11, 13);
+            yearlyQualityDashboardLabel.RightToLeft = RightToLeft.No;
+            yearlyQualityDashboardLabel.Size = new Size(886, 52);
+            yearlyQualityDashboardLabel.TabIndex = 13;
+            yearlyQualityDashboardLabel.Text = "Annual Commission Quality Dashboard";
             // 
             // publicQueue
             // 
@@ -306,17 +391,7 @@ namespace GUI_prototype
             label4.Padding = new Padding(11, 13, 11, 13);
             label4.Size = new Size(892, 52);
             label4.TabIndex = 10;
-            label4.Text = "Accepted Commissions";
-            // 
-            // conversationTab
-            // 
-            conversationTab.Location = new Point(4, 29);
-            conversationTab.Margin = new Padding(3, 4, 3, 4);
-            conversationTab.Name = "conversationTab";
-            conversationTab.Size = new Size(892, 462);
-            conversationTab.TabIndex = 8;
-            conversationTab.Text = "Conversation";
-            conversationTab.UseVisualStyleBackColor = true;
+            label4.Text = "Commission Type Chart";
             // 
             // pictureBox2
             // 
@@ -417,11 +492,14 @@ namespace GUI_prototype
             splitContainer1.ResumeLayout(false);
             adminTabs.ResumeLayout(false);
             workspaceTab.ResumeLayout(false);
-            ArtistCommissionsDashboard.ResumeLayout(false);
+            AdminCommissionsDashboard.ResumeLayout(false);
             commissionOverview.ResumeLayout(false);
-            artistAdminViewCommissionsList.ResumeLayout(false);
-            // splitContainer2 removed; dynamic sections will be created at runtime
-            acceptedCommissions.ResumeLayout(false);
+            commissionTypeDashboard.ResumeLayout(false);
+            adminTypeQualityDashboardChart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)typeCommissionsPieChart).EndInit();
+            yearlyCommissionsChart.ResumeLayout(false);
+            adminYearQualityDashboardChart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)yearlyCommissionsLineChart).EndInit();
             publicQueue.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)adminViewQueueGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -445,21 +523,26 @@ namespace GUI_prototype
         private TabPage userProfile;
         private Label clientProfileLabel;
         private Label labelUserProfile;
-        private TabControl ArtistCommissionsDashboard;
+        private TabControl AdminCommissionsDashboard;
         private TabPage commissionOverview;
         private FlowLayoutPanel artistAdminViewCommissionsList;
         // splitContainer2, label2, label3 removed; commission overview uses dynamic controls at runtime
         private Button reloadCommOverviewButton;
         private Label commissionOverviewLabel;
-        private TabPage acceptedCommissions;
-        private Button reloadAcceptedCommsButton;
-        private FlowLayoutPanel artistAcceptedCommissionsList;
-        private Label acceptedCommissionsLabel;
+        private TabPage commissionTypeDashboard;
+        private Button reloadTypeDashboardButton;
         private TabPage publicQueue;
         private Button reloadQueueButton;
         private DataGridView adminViewQueueGrid;
         private Label label4;
-        private TabPage conversationTab;
         private ContextMenuStrip contextMenuStrip1;
+        private FlowLayoutPanel adminTypeQualityDashboardChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart typeCommissionsPieChart;
+        private TabPage yearlyCommissionsChart;
+        private Label yearlyQualityDashboardLabel;
+        private Label typeQualityDashboardLabel;
+        private FlowLayoutPanel adminYearQualityDashboardChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart yearlyCommissionsLineChart;
+        private Button reloadYearlyDashboardButton;
     }
 }

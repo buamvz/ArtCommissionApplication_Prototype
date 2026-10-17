@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="WinForms.DataVisualization" Version="1.10.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ArtCommissionApplication_Prototype\ArtCommissionApplication_Prototype.csproj" />
   </ItemGroup>
 
