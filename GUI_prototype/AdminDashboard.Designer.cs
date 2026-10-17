@@ -28,6 +28,7 @@ namespace GUI_prototype
 
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             splitContainer1 = new SplitContainer();
             label12 = new Label();
@@ -35,13 +36,10 @@ namespace GUI_prototype
             adminTabs = new TabControl();
             workspaceTab = new TabPage();
             ArtistCommissionsDashboard = new TabControl();
-            incomingCommissions = new TabPage();
-            artistPendingCommissionsList = new FlowLayoutPanel();
-            splitContainer2 = new SplitContainer();
-            label2 = new Label();
-            label3 = new Label();
-            reloadCommRequestsButton = new Button();
-            incomingCommissionsLabel = new Label();
+            commissionOverview = new TabPage();
+            artistAdminViewCommissionsList = new FlowLayoutPanel();
+            reloadCommOverviewButton = new Button();
+            commissionOverviewLabel = new Label();
             acceptedCommissions = new TabPage();
             reloadAcceptedCommsButton = new Button();
             artistAcceptedCommissionsList = new FlowLayoutPanel();
@@ -58,16 +56,15 @@ namespace GUI_prototype
             userProfile = new TabPage();
             clientProfileLabel = new Label();
             labelUserProfile = new Label();
+            contextMenuStrip1 = new ContextMenuStrip(components);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.SuspendLayout();
             adminTabs.SuspendLayout();
             workspaceTab.SuspendLayout();
             ArtistCommissionsDashboard.SuspendLayout();
-            incomingCommissions.SuspendLayout();
-            artistPendingCommissionsList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
-            splitContainer2.Panel1.SuspendLayout();
-            splitContainer2.SuspendLayout();
+            commissionOverview.SuspendLayout();
+            artistAdminViewCommissionsList.SuspendLayout();
+            // splitContainer2 removed; dynamic sections will be created at runtime
             acceptedCommissions.SuspendLayout();
             publicQueue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)adminViewQueueGrid).BeginInit();
@@ -92,9 +89,9 @@ namespace GUI_prototype
             label12.Font = new Font("Segoe UI", 10F);
             label12.Location = new Point(6, 41);
             label12.Name = "label12";
-            label12.Size = new Size(163, 161);
+            label12.Size = new Size(163, 92);
             label12.TabIndex = 1;
-            label12.Text = "Name:\r\nEmail:\r\nCommission Details:\r\n\r\nDescription:\r\n\r\nThank you!";
+            label12.Text = "Name:\r\nEmail:\r\nCommission Details:\r\n\r\n";
             // 
             // labelStatus
             // 
@@ -135,7 +132,7 @@ namespace GUI_prototype
             // 
             // ArtistCommissionsDashboard
             // 
-            ArtistCommissionsDashboard.Controls.Add(incomingCommissions);
+            ArtistCommissionsDashboard.Controls.Add(commissionOverview);
             ArtistCommissionsDashboard.Controls.Add(acceptedCommissions);
             ArtistCommissionsDashboard.Controls.Add(publicQueue);
             ArtistCommissionsDashboard.Controls.Add(conversationTab);
@@ -147,95 +144,69 @@ namespace GUI_prototype
             ArtistCommissionsDashboard.Size = new Size(900, 495);
             ArtistCommissionsDashboard.TabIndex = 10;
             // 
-            // incomingCommissions
+            // commissionOverview
             // 
-            incomingCommissions.Controls.Add(artistPendingCommissionsList);
-            incomingCommissions.Controls.Add(reloadCommRequestsButton);
-            incomingCommissions.Controls.Add(incomingCommissionsLabel);
-            incomingCommissions.Location = new Point(4, 29);
-            incomingCommissions.Margin = new Padding(3, 4, 3, 4);
-            incomingCommissions.Name = "incomingCommissions";
-            incomingCommissions.Padding = new Padding(3, 4, 3, 4);
-            incomingCommissions.Size = new Size(892, 462);
-            incomingCommissions.TabIndex = 6;
-            incomingCommissions.Text = "Incoming Commission Requests";
-            incomingCommissions.UseVisualStyleBackColor = true;
+            commissionOverview.Controls.Add(artistAdminViewCommissionsList);
+            commissionOverview.Controls.Add(reloadCommOverviewButton);
+            commissionOverview.Controls.Add(commissionOverviewLabel);
+            commissionOverview.Location = new Point(4, 29);
+            commissionOverview.Margin = new Padding(3, 4, 3, 4);
+            commissionOverview.Name = "commissionOverview";
+            commissionOverview.Padding = new Padding(3, 4, 3, 4);
+            commissionOverview.Size = new Size(892, 462);
+            commissionOverview.TabIndex = 6;
+            commissionOverview.Text = "Commission Overview";
+            commissionOverview.UseVisualStyleBackColor = true;
             // 
-            // artistPendingCommissionsList
+            // artistAdminViewCommissionsList
             // 
-            artistPendingCommissionsList.AutoScroll = true;
-            artistPendingCommissionsList.Controls.Add(splitContainer2);
-            artistPendingCommissionsList.Dock = DockStyle.Fill;
-            artistPendingCommissionsList.Location = new Point(3, 56);
-            artistPendingCommissionsList.Margin = new Padding(3, 4, 3, 4);
-            artistPendingCommissionsList.Name = "artistPendingCommissionsList";
-            artistPendingCommissionsList.Size = new Size(886, 402);
-            artistPendingCommissionsList.TabIndex = 11;
+            artistAdminViewCommissionsList.AutoScroll = true;
+            artistAdminViewCommissionsList.Dock = DockStyle.Fill;
+            artistAdminViewCommissionsList.Location = new Point(3, 56);
+            artistAdminViewCommissionsList.Margin = new Padding(3, 4, 3, 4);
+            artistAdminViewCommissionsList.Name = "artistAdminViewCommissionsList";
+            artistAdminViewCommissionsList.Size = new Size(886, 402);
+            artistAdminViewCommissionsList.TabIndex = 11;
             // 
-            // splitContainer2
-            // 
-            splitContainer2.Location = new Point(3, 4);
-            splitContainer2.Margin = new Padding(3, 4, 3, 4);
-            splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            splitContainer2.Panel1.AutoScroll = true;
-            splitContainer2.Panel1.BackColor = Color.Gainsboro;
-            splitContainer2.Panel1.Controls.Add(label2);
-            splitContainer2.Panel1.Controls.Add(label3);
-            // 
-            // splitContainer2.Panel2
-            // 
-            splitContainer2.Panel2.BackColor = Color.WhiteSmoke;
-            splitContainer2.Size = new Size(867, 173);
-            splitContainer2.SplitterDistance = 394;
-            splitContainer2.SplitterWidth = 5;
-            splitContainer2.TabIndex = 2;
+            // splitContainer2 removed; placeholder controls label2/label3 no longer used
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Dock = DockStyle.Fill;
-            label2.Font = new Font("Segoe UI", 10F);
-            label2.Location = new Point(0, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(163, 161);
-            label2.TabIndex = 1;
-            label2.Text = "Name:\r\nEmail:\r\nCommission Details:\r\n\r\nDescription:\r\n\r\nThank you!";
+            // label2 removed
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Dock = DockStyle.Fill;
-            label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label3.Location = new Point(0, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(135, 23);
-            label3.TabIndex = 0;
-            label3.Text = "Status: Pending";
+            //label3.AutoSize = true;
+            //label3.Dock = DockStyle.Fill;
+            //label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            //label3.Location = new Point(0, 0);
+            //label3.Name = "label3";
+            //label3.Size = new Size(135, 23);
+            //label3.TabIndex = 0;
+            //label3.Text = "Status: Pending";
             // 
-            // reloadCommRequestsButton
+            // reloadCommOverviewButton
             // 
-            reloadCommRequestsButton.Location = new Point(600, 17);
-            reloadCommRequestsButton.Margin = new Padding(3, 4, 3, 4);
-            reloadCommRequestsButton.Name = "reloadCommRequestsButton";
-            reloadCommRequestsButton.Size = new Size(263, 31);
-            reloadCommRequestsButton.TabIndex = 10;
-            reloadCommRequestsButton.Text = "Reload My Commissions";
-            reloadCommRequestsButton.UseVisualStyleBackColor = true;
+            reloadCommOverviewButton.Location = new Point(600, 17);
+            reloadCommOverviewButton.Margin = new Padding(3, 4, 3, 4);
+            reloadCommOverviewButton.Name = "reloadCommOverviewButton";
+            reloadCommOverviewButton.Size = new Size(263, 31);
+            reloadCommOverviewButton.TabIndex = 10;
+            reloadCommOverviewButton.Text = "Reload Commissions Overview";
+            reloadCommOverviewButton.UseVisualStyleBackColor = true;
+            reloadCommOverviewButton.Click += reloadCommOverviewButton_Click;
             // 
-            // incomingCommissionsLabel
+            // commissionOverviewLabel
             // 
-            incomingCommissionsLabel.BackColor = Color.FromArgb(224, 224, 224);
-            incomingCommissionsLabel.Dock = DockStyle.Top;
-            incomingCommissionsLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            incomingCommissionsLabel.Location = new Point(3, 4);
-            incomingCommissionsLabel.Name = "incomingCommissionsLabel";
-            incomingCommissionsLabel.Padding = new Padding(11, 13, 11, 13);
-            incomingCommissionsLabel.Size = new Size(886, 52);
-            incomingCommissionsLabel.TabIndex = 8;
-            incomingCommissionsLabel.Text = "Pending Commissions";
+            commissionOverviewLabel.BackColor = Color.FromArgb(224, 224, 224);
+            commissionOverviewLabel.Dock = DockStyle.Top;
+            commissionOverviewLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            commissionOverviewLabel.Location = new Point(3, 4);
+            commissionOverviewLabel.Name = "commissionOverviewLabel";
+            commissionOverviewLabel.Padding = new Padding(11, 13, 11, 13);
+            commissionOverviewLabel.Size = new Size(886, 52);
+            commissionOverviewLabel.TabIndex = 8;
+            commissionOverviewLabel.Text = "Admin Commission Overview";
             // 
             // acceptedCommissions
             // 
@@ -311,7 +282,6 @@ namespace GUI_prototype
             // 
             adminViewQueueGrid.AllowUserToAddRows = false;
             adminViewQueueGrid.AllowUserToDeleteRows = false;
-            adminViewQueueGrid.AllowUserToOrderColumns = true;
             adminViewQueueGrid.AllowUserToResizeColumns = false;
             adminViewQueueGrid.AllowUserToResizeRows = false;
             adminViewQueueGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
@@ -320,9 +290,11 @@ namespace GUI_prototype
             adminViewQueueGrid.Location = new Point(0, 52);
             adminViewQueueGrid.Margin = new Padding(3, 4, 3, 4);
             adminViewQueueGrid.Name = "adminViewQueueGrid";
+            adminViewQueueGrid.ReadOnly = true;
             adminViewQueueGrid.RowHeadersWidth = 51;
             adminViewQueueGrid.Size = new Size(892, 410);
             adminViewQueueGrid.TabIndex = 11;
+            adminViewQueueGrid.CellFormatting += AdminViewQueueGrid_CellFormatting;
             // 
             // label4
             // 
@@ -427,6 +399,12 @@ namespace GUI_prototype
             labelUserProfile.TabIndex = 9;
             labelUserProfile.Text = "User Profile";
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
             // AdminDashboard
             // 
             ClientSize = new Size(914, 609);
@@ -434,17 +412,15 @@ namespace GUI_prototype
             Name = "AdminDashboard";
             Text = "Admin Dashboard";
             Load += AdminDashboard_Load;
+            Shown += AdminDashboard_Shown;
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             adminTabs.ResumeLayout(false);
             workspaceTab.ResumeLayout(false);
             ArtistCommissionsDashboard.ResumeLayout(false);
-            incomingCommissions.ResumeLayout(false);
-            artistPendingCommissionsList.ResumeLayout(false);
-            splitContainer2.Panel1.ResumeLayout(false);
-            splitContainer2.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
-            splitContainer2.ResumeLayout(false);
+            commissionOverview.ResumeLayout(false);
+            artistAdminViewCommissionsList.ResumeLayout(false);
+            // splitContainer2 removed; dynamic sections will be created at runtime
             acceptedCommissions.ResumeLayout(false);
             publicQueue.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)adminViewQueueGrid).EndInit();
@@ -470,13 +446,11 @@ namespace GUI_prototype
         private Label clientProfileLabel;
         private Label labelUserProfile;
         private TabControl ArtistCommissionsDashboard;
-        private TabPage incomingCommissions;
-        private FlowLayoutPanel artistPendingCommissionsList;
-        private SplitContainer splitContainer2;
-        private Label label2;
-        private Label label3;
-        private Button reloadCommRequestsButton;
-        private Label incomingCommissionsLabel;
+        private TabPage commissionOverview;
+        private FlowLayoutPanel artistAdminViewCommissionsList;
+        // splitContainer2, label2, label3 removed; commission overview uses dynamic controls at runtime
+        private Button reloadCommOverviewButton;
+        private Label commissionOverviewLabel;
         private TabPage acceptedCommissions;
         private Button reloadAcceptedCommsButton;
         private FlowLayoutPanel artistAcceptedCommissionsList;
@@ -486,5 +460,6 @@ namespace GUI_prototype
         private DataGridView adminViewQueueGrid;
         private Label label4;
         private TabPage conversationTab;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }
