@@ -14,6 +14,38 @@ namespace ArtCommisionApplication.Test
     [DoNotParallelize]
     public class CommissionRequestTests
     {
+        // sienna - switching to a test user database (its been adding to main oops)
+        private string testUserDatabasePath;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            testUserDatabasePath = Path.Combine(
+                Path.GetTempPath(),
+                $"UserTest_{Guid.NewGuid()}.db");
+
+            UserRepository.Initialize(testUserDatabasePath);
+
+            SessionManager.Logout();
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            SessionManager.Logout();
+
+            try
+            {
+                if (File.Exists(testUserDatabasePath))
+                    File.Delete(testUserDatabasePath);
+            }
+            catch
+            {
+                // ignore cleanup failures
+            }
+        }
+
+
         [TestMethod]
         public void Client_EmptyClientName_ThrowsException()
         {
@@ -27,16 +59,6 @@ namespace ArtCommisionApplication.Test
             Assert.ThrowsException<ArgumentException>(() =>
                 new Client("Yuji", ""));
         }
-
-        // Sienna - don't think this is possible with current code?
-        //[TestMethod]
-        //public void CommissionInformation_NegativePrice_ThrowsException()
-        //{
-        //    // CharacterCrop characterCrop, bool hasBackground, string description, DateTime? needByDate
-        //    Assert.ThrowsException<ArgumentException>(() =>
-        //        new CommissionInformation(CharacterCrop.Fullbody, true, "Me and Junpei having a picnic", DateTime.Today.AddDays(8)));
-        //}
-
 
         [TestMethod]
         public void CommissionRequest_ValidDetails_CreatesPendingRequest()
@@ -228,7 +250,9 @@ namespace ArtCommisionApplication.Test
         [TestMethod]
         public void SignUp_ValidClient_CreatesClient()
         {
-            string username = "testclient" + Guid.NewGuid().ToString("N").Substring(0, 8);
+            string username =
+                "testclient" + Guid.NewGuid().ToString("N").Substring(0, 8);
+
             string password = "Password123";
 
             User user = UserRepository.CreateUser(
@@ -245,57 +269,69 @@ namespace ArtCommisionApplication.Test
         [TestMethod]
         public void Login_ValidCredentials_ReturnsTrue()
         {
-            string username = "loginuser" + Guid.NewGuid().ToString("N").Substring(0, 8);
+            string username =
+                "loginuser" + Guid.NewGuid().ToString("N").Substring(0, 8);
+
             string password = "Password123";
 
-            UserRepository.CreateUser(username, password, SystemRole.Client);
-
-            bool result = SessionManager.Login(
+            UserRepository.CreateUser(
                 username,
                 password,
                 SystemRole.Client);
 
-            Assert.IsTrue(result);
+            var user = UserRepository.Authenticate(
+                username,
+                password,
+                SystemRole.Client);
+
+            Assert.IsNotNull(user);
+
+            SessionManager.SetUser(user);
+
             Assert.IsNotNull(SessionManager.CurrentActiveUser);
-            Assert.AreEqual(username, SessionManager.CurrentActiveUser.Username);
+            Assert.AreEqual(
+                username,
+                SessionManager.CurrentActiveUser.Username);
         }
 
         //wrong password will fail
         [TestMethod]
         public void Login_WrongPassword_ReturnsFalse()
         {
-            string username = "wrongpass" + Guid.NewGuid().ToString("N").Substring(0, 8);
+            string username =
+                "wrongpass" + Guid.NewGuid().ToString("N").Substring(0, 8);
 
             UserRepository.CreateUser(
                 username,
                 "CorrectPassword123",
                 SystemRole.Client);
 
-            bool result = SessionManager.Login(
+            var user = UserRepository.Authenticate(
                 username,
                 "WrongPassword123",
                 SystemRole.Client);
 
-            Assert.IsFalse(result);
+            Assert.IsNull(user);
         }
 
         //incorrect role will fail
         [TestMethod]
         public void Login_WrongRole_ReturnsFalse()
         {
-            string username = "roleuser" + Guid.NewGuid().ToString("N").Substring(0, 8);
+            string username =
+                "roleuser" + Guid.NewGuid().ToString("N").Substring(0, 8);
 
             UserRepository.CreateUser(
                 username,
                 "Password123",
                 SystemRole.Client);
 
-            bool result = SessionManager.Login(
+            var user = UserRepository.Authenticate(
                 username,
                 "Password123",
                 SystemRole.Artist);
 
-            Assert.IsFalse(result);
+            Assert.IsNull(user);
         }
 
 
@@ -303,23 +339,27 @@ namespace ArtCommisionApplication.Test
         [TestMethod]
         public void Logout_ClearsCurrentUser()
         {
-            string username = "logoutuser" + Guid.NewGuid().ToString("N").Substring(0, 8);
+            string username =
+                "logoutuser" + Guid.NewGuid().ToString("N").Substring(0, 8);
 
             UserRepository.CreateUser(
                 username,
                 "Password123",
                 SystemRole.Client);
 
-            SessionManager.Login(
+            var user = UserRepository.Authenticate(
                 username,
                 "Password123",
                 SystemRole.Client);
+
+            Assert.IsNotNull(user);
+
+            SessionManager.SetUser(user);
 
             SessionManager.Logout();
 
             Assert.IsNull(SessionManager.CurrentActiveUser);
         }
-
 
         [TestMethod]
         public void CommissionRepository_LoadFromDatabase_PreservesStatus()

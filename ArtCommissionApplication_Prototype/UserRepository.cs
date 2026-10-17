@@ -244,5 +244,31 @@ namespace ArtCommissionApplication_Prototype
 
             cmd.ExecuteNonQuery();
         }
+
+        // sienna - delete user function for testing as some tests accidentally edited main database - will likely keep for admin to access.
+        public static void DeleteUser(string username)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentException(nameof(username));
+
+            if (string.IsNullOrWhiteSpace(dbPath))
+                Initialize();
+
+            using var connection =
+                new SqliteConnection($"Data Source={dbPath}");
+
+            connection.Open();
+
+            using var cmd = connection.CreateCommand();
+
+            cmd.CommandText =
+                "DELETE FROM Users WHERE Username = $username;";
+
+            cmd.Parameters.AddWithValue(
+                "$username",
+                username);
+
+            cmd.ExecuteNonQuery();
+        }
     }
 }

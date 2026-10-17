@@ -33,6 +33,7 @@
             ArtistButton = new Button();
             AdminButton = new Button();
             UserTypePanel = new Panel();
+            allUsersButton = new Button();
             LoginPanel = new Panel();
             continueButton = new Button();
             backToSelectUserButton = new Button();
@@ -42,12 +43,12 @@
             usernameInput = new TextBox();
             loginButton = new Button();
             signupButton = new Button();
-            allUsersButton = new Button();
             debugLabel = new Label();
             usernameErrorProvider = new ErrorProvider(components);
             userListPanel = new Panel();
             debugButton1 = new Button();
             panel1 = new Panel();
+            deleteUserButton = new Button();
             userListGrid = new DataGridView();
             loadUsersButton = new Button();
             usersListLabel = new Label();
@@ -103,6 +104,17 @@
             UserTypePanel.Name = "UserTypePanel";
             UserTypePanel.Size = new Size(676, 314);
             UserTypePanel.TabIndex = 3;
+            // 
+            // allUsersButton
+            // 
+            allUsersButton.Location = new Point(18, 17);
+            allUsersButton.Margin = new Padding(3, 2, 3, 2);
+            allUsersButton.Name = "allUsersButton";
+            allUsersButton.Size = new Size(127, 34);
+            allUsersButton.TabIndex = 5;
+            allUsersButton.Text = "See All Users";
+            allUsersButton.UseVisualStyleBackColor = true;
+            allUsersButton.Click += allUsersButton_Click;
             // 
             // LoginPanel
             // 
@@ -198,17 +210,6 @@
             signupButton.UseVisualStyleBackColor = true;
             signupButton.Click += signupButton_Click;
             // 
-            // allUsersButton
-            // 
-            allUsersButton.Location = new Point(18, 17);
-            allUsersButton.Margin = new Padding(3, 2, 3, 2);
-            allUsersButton.Name = "allUsersButton";
-            allUsersButton.Size = new Size(127, 34);
-            allUsersButton.TabIndex = 5;
-            allUsersButton.Text = "See All Users";
-            allUsersButton.UseVisualStyleBackColor = true;
-            allUsersButton.Click += allUsersButton_Click;
-            // 
             // debugLabel
             // 
             debugLabel.AutoSize = true;
@@ -246,6 +247,7 @@
             // panel1
             // 
             panel1.AutoScroll = true;
+            panel1.Controls.Add(deleteUserButton);
             panel1.Controls.Add(userListGrid);
             panel1.Controls.Add(loadUsersButton);
             panel1.Controls.Add(usersListLabel);
@@ -254,13 +256,30 @@
             panel1.Size = new Size(676, 271);
             panel1.TabIndex = 14;
             // 
+            // deleteUserButton
+            // 
+            deleteUserButton.Location = new Point(388, 10);
+            deleteUserButton.Name = "deleteUserButton";
+            deleteUserButton.Size = new Size(132, 23);
+            deleteUserButton.TabIndex = 15;
+            deleteUserButton.Text = "Delete User";
+            deleteUserButton.UseVisualStyleBackColor = true;
+            deleteUserButton.Click += deleteUserButton_Click;
+            // 
             // userListGrid
             // 
+            userListGrid.AllowUserToAddRows = false;
+            userListGrid.AllowUserToDeleteRows = false;
+            userListGrid.AllowUserToResizeColumns = false;
+            userListGrid.AllowUserToResizeRows = false;
             userListGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             userListGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             userListGrid.Dock = DockStyle.Fill;
             userListGrid.Location = new Point(0, 39);
+            userListGrid.MultiSelect = false;
             userListGrid.Name = "userListGrid";
+            userListGrid.ReadOnly = true;
+            userListGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             userListGrid.Size = new Size(676, 232);
             userListGrid.TabIndex = 14;
             // 
@@ -343,5 +362,6 @@
         private Panel panel1;
         private DataGridView userListGrid;
         private Button debugButton1;
+        private Button deleteUserButton;
     }
 }
