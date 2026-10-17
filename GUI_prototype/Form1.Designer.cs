@@ -487,6 +487,7 @@
             clientTabs.Size = new Size(800, 497);
             clientTabs.SizeMode = TabSizeMode.Fixed;
             clientTabs.TabIndex = 9;
+            clientTabs.SelectedIndexChanged += clientTabs_SelectedIndexChanged;
             // 
             // artistPagesTab
             // 

@@ -21,6 +21,8 @@ namespace GUI_prototype
         {
             if (CommissionRepository.CommissionTableExists())
                 LoadQueueDatabaseData();
+
+            ShowNotifications();
         }
         private void RequestComm_Click(object sender, EventArgs e)
         {
@@ -257,6 +259,43 @@ namespace GUI_prototype
             else if (currentTab == tabTOS)
             {
                 LoadArtistTos();
+            }
+        }
+
+        // sienna - notification for change in status
+        private void clientTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Check which tab is currently selected
+            int index = clientTabs.SelectedIndex;
+            TabPage currentTab = clientTabs.SelectedTab;
+
+            if (currentTab == userProfile)
+            {
+                LoadMyCommissions();
+            }
+        }
+
+        private void ShowNotifications()
+        {
+            if (SessionManager.CurrentActiveUser == null)
+                return;
+
+            var notifications =
+                NotificationRepository
+                .GetUnreadNotifications(
+                    SessionManager.CurrentActiveUser.Username);
+
+            foreach (var notification in notifications)
+            {
+                MessageBox.Show(
+                    notification.Message,
+                    "Commission Update",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                NotificationRepository
+                    .MarkNotificationAsRead(
+                        notification.NotificationId);
             }
         }
     }

@@ -118,33 +118,46 @@ namespace GUI_prototype
 
             if (req == null) throw new ArgumentException("Commission request is null, no status to change."); ;
 
-            switch (combo.SelectedItem.ToString())
-            {
-                case "Pending":
-                    req.SetStatus(CommissionStatus.Pending);
-                    CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Pending);
-                    break;
+            // sienna - simplfication plus notification system
+            var newStatus = (CommissionStatus)Enum.Parse(typeof(CommissionStatus), combo.SelectedItem.ToString());
+            req.SetStatus(newStatus);
 
-                case "Rejected":
-                    req.SetStatus(CommissionStatus.Rejected);
-                    CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Rejected);
-                    break;
+            CommissionRepository.UpdateStatus(req.Id, newStatus);
 
-                case "Accepted":
-                    req.SetStatus(CommissionStatus.Accepted);
-                    CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Accepted);
-                    break;
+            NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {newStatus}");
 
-                case "InProgress":
-                    req.SetStatus(CommissionStatus.InProgress);
-                    CommissionRepository.UpdateStatus(req.Id, CommissionStatus.InProgress);
-                    break;
+            //switch (combo.SelectedItem.ToString())
+            //{
+            //    case "Pending":
+            //        req.SetStatus(CommissionStatus.Pending);
+            //        CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Pending);
+            //        NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {req.Status}");
+            //        break;
 
-                case "Completed":
-                    req.SetStatus(CommissionStatus.Completed);
-                    CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Completed);
-                    break;
-            }
+            //    case "Rejected":
+            //        req.SetStatus(CommissionStatus.Rejected);
+            //        CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Rejected);
+            //        NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {req.Status}");
+            //        break;
+
+            //    case "Accepted":
+            //        req.SetStatus(CommissionStatus.Accepted);
+            //        CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Accepted);
+            //        NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {req.Status}");
+            //        break;
+
+            //    case "InProgress":
+            //        req.SetStatus(CommissionStatus.InProgress);
+            //        CommissionRepository.UpdateStatus(req.Id, CommissionStatus.InProgress);
+            //        NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {req.Status}");
+            //        break;
+
+            //    case "Completed":
+            //        req.SetStatus(CommissionStatus.Completed);
+            //        CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Completed);
+            //        NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {req.Status}");
+            //        break;
+            //}
         }
 
         private void LoadPendingCommissionRequests()

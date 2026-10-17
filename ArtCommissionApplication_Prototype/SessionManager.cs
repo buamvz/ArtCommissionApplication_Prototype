@@ -40,6 +40,7 @@ namespace ArtCommissionApplication_Prototype
             {
                 
                 UserRepository.Initialize();
+                NotificationRepository.Initialize(); // sienna - initialise notification system on login
                 var user = UserRepository.Authenticate(username, password, role);
                 if (user == null) return false;
 
@@ -62,6 +63,7 @@ namespace ArtCommissionApplication_Prototype
             {
                 // ensure DB is ready and username is unique across all roles
                 UserRepository.Initialize();
+                NotificationRepository.Initialize(); // sienna - initialise notification system on signup
                 if (UserRepository.GetUserByUsername(username) != null)
                     return false;
 
