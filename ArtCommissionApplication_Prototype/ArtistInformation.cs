@@ -8,16 +8,16 @@ namespace ArtCommissionApplication_Prototype
     {
         public int ArtistId { get; set; }
 
-        // artist info
-        public string artistName { get; set; }
-        public string artistEmail { get; set; }
+        // profile info
+        public string ArtistEmail { get; set; } = string.Empty;
 
-        public string artistBio;
+        public string ArtistBio { get; set; } = string.Empty;
 
-        // tos stuff
-        public string tosExpectations;
-        public string tosWillDraw;
-        public string tosWontDraw;
+        // terms of service
+        public string TosExpectations { get; set; } = string.Empty;
 
+        public string TosWillDraw { get; set; } = string.Empty;
+
+        public string TosWontDraw { get; set; } = string.Empty;
     }
 }

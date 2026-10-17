@@ -214,5 +214,50 @@ namespace GUI_prototype
                     "Associated Emails: \n" + string.Join("\n", userEmails) + "\n";
             }
         }
+
+        // sienna - update artist profile information
+        private ArtistInformation artistInformation;
+        private User artistUser;
+        private void LoadArtistInformation()
+        {
+            artistInformation = ArtistRepository.GetArtistProfile();
+            artistUser = UserRepository.GetArtistUser();
+
+            if (artistUser == null || artistInformation == null) return;
+
+            labelArtistName.Text = artistUser.Username;
+
+            labelArtistEmail.Text = "Email: " + artistInformation.ArtistEmail;
+
+            labelArtistBio.Text = artistInformation.ArtistBio;
+        }
+        private void LoadArtistTos()
+        {
+            artistInformation = ArtistRepository.GetArtistProfile();
+            if (artistInformation == null) return;
+
+            labelTerms.Text = artistInformation.TosExpectations;
+
+            labelWillDraw.Text = "Will Draw \n " + artistInformation.TosWillDraw;
+
+            labelWontDraw.Text = "Won't Draw \n" + artistInformation.TosWontDraw;
+        }
+
+
+        private void tabAll_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Check which tab is currently selected
+            int index = tabAll.SelectedIndex;
+            TabPage currentTab = tabAll.SelectedTab;
+
+            if (currentTab == tabInformation)
+            {
+                LoadArtistInformation();
+            }
+            else if (currentTab == tabTOS)
+            {
+                LoadArtistTos();
+            }
+        }
     }
 }

@@ -36,18 +36,25 @@
             RequestComm = new Button();
             HomeParagraph = new Label();
             tabInformation = new TabPage();
+            labelArtistEmail = new Label();
+            labelArtistName = new Label();
             Info_ProfilePicture = new PictureBox();
             label4 = new Label();
-            label3 = new Label();
+            labelArtistBio = new Label();
             tabTOS = new TabPage();
-            label7 = new Label();
-            label6 = new Label();
+            labelWontDraw = new Label();
+            labelTerms = new Label();
             label2 = new Label();
-            label5 = new Label();
+            labelWillDraw = new Label();
             tabSamples = new TabPage();
-            label8 = new Label();
-            label10 = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             pictureBox1 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            pictureBox8 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            pictureBox7 = new PictureBox();
+            label8 = new Label();
             tabQueue = new TabPage();
             reloadButton = new Button();
             publicQueueGrid = new DataGridView();
@@ -55,6 +62,7 @@
             pictureBox2 = new PictureBox();
             clientTabs = new TabControl();
             artistPagesTab = new TabPage();
+            pictureBox3 = new PictureBox();
             clientPagesTab = new TabPage();
             clientProfileTabs = new TabControl();
             userMyCommissionsView = new TabPage();
@@ -73,12 +81,19 @@
             ((System.ComponentModel.ISupportInitialize)Info_ProfilePicture).BeginInit();
             tabTOS.SuspendLayout();
             tabSamples.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             tabQueue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)publicQueueGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             clientTabs.SuspendLayout();
             artistPagesTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             clientPagesTab.SuspendLayout();
             clientProfileTabs.SuspendLayout();
             userMyCommissionsView.SuspendLayout();
@@ -93,9 +108,9 @@
             // 
             label1.BackColor = Color.LavenderBlush;
             label1.Dock = DockStyle.Top;
-            label1.Font = new Font("Microsoft Sans Serif", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Microsoft Sans Serif", 28F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkMagenta;
-            label1.Location = new Point(3, 3);
+            label1.Location = new Point(3, 83);
             label1.Name = "label1";
             label1.Size = new Size(786, 55);
             label1.TabIndex = 3;
@@ -111,11 +126,12 @@
             tabAll.Controls.Add(tabQueue);
             tabAll.Dock = DockStyle.Fill;
             tabAll.Font = new Font("Segoe UI", 8F);
-            tabAll.Location = new Point(3, 58);
+            tabAll.Location = new Point(3, 138);
             tabAll.Name = "tabAll";
             tabAll.SelectedIndex = 0;
-            tabAll.Size = new Size(786, 408);
+            tabAll.Size = new Size(786, 328);
             tabAll.TabIndex = 3;
+            tabAll.SelectedIndexChanged += tabAll_SelectedIndexChanged;
             // 
             // tabHome
             // 
@@ -125,7 +141,7 @@
             tabHome.Location = new Point(4, 22);
             tabHome.Name = "tabHome";
             tabHome.Padding = new Padding(3);
-            tabHome.Size = new Size(778, 382);
+            tabHome.Size = new Size(778, 302);
             tabHome.TabIndex = 0;
             tabHome.Text = "Home";
             tabHome.UseVisualStyleBackColor = true;
@@ -148,7 +164,7 @@
             RequestComm.BackColor = Color.LavenderBlush;
             RequestComm.Font = new Font("Candara", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             RequestComm.ForeColor = Color.Purple;
-            RequestComm.Location = new Point(8, 252);
+            RequestComm.Location = new Point(8, 190);
             RequestComm.Name = "RequestComm";
             RequestComm.Size = new Size(252, 106);
             RequestComm.TabIndex = 0;
@@ -169,16 +185,40 @@
             // 
             // tabInformation
             // 
+            tabInformation.Controls.Add(labelArtistEmail);
+            tabInformation.Controls.Add(labelArtistName);
             tabInformation.Controls.Add(Info_ProfilePicture);
             tabInformation.Controls.Add(label4);
-            tabInformation.Controls.Add(label3);
+            tabInformation.Controls.Add(labelArtistBio);
             tabInformation.Location = new Point(4, 22);
             tabInformation.Name = "tabInformation";
             tabInformation.Padding = new Padding(3);
-            tabInformation.Size = new Size(778, 382);
+            tabInformation.Size = new Size(778, 302);
             tabInformation.TabIndex = 1;
             tabInformation.Text = "About JellyPhlox";
             tabInformation.UseVisualStyleBackColor = true;
+            // 
+            // labelArtistEmail
+            // 
+            labelArtistEmail.BackColor = Color.WhiteSmoke;
+            labelArtistEmail.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelArtistEmail.Location = new Point(6, 85);
+            labelArtistEmail.Name = "labelArtistEmail";
+            labelArtistEmail.Padding = new Padding(5);
+            labelArtistEmail.Size = new Size(653, 34);
+            labelArtistEmail.TabIndex = 9;
+            labelArtistEmail.Text = "Email: JellyPhlox@gmail.com";
+            // 
+            // labelArtistName
+            // 
+            labelArtistName.BackColor = Color.WhiteSmoke;
+            labelArtistName.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelArtistName.Location = new Point(6, 45);
+            labelArtistName.Name = "labelArtistName";
+            labelArtistName.Padding = new Padding(10);
+            labelArtistName.Size = new Size(653, 40);
+            labelArtistName.TabIndex = 8;
+            labelArtistName.Text = "JellyPhlox";
             // 
             // Info_ProfilePicture
             // 
@@ -203,52 +243,52 @@
             label4.TabIndex = 4;
             label4.Text = "About the Artist";
             // 
-            // label3
+            // labelArtistBio
             // 
-            label3.BackColor = Color.WhiteSmoke;
-            label3.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(6, 42);
-            label3.Name = "label3";
-            label3.Padding = new Padding(10);
-            label3.Size = new Size(653, 179);
-            label3.TabIndex = 3;
-            label3.Text = resources.GetString("label3.Text");
+            labelArtistBio.BackColor = Color.WhiteSmoke;
+            labelArtistBio.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelArtistBio.Location = new Point(6, 132);
+            labelArtistBio.Name = "labelArtistBio";
+            labelArtistBio.Padding = new Padding(10);
+            labelArtistBio.Size = new Size(653, 179);
+            labelArtistBio.TabIndex = 3;
+            labelArtistBio.Text = resources.GetString("labelArtistBio.Text");
             // 
             // tabTOS
             // 
-            tabTOS.Controls.Add(label7);
-            tabTOS.Controls.Add(label6);
+            tabTOS.Controls.Add(labelWontDraw);
+            tabTOS.Controls.Add(labelTerms);
             tabTOS.Controls.Add(label2);
-            tabTOS.Controls.Add(label5);
+            tabTOS.Controls.Add(labelWillDraw);
             tabTOS.Location = new Point(4, 22);
             tabTOS.Name = "tabTOS";
             tabTOS.Padding = new Padding(3);
-            tabTOS.Size = new Size(778, 382);
+            tabTOS.Size = new Size(778, 302);
             tabTOS.TabIndex = 2;
             tabTOS.Text = "Terms Of Service";
             tabTOS.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // labelWontDraw
             // 
-            label7.BackColor = Color.WhiteSmoke;
-            label7.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(8, 138);
-            label7.Name = "label7";
-            label7.Padding = new Padding(10);
-            label7.Size = new Size(473, 85);
-            label7.TabIndex = 12;
-            label7.Text = "TOS paragraph\r\n";
+            labelWontDraw.BackColor = Color.WhiteSmoke;
+            labelWontDraw.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelWontDraw.Location = new Point(627, 53);
+            labelWontDraw.Name = "labelWontDraw";
+            labelWontDraw.Padding = new Padding(10);
+            labelWontDraw.Size = new Size(145, 307);
+            labelWontDraw.TabIndex = 12;
+            labelWontDraw.Text = "Will Draw\r\n\r\nWon't Draw\r\n";
             // 
-            // label6
+            // labelTerms
             // 
-            label6.BackColor = Color.WhiteSmoke;
-            label6.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(8, 53);
-            label6.Name = "label6";
-            label6.Padding = new Padding(10);
-            label6.Size = new Size(473, 85);
-            label6.TabIndex = 11;
-            label6.Text = "TOS introduction\r\n";
+            labelTerms.BackColor = Color.WhiteSmoke;
+            labelTerms.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelTerms.Location = new Point(8, 53);
+            labelTerms.Name = "labelTerms";
+            labelTerms.Padding = new Padding(10);
+            labelTerms.Size = new Size(473, 85);
+            labelTerms.TabIndex = 11;
+            labelTerms.Text = "TOS introduction\r\n";
             // 
             // label2
             // 
@@ -262,29 +302,104 @@
             label2.TabIndex = 10;
             label2.Text = "Terms Of Service";
             // 
-            // label5
+            // labelWillDraw
             // 
-            label5.BackColor = Color.WhiteSmoke;
-            label5.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(487, 53);
-            label5.Name = "label5";
-            label5.Padding = new Padding(10);
-            label5.Size = new Size(297, 307);
-            label5.TabIndex = 9;
-            label5.Text = "Will Draw\r\n\r\nWon't Draw\r\n";
+            labelWillDraw.BackColor = Color.WhiteSmoke;
+            labelWillDraw.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelWillDraw.Location = new Point(487, 53);
+            labelWillDraw.Name = "labelWillDraw";
+            labelWillDraw.Padding = new Padding(10);
+            labelWillDraw.Size = new Size(134, 307);
+            labelWillDraw.TabIndex = 9;
+            labelWillDraw.Text = "Will Draw\r\n\r\nWon't Draw\r\n";
             // 
             // tabSamples
             // 
+            tabSamples.AutoScroll = true;
+            tabSamples.Controls.Add(flowLayoutPanel1);
             tabSamples.Controls.Add(label8);
-            tabSamples.Controls.Add(label10);
-            tabSamples.Controls.Add(pictureBox1);
             tabSamples.Location = new Point(4, 22);
             tabSamples.Name = "tabSamples";
             tabSamples.Padding = new Padding(3);
-            tabSamples.Size = new Size(778, 382);
+            tabSamples.Size = new Size(778, 302);
             tabSamples.TabIndex = 3;
             tabSamples.Text = "Samples Of Work";
             tabSamples.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Controls.Add(pictureBox1);
+            flowLayoutPanel1.Controls.Add(pictureBox4);
+            flowLayoutPanel1.Controls.Add(pictureBox5);
+            flowLayoutPanel1.Controls.Add(pictureBox8);
+            flowLayoutPanel1.Controls.Add(pictureBox6);
+            flowLayoutPanel1.Controls.Add(pictureBox7);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(3, 42);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(772, 257);
+            flowLayoutPanel1.TabIndex = 12;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.dottore;
+            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(173, 215);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = Properties.Resources.paradise;
+            pictureBox4.Location = new Point(182, 3);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(172, 215);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 1;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = Properties.Resources.kpopdh_zine;
+            pictureBox5.Location = new Point(360, 3);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(306, 215);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 2;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.Image = Properties.Resources.artfight_3again2;
+            pictureBox8.Location = new Point(3, 224);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(296, 237);
+            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox8.TabIndex = 5;
+            pictureBox8.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = Properties.Resources.corazon_zine;
+            pictureBox6.Location = new Point(305, 224);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(170, 237);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 3;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = Properties.Resources.artfight;
+            pictureBox7.Location = new Point(481, 224);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(209, 237);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 4;
+            pictureBox7.TabStop = false;
             // 
             // label8
             // 
@@ -298,28 +413,6 @@
             label8.TabIndex = 11;
             label8.Text = "Samples of Work";
             // 
-            // label10
-            // 
-            label10.BackColor = Color.White;
-            label10.Font = new Font("Segoe UI", 12F);
-            label10.ForeColor = SystemColors.ControlDarkDark;
-            label10.Location = new Point(211, 56);
-            label10.Name = "label10";
-            label10.Padding = new Padding(10);
-            label10.Size = new Size(247, 140);
-            label10.TabIndex = 8;
-            label10.Text = "Note: samples will be listed in date order with short labels if needed - or tool tips?";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Image = Properties.Resources.Untitled;
-            pictureBox1.Location = new Point(8, 56);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(197, 203);
-            pictureBox1.TabIndex = 7;
-            pictureBox1.TabStop = false;
-            // 
             // tabQueue
             // 
             tabQueue.Controls.Add(reloadButton);
@@ -328,7 +421,7 @@
             tabQueue.Location = new Point(4, 22);
             tabQueue.Name = "tabQueue";
             tabQueue.Padding = new Padding(3);
-            tabQueue.Size = new Size(778, 382);
+            tabQueue.Size = new Size(778, 302);
             tabQueue.TabIndex = 4;
             tabQueue.Text = "Public Queue";
             tabQueue.UseVisualStyleBackColor = true;
@@ -356,7 +449,7 @@
             publicQueueGrid.Name = "publicQueueGrid";
             publicQueueGrid.ReadOnly = true;
             publicQueueGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            publicQueueGrid.Size = new Size(772, 337);
+            publicQueueGrid.Size = new Size(772, 257);
             publicQueueGrid.TabIndex = 8;
             publicQueueGrid.CellFormatting += PublicQueueGrid_CellFormatting;
             // 
@@ -375,11 +468,12 @@
             // pictureBox2
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
-            pictureBox2.Image = Properties.Resources.JellyPhlox;
-            pictureBox2.Location = new Point(7, 6);
+            pictureBox2.Dock = DockStyle.Top;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(3, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(47, 49);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.Size = new Size(786, 80);
+            pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
@@ -396,9 +490,10 @@
             // 
             // artistPagesTab
             // 
-            artistPagesTab.Controls.Add(pictureBox2);
+            artistPagesTab.Controls.Add(pictureBox3);
             artistPagesTab.Controls.Add(tabAll);
             artistPagesTab.Controls.Add(label1);
+            artistPagesTab.Controls.Add(pictureBox2);
             artistPagesTab.Location = new Point(4, 24);
             artistPagesTab.Name = "artistPagesTab";
             artistPagesTab.Padding = new Padding(3);
@@ -406,6 +501,16 @@
             artistPagesTab.TabIndex = 0;
             artistPagesTab.Text = "JellyPhlox";
             artistPagesTab.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.JellyPhlox;
+            pictureBox3.Location = new Point(731, 86);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(51, 50);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 9;
+            pictureBox3.TabStop = false;
             // 
             // clientPagesTab
             // 
@@ -549,6 +654,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(800, 495);
             Controls.Add(clientTabs);
             Name = "Form1";
@@ -560,12 +666,20 @@
             ((System.ComponentModel.ISupportInitialize)Info_ProfilePicture).EndInit();
             tabTOS.ResumeLayout(false);
             tabSamples.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             tabQueue.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)publicQueueGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             clientTabs.ResumeLayout(false);
             artistPagesTab.ResumeLayout(false);
+            artistPagesTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             clientPagesTab.ResumeLayout(false);
             clientProfileTabs.ResumeLayout(false);
             userMyCommissionsView.ResumeLayout(false);
@@ -590,16 +704,13 @@
         private TabPage tabSamples;
         private TabPage tabQueue;
         private Label label4;
-        private Label label3;
-        private PictureBox pictureBox1;
-        private Label label10;
+        private Label labelArtistBio;
         private Label label11;
         private PictureBox Info_ProfilePicture;
         private PictureBox pictureBox2;
-        private Label label7;
-        private Label label6;
+        private Label labelTerms;
         private Label label2;
-        private Label label5;
+        private Label labelWillDraw;
         private Label label8;
         private Label label9;
         private DataGridView publicQueueGrid;
@@ -619,5 +730,16 @@
         private Label clientProfileLabel;
         private Label labelUserProfile;
         private FlowLayoutPanel userMyCommissionsList;
+        private Label labelArtistName;
+        private Label labelArtistEmail;
+        private Label labelWontDraw;
+        private PictureBox pictureBox3;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox5;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox8;
     }
 }

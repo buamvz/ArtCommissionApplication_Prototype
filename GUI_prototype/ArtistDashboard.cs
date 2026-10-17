@@ -17,6 +17,8 @@ namespace GUI_prototype
         public ArtistDashboard()
         {
             InitializeComponent();
+
+            LoadQueueDatabaseData();
         }
 
 
@@ -67,6 +69,11 @@ namespace GUI_prototype
             statusChanger.Items.Add("Pending");
             statusChanger.Items.Add("Rejected");
             statusChanger.Items.Add("Accepted");
+            if (listPanel == artistAcceptedCommissionsList || listPanel == artistCompletedCommissionsList)
+            {
+                statusChanger.Items.Add("InProgress");
+                statusChanger.Items.Add("Completed");
+            }
             statusChanger.SelectedItem = req.Status.ToString();
             statusChanger.Tag = req;
             statusChanger.SelectedIndexChanged += StatusChanger_SelectedIndexChanged;
@@ -127,6 +134,16 @@ namespace GUI_prototype
                     req.SetStatus(CommissionStatus.Accepted);
                     CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Accepted);
                     break;
+
+                case "InProgress":
+                    req.SetStatus(CommissionStatus.InProgress);
+                    CommissionRepository.UpdateStatus(req.Id, CommissionStatus.InProgress);
+                    break;
+
+                case "Completed":
+                    req.SetStatus(CommissionStatus.Completed);
+                    CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Completed);
+                    break;
             }
         }
 
@@ -168,9 +185,25 @@ namespace GUI_prototype
             {
                 CommissionArtistView.LoadAllFromDatabase();
                 ClearIncomingCommissionsControls(artistRejectedCommissionsList);
-                var accepted = CommissionArtistView.GetRejectedCommissions();
-                foreach (var req in accepted)
+                var rejected = CommissionArtistView.GetRejectedCommissions();
+                foreach (var req in rejected)
                     AddCommissionToMyCommissions(req, artistRejectedCommissionsList);
+            }
+            catch
+            {
+                // ignore for prototype
+            }
+        }
+
+        private void LoadCompletedCommissionRequests()
+        {
+            try
+            {
+                CommissionArtistView.LoadAllFromDatabase();
+                ClearIncomingCommissionsControls(artistCompletedCommissionsList);
+                var completed = CommissionArtistView.GetCompletedCommissions();
+                foreach (var req in completed)
+                    AddCommissionToMyCommissions(req, artistCompletedCommissionsList);
             }
             catch
             {
@@ -192,7 +225,10 @@ namespace GUI_prototype
         {
             LoadRejectedCommissionRequests();
         }
-
+        private void reloadCompletedCommsButton_Click(object sender, EventArgs e)
+        {
+            LoadCompletedCommissionRequests();
+        }
 
 
         // === Artist side private queue - displays all information === 
@@ -264,34 +300,153 @@ namespace GUI_prototype
             ReloadQueue();
         }
 
+        public void ArtistCommissionsDashboardTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = ArtistCommissionsDashboardTabs.SelectedIndex;
+            TabPage currentTab = ArtistCommissionsDashboardTabs.SelectedTab;
+
+            if (currentTab == incomingCommissions)
+            {
+                LoadPendingCommissionRequests();
+            }
+            else if (currentTab == acceptedCommissions)
+            {
+                LoadAcceptedCommissionRequests();
+            }
+            else if (currentTab == artistQueue)
+            {
+                LoadQueueDatabaseData();
+            }
+            else if (currentTab == rejectedCommissions)
+            {
+                LoadRejectedCommissionRequests();
+            }
+            else if (currentTab == completedCommissions)
+            {
+                LoadCompletedCommissionRequests();
+            }
+        }
+
 
         // == update artist profile info ===
+        // sienna - artist information and artist user to be used between all artist info
+        private ArtistInformation artistInformation;
+        private User artistUser;
 
-        ArtistInformation artistInformation = new ArtistInformation();
-
-        private void LoadArtistProfile() // sienna - loads existing details
+        private void GetRepositoryInfo()
         {
-            usernameTextBox.Text = artistInformation.artistName;
-            emailTextBox.Text = artistInformation.artistEmail;
-            bioTextBox.Text = artistInformation.artistBio;
+            artistInformation = ArtistRepository.GetArtistProfile();
+            artistUser = UserRepository.GetArtistUser();
+
+            if (artistUser == null) return;
+            if (artistInformation == null) return;
+        }
+
+        private void LoadArtistProfile()
+        {
+            GetRepositoryInfo();
+
+            usernameTextBox.Text = artistUser.Username;
+            // sienna - quick checks if artist information is empty to have default text
+            if (string.IsNullOrWhiteSpace(artistInformation.ArtistEmail)) emailTextBox.Text = "Enter a valid email for clients to contact you at.";
+            else emailTextBox.Text = artistInformation.ArtistEmail;
+            if (string.IsNullOrWhiteSpace(artistInformation.ArtistBio)) bioTextBox.Text = "Enter a short bio for clients to get to know you. Include your prefered name, pronouns, interensts, etc";
+            else bioTextBox.Text = artistInformation.ArtistBio;
         }
 
         private void SaveArtistProfileChanges() // sienna - saves new changes
         {
-            if(usernameTextBox != null)
-                artistInformation.artistName = usernameTextBox.Text;
-            
-            if(emailTextBox != null)
-                artistInformation.artistEmail = emailTextBox.Text;
-            
-            if(bioTextBox != null)
-                
-                artistInformation.artistBio = bioTextBox.Text;
-        }
+            if (usernameTextBox != null)
+                UserRepository.UpdateUsername(artistUser.Username, usernameTextBox.Text);
 
+            if (emailTextBox != null)
+                artistInformation.ArtistEmail = emailTextBox.Text;
+
+            if (bioTextBox != null)
+                artistInformation.ArtistBio = bioTextBox.Text;
+
+            ArtistRepository.UpdateArtistProfile(artistInformation);
+        }
+        private void artistProfileTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Check which tab is currently selected
+            int index = artistProfileTabs.SelectedIndex;
+            TabPage currentTab = artistProfileTabs.SelectedTab;
+
+            if (currentTab == artistProfile)
+            {
+                LoadArtistProfile();
+            }
+            else if (currentTab == tosEditor)
+            {
+                LoadTosInformation();
+            }
+        }
+        private void artistTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = artistTabs.SelectedIndex;
+            TabPage currentTab = artistTabs.SelectedTab;
+
+            if (currentTab == artistInformationTab)
+            {
+                LoadArtistProfile();
+            }
+        }
         private void saveChangesButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                SaveArtistProfileChanges();
 
+                MessageBox.Show("Profile saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to save profile: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        // == update artist Terms of Service info ===
+        private void LoadTosInformation()
+        {
+            GetRepositoryInfo();
+
+            if (string.IsNullOrWhiteSpace(artistInformation.TosExpectations)) termsTextBox.Text = "You're general terms of service should include things like refund policies, use-rights, and other client expectations.";
+            else termsTextBox.Text = artistInformation.TosExpectations;
+            if (string.IsNullOrWhiteSpace(artistInformation.TosWillDraw)) willDrawTextBox.Text = "Enter concepts you're willing to draw. E.g. Profile pictures, Detailed backgrounds, Animals, etc.";
+            else willDrawTextBox.Text = artistInformation.TosWillDraw;
+            if (string.IsNullOrWhiteSpace(artistInformation.TosWontDraw)) wontDrawTextBox.Text = "Enter concepts you're NOT willing to draw. E.g. Hate speech, Gore, NSFW, etc.";
+            else wontDrawTextBox.Text = artistInformation.TosWontDraw;
+        }
+
+        private void SaveTosInformationChanges()
+        {
+            if (termsTextBox != null)
+                artistInformation.TosExpectations = termsTextBox.Text;
+
+            if (willDrawTextBox != null)
+                artistInformation.TosWillDraw = willDrawTextBox.Text;
+
+            if (bioTextBox != null)
+                artistInformation.TosWontDraw = wontDrawTextBox.Text;
+
+            ArtistRepository.UpdateArtistProfile(artistInformation);
+        }
+
+        private void saveChangesTosButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveTosInformationChanges();
+
+                MessageBox.Show("Profile saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to save profile: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

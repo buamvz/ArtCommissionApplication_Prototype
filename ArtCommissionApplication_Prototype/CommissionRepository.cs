@@ -27,20 +27,20 @@ namespace ArtCommissionApplication_Prototype
             // sienna - uses command for db to set up if a table does not already exist
             using var cmd = connection.CreateCommand();
             cmd.CommandText = @"
-    CREATE TABLE IF NOT EXISTS Commissions (
-        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-        ClientName TEXT NOT NULL,
-        ClientEmail TEXT NOT NULL,
-        CropType TEXT NOT NULL,
-        NumberOfCharacters INTEGER NOT NULL,
-        HasBackground INTEGER NOT NULL,
-        Description TEXT,
-        EstimatedPrice REAL NOT NULL,
-        NeedByDate TEXT,
-        Status INTEGER NOT NULL,
-        SubmittedDate TEXT NOT NULL
-    );
-    ";
+            CREATE TABLE IF NOT EXISTS Commissions (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                ClientName TEXT NOT NULL,
+                ClientEmail TEXT NOT NULL,
+                CropType TEXT NOT NULL,
+                NumberOfCharacters INTEGER NOT NULL,
+                HasBackground INTEGER NOT NULL,
+                Description TEXT,
+                EstimatedPrice REAL NOT NULL,
+                NeedByDate TEXT,
+                Status INTEGER NOT NULL,
+                SubmittedDate TEXT NOT NULL
+            );
+            ";
             cmd.ExecuteNonQuery();
         }
 

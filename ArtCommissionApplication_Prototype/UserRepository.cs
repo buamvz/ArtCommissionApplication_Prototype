@@ -25,14 +25,14 @@ namespace ArtCommissionApplication_Prototype
 
             using var cmd = connection.CreateCommand();
             cmd.CommandText = @"
-CREATE TABLE IF NOT EXISTS Users (
-    Username TEXT PRIMARY KEY,
-    PasswordHash TEXT NOT NULL,
-    PasswordSalt TEXT NOT NULL,
-    Role INTEGER NOT NULL,
-    PermissionLevel INTEGER NOT NULL
-);
-";
+            CREATE TABLE IF NOT EXISTS Users (
+                Username TEXT PRIMARY KEY,
+                PasswordHash TEXT NOT NULL,
+                PasswordSalt TEXT NOT NULL,
+                Role INTEGER NOT NULL,
+                PermissionLevel INTEGER NOT NULL
+            );
+            ";
             cmd.ExecuteNonQuery();
         }
 
@@ -185,6 +185,64 @@ CREATE TABLE IF NOT EXISTS Users (
                 Initialize();
 
             return dbPath!;
+        }
+
+        // sienna - get artist user - mainly so i can get their username to save on duplicate data
+        public static User? GetArtistUser()
+        {
+            if (string.IsNullOrWhiteSpace(dbPath))
+                Initialize();
+
+            using var connection =
+                new SqliteConnection($"Data Source={dbPath}");
+
+            connection.Open();
+
+            using var cmd = connection.CreateCommand();
+
+            cmd.CommandText =
+                "SELECT Username, PasswordHash, PasswordSalt, Role, PermissionLevel " +
+                "FROM Users WHERE Role = $role;";
+
+            cmd.Parameters.AddWithValue(
+                "$role",
+                (int)SystemRole.Artist);
+
+            using var reader = cmd.ExecuteReader();
+
+            if (!reader.Read())
+                return null;
+
+            return new User
+            {
+                Username = reader.GetString(0),
+                PasswordHash = reader.GetString(1),
+                PasswordSalt = reader.GetString(2),
+                Role = (SystemRole)reader.GetInt32(3),
+                PermissionLevel = reader.GetInt32(4)
+            };
+        }
+        // sienna - update username for artist - and clients? will need to make it update the name on their commissions.. or make a different way for client to identify their commissions
+        public static void UpdateUsername(string oldUsername, string newUsername)
+        {
+            if (string.IsNullOrWhiteSpace(newUsername))
+                throw new ArgumentException("Username cannot be empty.");
+
+            if (string.IsNullOrWhiteSpace(dbPath))
+                Initialize();
+
+            using var connection = new SqliteConnection($"Data Source={dbPath}");
+            connection.Open();
+
+            using var cmd = connection.CreateCommand();
+
+            cmd.CommandText =
+                "UPDATE Users SET Username = $new WHERE Username = $old;";
+
+            cmd.Parameters.AddWithValue("$new", newUsername.Trim());
+            cmd.Parameters.AddWithValue("$old", oldUsername);
+
+            cmd.ExecuteNonQuery();
         }
     }
 }
