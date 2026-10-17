@@ -286,7 +286,7 @@
             labelTerms.Location = new Point(8, 53);
             labelTerms.Name = "labelTerms";
             labelTerms.Padding = new Padding(10);
-            labelTerms.Size = new Size(473, 85);
+            labelTerms.Size = new Size(473, 246);
             labelTerms.TabIndex = 11;
             labelTerms.Text = "TOS introduction\r\n";
             // 
