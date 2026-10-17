@@ -35,6 +35,8 @@ namespace GUI_prototype
                 return;
             }
 
+
+
             // Continue normal load for admins...
         }
 
@@ -65,6 +67,9 @@ namespace GUI_prototype
                 adminViewQueueGrid.DataSource = dataTable;
 
                 adminViewQueueGrid.Columns["EstimatedPrice"].DefaultCellStyle.Format = "C";
+
+                // Update estimated tax display whenever the queue data is loaded
+                UpdateEstimatedTaxDisplay();
             }
             catch (Exception ex)
             {
@@ -109,6 +114,22 @@ namespace GUI_prototype
         private void reloadQueueButton_Click(object sender, EventArgs e)
         {
             ReloadQueue();
+            // Ensure tax label updates after manual reload
+            UpdateEstimatedTaxDisplay();
+        }
+
+        // Update the estimated tax label based on Accepted commissions stored EstimatedPrice values.
+        private void UpdateEstimatedTaxDisplay()
+        {
+            try
+            {
+                decimal tax = QualityStatisticsService.CalculateEstimatedTax();
+                estimatedTaxLabel.Text = $"Estimated Tax on Accepted Commissions: {tax.ToString("C2")}";
+            }
+            catch
+            {
+                estimatedTaxLabel.Text = "Estimated Tax on Accepted Commissions: $0.00";
+            }
         }
 
         // Reload the Commission Overview sections

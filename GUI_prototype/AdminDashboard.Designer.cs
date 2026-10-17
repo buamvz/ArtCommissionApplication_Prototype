@@ -41,6 +41,8 @@ namespace GUI_prototype
             labelStatus = new Label();
             adminTabs = new TabControl();
             workspaceTab = new TabPage();
+            estimatedTaxPanel = new Panel();
+            estimatedTaxLabel = new Label();
             AdminCommissionsDashboard = new TabControl();
             commissionOverview = new TabPage();
             artistAdminViewCommissionsList = new FlowLayoutPanel();
@@ -59,7 +61,7 @@ namespace GUI_prototype
             publicQueue = new TabPage();
             reloadQueueButton = new Button();
             adminViewQueueGrid = new DataGridView();
-            label4 = new Label();
+            publicCommissionQueueLabel = new Label();
             pictureBox2 = new PictureBox();
             label1 = new Label();
             artistInformationTab = new TabPage();
@@ -343,7 +345,8 @@ namespace GUI_prototype
             // 
             publicQueue.Controls.Add(reloadQueueButton);
             publicQueue.Controls.Add(adminViewQueueGrid);
-            publicQueue.Controls.Add(label4);
+            publicQueue.Controls.Add(publicCommissionQueueLabel);
+            publicQueue.Controls.Add(estimatedTaxPanel);
             publicQueue.Location = new Point(4, 29);
             publicQueue.Margin = new Padding(3, 4, 3, 4);
             publicQueue.Name = "publicQueue";
@@ -371,28 +374,49 @@ namespace GUI_prototype
             adminViewQueueGrid.AllowUserToResizeRows = false;
             adminViewQueueGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             adminViewQueueGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            adminViewQueueGrid.Dock = DockStyle.Fill;
+            adminViewQueueGrid.Dock = DockStyle.Top;
             adminViewQueueGrid.Location = new Point(0, 52);
             adminViewQueueGrid.Margin = new Padding(3, 4, 3, 4);
             adminViewQueueGrid.Name = "adminViewQueueGrid";
             adminViewQueueGrid.ReadOnly = true;
             adminViewQueueGrid.RowHeadersWidth = 51;
-            adminViewQueueGrid.Size = new Size(892, 410);
+            adminViewQueueGrid.Size = new Size(892, 352);
             adminViewQueueGrid.TabIndex = 11;
             adminViewQueueGrid.CellFormatting += AdminViewQueueGrid_CellFormatting;
+
+
+            // estimatedTaxPanel
             // 
-            // label4
+            estimatedTaxPanel.BackColor = Color.FromArgb(224, 224, 224);
+            estimatedTaxPanel.Dock = DockStyle.Top;
+            estimatedTaxPanel.Location = new Point(0, 404);
+            estimatedTaxPanel.Name = "estimatedTaxPanel";
+            estimatedTaxPanel.Size = new Size(892, 48);
+            estimatedTaxPanel.TabIndex = 13;
+            estimatedTaxPanel.Controls.Add(estimatedTaxLabel);
+
+            // estimatedTaxLabel
             // 
-            label4.BackColor = Color.FromArgb(224, 224, 224);
-            label4.Dock = DockStyle.Top;
-            label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(0, 0);
-            label4.Name = "label4";
-            label4.Padding = new Padding(11, 13, 11, 13);
-            label4.Size = new Size(892, 52);
-            label4.TabIndex = 10;
-            label4.Text = "Commission Type Chart";
+            estimatedTaxLabel.AutoSize = false;
+            estimatedTaxLabel.Dock = DockStyle.Fill;
+            estimatedTaxLabel.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
+            estimatedTaxLabel.TextAlign = ContentAlignment.MiddleLeft;
+            estimatedTaxLabel.Padding = new Padding(11, 13, 11, 13);
+            estimatedTaxLabel.Name = "estimatedTaxLabel";
+            estimatedTaxLabel.Text = "Estimated Tax on Accepted Commissions: $0.00";
             // 
+            // publicCommissionQueueLabel
+            // 
+            publicCommissionQueueLabel.BackColor = Color.FromArgb(224, 224, 224);
+            publicCommissionQueueLabel.Dock = DockStyle.Top;
+            publicCommissionQueueLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            publicCommissionQueueLabel.Location = new Point(0, 0);
+            publicCommissionQueueLabel.Name = "publicCommissionQueueLabel";
+            publicCommissionQueueLabel.Padding = new Padding(11, 13, 11, 13);
+            publicCommissionQueueLabel.Size = new Size(892, 52);
+            publicCommissionQueueLabel.TabIndex = 10;
+            publicCommissionQueueLabel.Text = "Public Commission Queue";
+            //  
             // pictureBox2
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
@@ -534,7 +558,7 @@ namespace GUI_prototype
         private TabPage publicQueue;
         private Button reloadQueueButton;
         private DataGridView adminViewQueueGrid;
-        private Label label4;
+        private Label publicCommissionQueueLabel;
         private ContextMenuStrip contextMenuStrip1;
         private FlowLayoutPanel adminTypeQualityDashboardChart;
         private System.Windows.Forms.DataVisualization.Charting.Chart typeCommissionsPieChart;
@@ -544,5 +568,9 @@ namespace GUI_prototype
         private FlowLayoutPanel adminYearQualityDashboardChart;
         private System.Windows.Forms.DataVisualization.Charting.Chart yearlyCommissionsLineChart;
         private Button reloadYearlyDashboardButton;
+        private Panel estimatedTaxPanel;
+        private Label estimatedTaxLabel;
+
+        // Placeholder for additional field declarations (actual fields will be added at bottom)
     }
 }
