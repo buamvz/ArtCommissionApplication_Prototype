@@ -4,15 +4,9 @@ using System.Text;
 
 namespace ArtCommissionApplication_Prototype
 {
-    // sienna - small glass to hold artworks
-    public class SampleArtwork
-    {
-        public string artworkName;
-    }
-
     public class ArtistInformation
     {
-        // sienna - making artist so information can be edited by the artist and saved to the client side form
+        public int ArtistId { get; set; }
 
         // artist info
         public string artistName { get; set; }
