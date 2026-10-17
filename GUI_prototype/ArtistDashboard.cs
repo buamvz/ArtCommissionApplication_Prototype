@@ -162,6 +162,22 @@ namespace GUI_prototype
             }
         }
 
+        private void LoadRejectedCommissionRequests()
+        {
+            try
+            {
+                CommissionArtistView.LoadAllFromDatabase();
+                ClearIncomingCommissionsControls(artistRejectedCommissionsList);
+                var accepted = CommissionArtistView.GetRejectedCommissions();
+                foreach (var req in accepted)
+                    AddCommissionToMyCommissions(req, artistRejectedCommissionsList);
+            }
+            catch
+            {
+                // ignore for prototype
+            }
+        }
+
         private void reloadCommRequestsButton_Click(object sender, EventArgs e)
         {
             LoadPendingCommissionRequests();
@@ -171,6 +187,13 @@ namespace GUI_prototype
         {
             LoadAcceptedCommissionRequests();
         }
+
+        private void reloadRejectedCommsButton_Click(object sender, EventArgs e)
+        {
+            LoadRejectedCommissionRequests();
+        }
+
+
 
         // === Artist side private queue - displays all information === 
 
@@ -239,6 +262,36 @@ namespace GUI_prototype
         private void reloadQueueButton_Click(object sender, EventArgs e)
         {
             ReloadQueue();
+        }
+
+
+        // == update artist profile info ===
+
+        ArtistInformation artistInformation = new ArtistInformation();
+
+        private void LoadArtistProfile() // sienna - loads existing details
+        {
+            usernameTextBox.Text = artistInformation.artistName;
+            emailTextBox.Text = artistInformation.artistEmail;
+            bioTextBox.Text = artistInformation.artistBio;
+        }
+
+        private void SaveArtistProfileChanges() // sienna - saves new changes
+        {
+            if(usernameTextBox != null)
+                artistInformation.artistName = usernameTextBox.Text;
+            
+            if(emailTextBox != null)
+                artistInformation.artistEmail = emailTextBox.Text;
+            
+            if(bioTextBox != null)
+                
+                artistInformation.artistBio = bioTextBox.Text;
+        }
+
+        private void saveChangesButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -37,5 +37,9 @@ namespace ArtCommissionApplication_Prototype
         {
             return commissions.FindAll(c => c.Status == CommissionStatus.Accepted || c.Status == CommissionStatus.InProgress);
         }
+        public static List<CommissionRequest> GetRejectedCommissions()
+        {
+            return commissions.FindAll(c => c.Status == CommissionStatus.Rejected);
+        }
     }
 }
