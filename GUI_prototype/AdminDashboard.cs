@@ -270,5 +270,155 @@ namespace GUI_prototype
                 BuildCommissionOverview();
             }
         }
+
+        // --- Quality dashboards handlers ---
+        private void reloadTypeDashboardButton_Click(object sender, EventArgs e)
+        {
+            BuildTypeCommissionsChart();
+        }
+
+        private void reloadYearlyDashboardButton_Click(object sender, EventArgs e)
+        {
+            BuildYearlyCommissionsChart();
+        }
+
+        private void BuildTypeCommissionsChart()
+        {
+            try
+            {
+                var stats = QualityStatisticsService.CalculateTypeStatistics();
+
+                // Clear existing series and points
+                typeCommissionsPieChart.Series.Clear();
+                var series = new System.Windows.Forms.DataVisualization.Charting.Series("Types");
+                series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                series.IsValueShownAsLabel = true;
+
+                // Ensure ChartArea/Legend names are assigned so the series is rendered in the correct area
+                if (typeCommissionsPieChart.ChartAreas.Count > 0)
+                    series.ChartArea = typeCommissionsPieChart.ChartAreas[0].Name;
+                if (typeCommissionsPieChart.Legends.Count > 0)
+                    series.Legend = typeCommissionsPieChart.Legends[0].Name;
+
+                foreach (var item in stats.Items)
+                {
+                    int idx = series.Points.AddY(item.Count);
+                    var dp = series.Points[idx];
+                    dp.Label = $"{item.CropType} ({item.Count})";
+                    dp.ToolTip = $"{item.CropType}: {item.Count} ({item.PercentageOfTotal:F1}%) - Total: {item.TotalEstimatedPrice:C}";
+                }
+
+                typeCommissionsPieChart.Series.Add(series);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to build type chart: {ex.Message}", "Chart error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BuildYearlyCommissionsChart()
+        {
+            try
+            {
+                var res = QualityStatisticsService.CalculateYearlyVolume();
+
+                // Make sure the chart has a chart area.
+                // Do NOT clear ChartAreas: the Designer already creates ChartArea2.
+                if (yearlyCommissionsLineChart.ChartAreas.Count == 0)
+                {
+                    yearlyCommissionsLineChart.ChartAreas.Add(
+                        new System.Windows.Forms.DataVisualization.Charting.ChartArea("ChartArea2"));
+                }
+
+                var chartArea = yearlyCommissionsLineChart.ChartAreas[0];
+
+                // Remove the Designer's default series and any previously drawn lines.
+                yearlyCommissionsLineChart.Series.Clear();
+
+                // Make sure a legend exists.
+                if (yearlyCommissionsLineChart.Legends.Count == 0)
+                {
+                    yearlyCommissionsLineChart.Legends.Add(
+                        new System.Windows.Forms.DataVisualization.Charting.Legend("Legend1"));
+                }
+
+                string chartAreaName = chartArea.Name;
+                string legendName = yearlyCommissionsLineChart.Legends[0].Name;
+
+                // Use the first 12 abbreviated month names: January through December.
+                var monthNames = System.Globalization.CultureInfo.CurrentCulture
+                    .DateTimeFormat.AbbreviatedMonthNames
+                    .Take(12)
+                    .ToArray();
+
+                // If there is no data, show a zero-valued line for the current year.
+                if (res.Series == null || res.Series.Count == 0)
+                {
+                    res.Series.Add(new YearlyVolumeSeries
+                    {
+                        Year = DateTime.Today.Year,
+                        MonthlyCounts = new int[12]
+                    });
+                }
+
+                foreach (var yearData in res.Series.OrderBy(s => s.Year))
+                {
+                    var series = new System.Windows.Forms.DataVisualization.Charting.Series(
+                        yearData.Year.ToString());
+
+                    series.ChartType =
+                        System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+                    series.ChartArea = chartAreaName;
+                    series.Legend = legendName;
+                    series.BorderWidth = 3;
+                    series.IsXValueIndexed = true;
+                    series.MarkerStyle =
+                        System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+                    series.MarkerSize = 7;
+                    series.IsValueShownAsLabel = true;
+
+                    // Add exactly 12 points, including months with zero commissions.
+                    for (int month = 0; month < 12; month++)
+                    {
+                        int count = month < yearData.MonthlyCounts.Length
+                            ? yearData.MonthlyCounts[month]
+                            : 0;
+
+                        int pointIndex = series.Points.AddXY(month + 1, count);
+                        var point = series.Points[pointIndex];
+
+                        point.AxisLabel = monthNames[month];
+                        point.ToolTip =
+                            $"{monthNames[month]} {yearData.Year}: {count} commissions";
+                    }
+
+                    yearlyCommissionsLineChart.Series.Add(series);
+                }
+
+                // Configure the axes.
+                chartArea.AxisX.Title = "Month";
+                chartArea.AxisX.Interval = 1;
+                chartArea.AxisX.Minimum = 1;
+                chartArea.AxisX.Maximum = 12;
+                chartArea.AxisX.MajorGrid.Enabled = false;
+
+                chartArea.AxisY.Title = "Number of Commissions";
+                chartArea.AxisY.Minimum = 0;
+                chartArea.AxisY.Interval = 1;
+                chartArea.AxisY.MajorGrid.Enabled = true;
+
+                yearlyCommissionsLineChart.Legends[0].Enabled = true;
+                yearlyCommissionsLineChart.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Failed to build yearly chart: {ex.Message}",
+                    "Chart error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
     }
 }
