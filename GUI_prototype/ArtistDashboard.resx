@@ -36909,4 +36909,7 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Your terms of service should be a reflection of how you intend to work with clients and conduct yourself. Be sure to include information about refunds, use-rights, Will/Won't Draws, and anything else you deem important to set up clear expectations with you clients.</value>
   </data>
+  <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

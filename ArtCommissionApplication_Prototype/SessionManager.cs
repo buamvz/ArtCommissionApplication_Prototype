@@ -74,7 +74,7 @@ namespace ArtCommissionApplication_Prototype
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.ToString());
+                return false;
             }
         }
     }

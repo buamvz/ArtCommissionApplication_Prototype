@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArtistDashboard));
             artistTabs = new TabControl();
             workspaceTab = new TabPage();
@@ -95,6 +96,7 @@
             pictureBox7 = new PictureBox();
             pictureBox9 = new PictureBox();
             label11 = new Label();
+            errorProvider1 = new ErrorProvider(components);
             artistTabs.SuspendLayout();
             workspaceTab.SuspendLayout();
             ArtistCommissionsDashboardTabs.SuspendLayout();
@@ -123,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // artistTabs
@@ -864,6 +867,10 @@
             label11.TabIndex = 13;
             label11.Text = "Samples of Work";
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // ArtistDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -903,6 +910,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -977,5 +985,6 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox9;
         private Label label11;
+        private ErrorProvider errorProvider1;
     }
 }

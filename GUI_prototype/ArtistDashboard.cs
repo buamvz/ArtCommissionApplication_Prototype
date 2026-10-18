@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Windows.Forms;
 using static ArtCommissionApplication_Prototype.CommissionInformation;
@@ -373,7 +374,16 @@ namespace GUI_prototype
                 UserRepository.UpdateUsername(artistUser.Username, usernameTextBox.Text);
 
             if (emailTextBox != null)
-                artistInformation.ArtistEmail = emailTextBox.Text;
+            {
+                var m = new MailAddress(emailTextBox.Text);
+                if (m.Address != emailTextBox.Text)
+                {
+                    errorProvider1.SetError(emailTextBox, "Enter a valid email address.");
+                }
+                else
+                    artistInformation.ArtistEmail = emailTextBox.Text;
+            }
+
 
             if (bioTextBox != null)
                 artistInformation.ArtistBio = bioTextBox.Text;

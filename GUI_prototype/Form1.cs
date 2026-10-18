@@ -11,7 +11,8 @@ namespace GUI_prototype
     public partial class Form1 : Form
     {
         // UI elements for simple role switching in the prototype
-
+        private ArtistInformation artistInformation;
+        private User artistUser;
         public Form1()
         {
             InitializeComponent();
@@ -23,6 +24,10 @@ namespace GUI_prototype
                 LoadQueueDatabaseData();
 
             ShowNotifications();
+
+            artistInformation = ArtistRepository.GetArtistProfile();
+            artistUser = UserRepository.GetArtistUser();
+            LoadIntro();
         }
         private void RequestComm_Click(object sender, EventArgs e)
         {
@@ -218,8 +223,7 @@ namespace GUI_prototype
         }
 
         // sienna - update artist profile information
-        private ArtistInformation artistInformation;
-        private User artistUser;
+
         private void LoadArtistInformation()
         {
             artistInformation = ArtistRepository.GetArtistProfile();
@@ -264,6 +268,10 @@ namespace GUI_prototype
             {
                 ReloadQueue();
             }
+            else if (currentTab == tabHome)
+            {
+                LoadIntro();
+            }
         }
 
         // sienna - notification for change in status
@@ -293,6 +301,15 @@ namespace GUI_prototype
 
                 NotificationRepository.DeleteNotification(notification.NotificationId);
             }
+        }
+        // sienna - making the home view tab update to artist username
+        private void LoadIntro()
+        {
+            if (HomeParagraph == null) return;
+
+            HomeParagraph.Text = $"Welcome to {artistUser.Username} commissions page, have a look around! \n\n" +
+                $"If you're interested in an illustration commission from {artistUser.Username}, please read use the artist's Terms of Service, then use button bellow and fill out the form to place a request." +
+                $"\nOnce your request is accepted, you'll revieve a notification upon next login and be able to discuss the details of your commission with the artist via email.";
         }
     }
 }
