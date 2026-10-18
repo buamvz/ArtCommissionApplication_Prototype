@@ -118,7 +118,6 @@
             emailInput.Name = "emailInput";
             emailInput.Size = new Size(365, 23);
             emailInput.TabIndex = 4;
-            emailInput.Text = "ihatemahito123@gmail.com";
             // 
             // label3
             // 
@@ -414,7 +413,7 @@
             requestSubmittedPanel.Controls.Add(commissionDetails);
             requestSubmittedPanel.Controls.Add(label9);
             requestSubmittedPanel.Enabled = false;
-            requestSubmittedPanel.Location = new Point(12, 77);
+            requestSubmittedPanel.Location = new Point(10, 77);
             requestSubmittedPanel.Name = "requestSubmittedPanel";
             requestSubmittedPanel.Size = new Size(776, 430);
             requestSubmittedPanel.TabIndex = 6;

@@ -281,21 +281,13 @@ namespace GUI_prototype
                 return;
 
             var notifications =
-                NotificationRepository
-                .GetUnreadNotifications(
-                    SessionManager.CurrentActiveUser.Username);
+                NotificationRepository.GetUnreadNotifications(SessionManager.CurrentActiveUser.Username);
 
             foreach (var notification in notifications)
             {
-                MessageBox.Show(
-                    notification.Message,
-                    "Commission Update",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                MessageBox.Show(notification.Message, "Commission Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                NotificationRepository
-                    .MarkNotificationAsRead(
-                        notification.NotificationId);
+                NotificationRepository.DeleteNotification(notification.NotificationId);
             }
         }
     }

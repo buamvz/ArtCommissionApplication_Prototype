@@ -72,9 +72,9 @@ namespace ArtCommissionApplication_Prototype
                 SetUser(created);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                throw new Exception(ex.ToString());
             }
         }
     }

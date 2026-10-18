@@ -16,9 +16,6 @@ namespace ArtCommissionApplication_Prototype
         // Role assigned to the user (Client, Artist, Admin)
         public SystemRole Role { get; set; } = SystemRole.Client;
 
-        // Backwards-compatible permission level (optional). Prefer Role.
-        public int PermissionLevel { get; set; } = 0;
-
         // Stored password hash (base64). Only used for authentication storage.
         public string? PasswordHash { get; set; }
 

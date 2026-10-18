@@ -29,8 +29,7 @@ namespace ArtCommissionApplication_Prototype
                 Username TEXT PRIMARY KEY,
                 PasswordHash TEXT NOT NULL,
                 PasswordSalt TEXT NOT NULL,
-                Role INTEGER NOT NULL,
-                PermissionLevel INTEGER NOT NULL
+                Role INTEGER NOT NULL
             );
             ";
             cmd.ExecuteNonQuery();
@@ -46,7 +45,7 @@ namespace ArtCommissionApplication_Prototype
             connection.Open();
 
             using var cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT Username, PasswordHash, PasswordSalt, Role, PermissionLevel FROM Users WHERE Username = $u LIMIT 1;";
+            cmd.CommandText = "SELECT Username, PasswordHash, PasswordSalt, Role FROM Users WHERE Username = $u LIMIT 1;";
             cmd.Parameters.AddWithValue("$u", username);
 
             using var reader = cmd.ExecuteReader();
@@ -58,7 +57,6 @@ namespace ArtCommissionApplication_Prototype
                 PasswordHash = reader.GetString(1),
                 PasswordSalt = reader.GetString(2),
                 Role = (SystemRole)reader.GetInt32(3),
-                PermissionLevel = reader.GetInt32(4)
             };
 
             return user;
@@ -73,7 +71,7 @@ namespace ArtCommissionApplication_Prototype
             connection.Open();
 
             using var cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT Username, PasswordHash, PasswordSalt, Role, PermissionLevel FROM Users ORDER BY Username;";
+            cmd.CommandText = "SELECT Username, PasswordHash, PasswordSalt, Role FROM Users ORDER BY Username;";
 
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -84,7 +82,6 @@ namespace ArtCommissionApplication_Prototype
                     PasswordHash = reader.GetString(1),
                     PasswordSalt = reader.GetString(2),
                     Role = (SystemRole)reader.GetInt32(3),
-                    PermissionLevel = reader.GetInt32(4)
                 });
             }
 
@@ -94,7 +91,7 @@ namespace ArtCommissionApplication_Prototype
         // Create a new user. Enforces that only one Artist and one Admin can exist.
         // sienna - only one artist and admin can exist for this application, while multiple clients can exist. 
         // the system enforces this so multiple artists can't be created.
-        public static User CreateUser(string username, string password, SystemRole role, int permissionLevel = 0)
+        public static User CreateUser(string username, string password, SystemRole role)
         {
             if (string.IsNullOrWhiteSpace(username)) throw new ArgumentException("username");
             if (password == null) throw new ArgumentNullException(nameof(password));
@@ -124,12 +121,11 @@ namespace ArtCommissionApplication_Prototype
             using var conn = new SqliteConnection($"Data Source={dbPath}");
             conn.Open();
             using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"INSERT INTO Users (Username, PasswordHash, PasswordSalt, Role, PermissionLevel) VALUES ($u, $hash, $salt, $role, $perm);";
+            cmd.CommandText = @"INSERT INTO Users (Username, PasswordHash, PasswordSalt, Role) VALUES ($u, $hash, $salt, $role);";
             cmd.Parameters.AddWithValue("$u", username);
             cmd.Parameters.AddWithValue("$hash", Convert.ToBase64String(hash));
             cmd.Parameters.AddWithValue("$salt", Convert.ToBase64String(salt));
             cmd.Parameters.AddWithValue("$role", (int)role);
-            cmd.Parameters.AddWithValue("$perm", permissionLevel);
             cmd.ExecuteNonQuery();
 
             return GetUserByUsername(username)!;
@@ -201,7 +197,7 @@ namespace ArtCommissionApplication_Prototype
             using var cmd = connection.CreateCommand();
 
             cmd.CommandText =
-                "SELECT Username, PasswordHash, PasswordSalt, Role, PermissionLevel " +
+                "SELECT Username, PasswordHash, PasswordSalt, Role " +
                 "FROM Users WHERE Role = $role;";
 
             cmd.Parameters.AddWithValue(
@@ -219,7 +215,6 @@ namespace ArtCommissionApplication_Prototype
                 PasswordHash = reader.GetString(1),
                 PasswordSalt = reader.GetString(2),
                 Role = (SystemRole)reader.GetInt32(3),
-                PermissionLevel = reader.GetInt32(4)
             };
         }
         // sienna - update username for artist - and clients? will need to make it update the name on their commissions.. or make a different way for client to identify their commissions

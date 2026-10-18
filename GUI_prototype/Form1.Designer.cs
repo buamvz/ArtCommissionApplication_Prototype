@@ -67,9 +67,6 @@
             clientProfileTabs = new TabControl();
             userMyCommissionsView = new TabPage();
             userMyCommissionsList = new FlowLayoutPanel();
-            splitContainer1 = new SplitContainer();
-            label14 = new Label();
-            label15 = new Label();
             reloadCommissionsButton = new Button();
             labelMyComms = new Label();
             userProfile = new TabPage();
@@ -97,10 +94,6 @@
             clientPagesTab.SuspendLayout();
             clientProfileTabs.SuspendLayout();
             userMyCommissionsView.SuspendLayout();
-            userMyCommissionsList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.Panel1.SuspendLayout();
-            splitContainer1.SuspendLayout();
             userProfile.SuspendLayout();
             SuspendLayout();
             // 
@@ -550,51 +543,11 @@
             // 
             // userMyCommissionsList
             // 
-            userMyCommissionsList.Controls.Add(splitContainer1);
             userMyCommissionsList.Dock = DockStyle.Fill;
             userMyCommissionsList.Location = new Point(3, 42);
             userMyCommissionsList.Name = "userMyCommissionsList";
             userMyCommissionsList.Size = new Size(779, 394);
             userMyCommissionsList.TabIndex = 11;
-            // 
-            // splitContainer1
-            // 
-            splitContainer1.Location = new Point(3, 3);
-            splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            splitContainer1.Panel1.AutoScroll = true;
-            splitContainer1.Panel1.BackColor = Color.Gainsboro;
-            splitContainer1.Panel1.Controls.Add(label14);
-            splitContainer1.Panel1.Controls.Add(label15);
-            // 
-            // splitContainer1.Panel2
-            // 
-            splitContainer1.Panel2.BackColor = Color.WhiteSmoke;
-            splitContainer1.Size = new Size(776, 130);
-            splitContainer1.SplitterDistance = 353;
-            splitContainer1.TabIndex = 2;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 10F);
-            label14.Location = new Point(5, 34);
-            label14.Name = "label14";
-            label14.Size = new Size(132, 133);
-            label14.TabIndex = 1;
-            label14.Text = "Name:\r\nEmail:\r\nCommission Details:\r\n\r\nDescription:\r\n\r\nThank you!";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label15.Location = new Point(5, 12);
-            label15.Name = "label15";
-            label15.Size = new Size(112, 19);
-            label15.TabIndex = 0;
-            label15.Text = "Status: Pending";
             // 
             // reloadCommissionsButton
             // 
@@ -684,11 +637,6 @@
             clientPagesTab.ResumeLayout(false);
             clientProfileTabs.ResumeLayout(false);
             userMyCommissionsView.ResumeLayout(false);
-            userMyCommissionsList.ResumeLayout(false);
-            splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
             userProfile.ResumeLayout(false);
             userProfile.PerformLayout();
             ResumeLayout(false);
@@ -724,9 +672,6 @@
         private TabPage userMyCommissionsView;
         private Button reloadCommissionsButton;
         private Label labelMyComms;
-        private SplitContainer splitContainer1;
-        private Label label14;
-        private Label label15;
         private Panel panel1;
         private Label clientProfileLabel;
         private Label labelUserProfile;

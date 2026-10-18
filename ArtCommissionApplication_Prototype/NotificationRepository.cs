@@ -15,8 +15,7 @@ namespace ArtCommissionApplication_Prototype
             if (string.IsNullOrWhiteSpace(dbPath))
                 dbPath = DatabaseConfig.DatabasePath;
 
-            using var connection =
-                new SqliteConnection($"Data Source={dbPath}");
+            using var connection = new SqliteConnection($"Data Source={dbPath}");
 
             connection.Open();
 
@@ -28,8 +27,7 @@ namespace ArtCommissionApplication_Prototype
             (
                 NotificationId INTEGER PRIMARY KEY AUTOINCREMENT,
                 Username TEXT NOT NULL,
-                Message TEXT NOT NULL,
-                IsRead INTEGER NOT NULL DEFAULT 0
+                Message TEXT NOT NULL
             );
             ";
 
@@ -43,8 +41,7 @@ namespace ArtCommissionApplication_Prototype
             if (string.IsNullOrWhiteSpace(dbPath))
                 Initialize();
 
-            using var connection =
-                new SqliteConnection($"Data Source={dbPath}");
+            using var connection = new SqliteConnection($"Data Source={dbPath}");
 
             connection.Open();
 
@@ -55,38 +52,28 @@ namespace ArtCommissionApplication_Prototype
             INSERT INTO Notifications
             (
                 Username,
-                Message,
-                IsRead
+                Message
             )
             VALUES
             (
                 $username,
-                $message,
-                0
+                $message
             );
             ";
 
-            cmd.Parameters.AddWithValue(
-                "$username",
-                username);
-
-            cmd.Parameters.AddWithValue(
-                "$message",
-                message);
-
+            cmd.Parameters.AddWithValue("$username", username);
+            cmd.Parameters.AddWithValue("$message", message);
             cmd.ExecuteNonQuery();
         }
 
-        public static List<Notification> GetUnreadNotifications(
-            string username)
+        public static List<Notification> GetUnreadNotifications(string username)
         {
             if (string.IsNullOrWhiteSpace(dbPath))
                 Initialize();
 
             List<Notification> notifications = new();
 
-            using var connection =
-                new SqliteConnection($"Data Source={dbPath}");
+            using var connection = new SqliteConnection($"Data Source={dbPath}");
 
             connection.Open();
 
@@ -97,24 +84,18 @@ namespace ArtCommissionApplication_Prototype
             SELECT
                 NotificationId,
                 Username,
-                Message,
-                IsRead
+                Message
             FROM Notifications
             WHERE Username = $username
-            AND IsRead = 0;
             ";
 
-            cmd.Parameters.AddWithValue(
-                "$username",
-                username);
+            cmd.Parameters.AddWithValue("$username", username);
 
-            using var reader =
-                cmd.ExecuteReader();
+            using var reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                notifications.Add(
-                    new Notification
+                notifications.Add(new Notification
                     {
                         NotificationId =
                             reader.GetInt32(0),
@@ -123,45 +104,56 @@ namespace ArtCommissionApplication_Prototype
                             reader.GetString(1),
 
                         Message =
-                            reader.GetString(2),
-
-                        IsRead =
-                            reader.GetInt32(3) == 1
+                            reader.GetString(2)
                     });
             }
 
             return notifications;
         }
 
-        public static void MarkNotificationAsRead(
-            int notificationId)
+        public static void MarkNotificationAsRead(int notificationId)
         {
             if (string.IsNullOrWhiteSpace(dbPath))
                 Initialize();
 
-            using var connection =
-                new SqliteConnection($"Data Source={dbPath}");
+            using var connection = new SqliteConnection($"Data Source={dbPath}");
 
             connection.Open();
-
             using var cmd = connection.CreateCommand();
 
             cmd.CommandText =
             @"
             UPDATE Notifications
-            SET IsRead = 1
             WHERE NotificationId = $id;
             ";
 
-            cmd.Parameters.AddWithValue(
-                "$id",
-                notificationId);
-
+            cmd.Parameters.AddWithValue("$id", notificationId);
             cmd.ExecuteNonQuery();
         }
+        // sienna - changed read to just deleting notif
+        //public static void MarkAllAsRead(string username)
+        //{
+        //    if (string.IsNullOrWhiteSpace(dbPath))
+        //        Initialize();
 
-        public static void MarkAllAsRead(
-            string username)
+        //    using var connection = new SqliteConnection($"Data Source={dbPath}");
+
+        //    connection.Open();
+
+        //    using var cmd = connection.CreateCommand();
+
+        //    cmd.CommandText =
+        //    @"
+        //    UPDATE Notifications
+        //    SET IsRead = 1
+        //    WHERE Username = $username;
+        //    ";
+
+        //    cmd.Parameters.AddWithValue("$username", username);
+        //    cmd.ExecuteNonQuery();
+        //}
+
+        public static void DeleteNotification(int notificationId)
         {
             if (string.IsNullOrWhiteSpace(dbPath))
                 Initialize();
@@ -174,15 +166,10 @@ namespace ArtCommissionApplication_Prototype
             using var cmd = connection.CreateCommand();
 
             cmd.CommandText =
-            @"
-            UPDATE Notifications
-            SET IsRead = 1
-            WHERE Username = $username;
-            ";
+                @"DELETE FROM Notifications
+          WHERE NotificationId = $id;";
 
-            cmd.Parameters.AddWithValue(
-                "$username",
-                username);
+            cmd.Parameters.AddWithValue("$id", notificationId);
 
             cmd.ExecuteNonQuery();
         }

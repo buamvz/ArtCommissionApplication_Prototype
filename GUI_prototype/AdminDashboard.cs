@@ -441,5 +441,110 @@ namespace GUI_prototype
                     MessageBoxIcon.Error);
             }
         }
+
+        // === User list ===
+
+        private void ShowAllUsers()
+        {
+            loadUsers();
+        }
+
+        private void loadUsersButton_Click(object sender, EventArgs e)
+        {
+            ShowAllUsers();
+        }
+
+        private void loadUsers()
+        {
+            var users = UserRepository.GetAllUsers();
+
+            userListGrid.Rows.Clear();
+            userListGrid.Columns.Clear();
+
+            userListGrid.Columns.Add("Username", "Username");
+            userListGrid.Columns.Add("Role", "Role");
+            userListGrid.Columns.Add("Hash", "Password Hash");
+            userListGrid.Columns.Add("Salt", "Password Salt");
+            foreach (var user in users)
+            {
+                userListGrid.Rows.Add(
+                    user.Username,
+                    user.Role.ToString(),
+                    user.PasswordHash,
+                    user.PasswordSalt
+                );
+            }
+        }
+
+        private void debugButton1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(UserRepository.GetDatabasePath());
+        }
+
+        private void deleteUserButton_Click(object sender, EventArgs e)
+        {
+            if (userListGrid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a user first.", "No User Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string username = userListGrid.SelectedRows[0].Cells["Username"].Value.ToString();
+
+            var result = MessageBox.Show($"Delete user '{username}'?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes)
+                return;
+
+            // sienna - prevent from deleting current/active user
+            if (SessionManager.CurrentActiveUser != null && username == SessionManager.CurrentActiveUser.Username)
+            {
+                MessageBox.Show("You cannot delete the currently logged in user.");
+                return;
+            }
+
+            try
+            {
+                UserRepository.DeleteUser(username);
+
+                loadUsers();
+
+                MessageBox.Show("User deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to delete user:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        // === Loading on tab change ===
+        private void AdminCommissionsDashboard_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = AdminCommissionsDashboard.SelectedIndex;
+            TabPage currentTab = AdminCommissionsDashboard.SelectedTab;
+
+            if (currentTab == commissionOverview)
+            {
+                BuildCommissionOverview();
+            }
+            else if (currentTab == commissionTypeDashboard)
+            {
+                BuildTypeCommissionsChart();
+            }
+            else if (currentTab == yearlyCommissionsChart)
+            {
+                BuildYearlyCommissionsChart();
+            }
+            else if (currentTab == publicQueue)
+            {
+                ReloadQueue();
+                UpdateEstimatedTaxDisplay();
+            }
+            else if (currentTab == allUsersTab)
+            {
+                loadUsers();
+            }
+        }
     }
 }

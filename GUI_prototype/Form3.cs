@@ -1,4 +1,5 @@
 ﻿using ArtCommissionApplication_Prototype;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,8 @@ namespace GUI_prototype
         {
             InitializeComponent();
             LoginPanel.Visible = false;
-            userListPanel.Visible = false;
+            // userListPanel.Visible = false;
+            UserTypePanel.Visible = true;
 
             errorProvider = new ErrorProvider(this);
 
@@ -155,7 +157,7 @@ namespace GUI_prototype
         private void backToSelectUser()
         {
             UserTypePanel.Visible = true;
-            userListPanel.Visible = false;
+            // userListPanel.Visible = false;
             LoginPanel.Visible = false;
             SessionManager.Logout();
             backToSelectUserButton.Text = "Back";
@@ -215,88 +217,88 @@ namespace GUI_prototype
             this.Hide();
         }
 
-        private void ShowAllUsers()
-        {
-            UserTypePanel.Visible = false;
-            LoginPanel.Visible = false;
-            userListPanel.Visible = true;
+        // === User list view stuff (moved to admin dash) ===
+        //private void ShowAllUsers()
+        //{
+        //    UserTypePanel.Visible = false;
+        //    LoginPanel.Visible = false;
+        //    userListPanel.Visible = true;
 
-            loadUsers();
-        }
+        //    loadUsers();
+        //}
 
-        private void allUsersButton_Click(object sender, EventArgs e)
-        {
-            ShowAllUsers();
-        }
+        //private void allUsersButton_Click(object sender, EventArgs e)
+        //{
+        //    ShowAllUsers();
+        //}
 
-        private void loadUsersButton_Click(object sender, EventArgs e)
-        {
-            backToSelectUser();
-        }
+        //private void loadUsersButton_Click(object sender, EventArgs e)
+        //{
+        //    backToSelectUser();
+        //}
 
-        private void loadUsers()
-        {
-            var users = UserRepository.GetAllUsers();
+        //private void loadUsers()
+        //{
+        //    var users = UserRepository.GetAllUsers();
 
-            userListGrid.Rows.Clear();
-            userListGrid.Columns.Clear();
+        //    userListGrid.Rows.Clear();
+        //    userListGrid.Columns.Clear();
 
-            userListGrid.Columns.Add("Username", "Username");
-            userListGrid.Columns.Add("Role", "Role");
-            userListGrid.Columns.Add("Permission", "Permission");
-            userListGrid.Columns.Add("Hash", "Password Hash");
-            userListGrid.Columns.Add("Salt", "Password Salt");
-            foreach (var user in users)
-            {
-                userListGrid.Rows.Add(
-                    user.Username,
-                    user.Role.ToString(),
-                    user.PermissionLevel,
-                    user.PasswordHash,
-                    user.PasswordSalt
-                );
-            }
-        }
+        //    userListGrid.Columns.Add("Username", "Username");
+        //    userListGrid.Columns.Add("Role", "Role");
+        //    userListGrid.Columns.Add("Hash", "Password Hash");
+        //    userListGrid.Columns.Add("Salt", "Password Salt");
+        //    foreach (var user in users)
+        //    {
+        //        userListGrid.Rows.Add(
+        //            user.Username,
+        //            user.Role.ToString(),
+        //            user.PasswordHash,
+        //            user.PasswordSalt
+        //        );
+        //    }
+        //}
 
-        private void debugButton1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(UserRepository.GetDatabasePath());
-        }
+        //private void debugButton1_Click(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show(UserRepository.GetDatabasePath());
+        //}
 
-        private void deleteUserButton_Click(object sender, EventArgs e)
-        {
-            if (userListGrid.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a user first.", "No User Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+        //private void deleteUserButton_Click(object sender, EventArgs e)
+        //{
+        //    if (userListGrid.SelectedRows.Count == 0)
+        //    {
+        //        MessageBox.Show("Please select a user first.", "No User Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return;
+        //    }
 
-            string username = userListGrid.SelectedRows[0].Cells["Username"].Value.ToString();
+        //    string username = userListGrid.SelectedRows[0].Cells["Username"].Value.ToString();
 
-            var result = MessageBox.Show($"Delete user '{username}'?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        //    var result = MessageBox.Show($"Delete user '{username}'?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (result != DialogResult.Yes)
-                return;
+        //    if (result != DialogResult.Yes)
+        //        return;
 
-            // sienna - prevent from deleting current/active user
-            if (SessionManager.CurrentActiveUser != null && username == SessionManager.CurrentActiveUser.Username)
-            {
-                MessageBox.Show("You cannot delete the currently logged in user.");
-                return;
-            }
+        //    // sienna - prevent from deleting current/active user
+        //    if (SessionManager.CurrentActiveUser != null && username == SessionManager.CurrentActiveUser.Username)
+        //    {
+        //        MessageBox.Show("You cannot delete the currently logged in user.");
+        //        return;
+        //    }
 
-            try
-            {
-                UserRepository.DeleteUser(username);
+        //    try
+        //    {
+        //        UserRepository.DeleteUser(username);
 
-                loadUsers();
+        //        loadUsers();
 
-                MessageBox.Show("User deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to delete user:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //        MessageBox.Show("User deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Failed to delete user:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
+
     }
 }

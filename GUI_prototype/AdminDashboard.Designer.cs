@@ -41,8 +41,6 @@ namespace GUI_prototype
             labelStatus = new Label();
             adminTabs = new TabControl();
             workspaceTab = new TabPage();
-            estimatedTaxPanel = new Panel();
-            estimatedTaxLabel = new Label();
             AdminCommissionsDashboard = new TabControl();
             commissionOverview = new TabPage();
             artistAdminViewCommissionsList = new FlowLayoutPanel();
@@ -62,6 +60,16 @@ namespace GUI_prototype
             reloadQueueButton = new Button();
             adminViewQueueGrid = new DataGridView();
             publicCommissionQueueLabel = new Label();
+            estimatedTaxPanel = new Panel();
+            estimatedTaxLabel = new Label();
+            allUsersTab = new TabPage();
+            userListPanel = new Panel();
+            debugButton1 = new Button();
+            panel1 = new Panel();
+            deleteUserButton = new Button();
+            userListGrid = new DataGridView();
+            loadUsersButton = new Button();
+            usersListLabel = new Label();
             pictureBox2 = new PictureBox();
             label1 = new Label();
             artistInformationTab = new TabPage();
@@ -84,6 +92,11 @@ namespace GUI_prototype
             ((System.ComponentModel.ISupportInitialize)yearlyCommissionsLineChart).BeginInit();
             publicQueue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)adminViewQueueGrid).BeginInit();
+            estimatedTaxPanel.SuspendLayout();
+            allUsersTab.SuspendLayout();
+            userListPanel.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)userListGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             artistInformationTab.SuspendLayout();
             clientProfileTabs.SuspendLayout();
@@ -137,11 +150,11 @@ namespace GUI_prototype
             workspaceTab.Controls.Add(AdminCommissionsDashboard);
             workspaceTab.Controls.Add(pictureBox2);
             workspaceTab.Controls.Add(label1);
-            workspaceTab.Location = new Point(4, 29);
+            workspaceTab.Location = new Point(4, 24);
             workspaceTab.Margin = new Padding(3, 4, 3, 4);
             workspaceTab.Name = "workspaceTab";
             workspaceTab.Padding = new Padding(3, 4, 3, 4);
-            workspaceTab.Size = new Size(906, 576);
+            workspaceTab.Size = new Size(906, 581);
             workspaceTab.TabIndex = 0;
             workspaceTab.Text = "Workspace";
             workspaceTab.UseVisualStyleBackColor = true;
@@ -152,24 +165,26 @@ namespace GUI_prototype
             AdminCommissionsDashboard.Controls.Add(commissionTypeDashboard);
             AdminCommissionsDashboard.Controls.Add(yearlyCommissionsChart);
             AdminCommissionsDashboard.Controls.Add(publicQueue);
+            AdminCommissionsDashboard.Controls.Add(allUsersTab);
             AdminCommissionsDashboard.Dock = DockStyle.Fill;
             AdminCommissionsDashboard.Location = new Point(3, 77);
             AdminCommissionsDashboard.Margin = new Padding(3, 4, 3, 4);
             AdminCommissionsDashboard.Name = "AdminCommissionsDashboard";
             AdminCommissionsDashboard.SelectedIndex = 0;
-            AdminCommissionsDashboard.Size = new Size(900, 495);
+            AdminCommissionsDashboard.Size = new Size(900, 500);
             AdminCommissionsDashboard.TabIndex = 10;
+            AdminCommissionsDashboard.SelectedIndexChanged += AdminCommissionsDashboard_SelectedIndexChanged;
             // 
             // commissionOverview
             // 
             commissionOverview.Controls.Add(artistAdminViewCommissionsList);
             commissionOverview.Controls.Add(reloadCommOverviewButton);
             commissionOverview.Controls.Add(commissionOverviewLabel);
-            commissionOverview.Location = new Point(4, 29);
+            commissionOverview.Location = new Point(4, 24);
             commissionOverview.Margin = new Padding(3, 4, 3, 4);
             commissionOverview.Name = "commissionOverview";
             commissionOverview.Padding = new Padding(3, 4, 3, 4);
-            commissionOverview.Size = new Size(892, 462);
+            commissionOverview.Size = new Size(892, 472);
             commissionOverview.TabIndex = 6;
             commissionOverview.Text = "Commission Overview";
             commissionOverview.UseVisualStyleBackColor = true;
@@ -181,7 +196,7 @@ namespace GUI_prototype
             artistAdminViewCommissionsList.Location = new Point(3, 56);
             artistAdminViewCommissionsList.Margin = new Padding(3, 4, 3, 4);
             artistAdminViewCommissionsList.Name = "artistAdminViewCommissionsList";
-            artistAdminViewCommissionsList.Size = new Size(886, 402);
+            artistAdminViewCommissionsList.Size = new Size(886, 412);
             artistAdminViewCommissionsList.TabIndex = 11;
             // 
             // reloadCommOverviewButton
@@ -212,11 +227,11 @@ namespace GUI_prototype
             commissionTypeDashboard.Controls.Add(reloadTypeDashboardButton);
             commissionTypeDashboard.Controls.Add(adminTypeQualityDashboardChart);
             commissionTypeDashboard.Controls.Add(typeQualityDashboardLabel);
-            commissionTypeDashboard.Location = new Point(4, 29);
+            commissionTypeDashboard.Location = new Point(4, 24);
             commissionTypeDashboard.Margin = new Padding(3, 4, 3, 4);
             commissionTypeDashboard.Name = "commissionTypeDashboard";
             commissionTypeDashboard.Padding = new Padding(3, 4, 3, 4);
-            commissionTypeDashboard.Size = new Size(892, 462);
+            commissionTypeDashboard.Size = new Size(892, 472);
             commissionTypeDashboard.TabIndex = 1;
             commissionTypeDashboard.Text = "Commission Type Chart";
             commissionTypeDashboard.UseVisualStyleBackColor = true;
@@ -240,7 +255,7 @@ namespace GUI_prototype
             adminTypeQualityDashboardChart.Location = new Point(3, 56);
             adminTypeQualityDashboardChart.Margin = new Padding(3, 4, 3, 4);
             adminTypeQualityDashboardChart.Name = "adminTypeQualityDashboardChart";
-            adminTypeQualityDashboardChart.Size = new Size(886, 402);
+            adminTypeQualityDashboardChart.Size = new Size(886, 412);
             adminTypeQualityDashboardChart.TabIndex = 12;
             // 
             // typeCommissionsPieChart
@@ -279,10 +294,10 @@ namespace GUI_prototype
             yearlyCommissionsChart.Controls.Add(reloadYearlyDashboardButton);
             yearlyCommissionsChart.Controls.Add(adminYearQualityDashboardChart);
             yearlyCommissionsChart.Controls.Add(yearlyQualityDashboardLabel);
-            yearlyCommissionsChart.Location = new Point(4, 29);
+            yearlyCommissionsChart.Location = new Point(4, 24);
             yearlyCommissionsChart.Name = "yearlyCommissionsChart";
             yearlyCommissionsChart.Padding = new Padding(3);
-            yearlyCommissionsChart.Size = new Size(892, 462);
+            yearlyCommissionsChart.Size = new Size(892, 472);
             yearlyCommissionsChart.TabIndex = 8;
             yearlyCommissionsChart.Text = "Annual Commissions Chart";
             yearlyCommissionsChart.UseVisualStyleBackColor = true;
@@ -306,7 +321,7 @@ namespace GUI_prototype
             adminYearQualityDashboardChart.Location = new Point(3, 55);
             adminYearQualityDashboardChart.Margin = new Padding(3, 4, 3, 4);
             adminYearQualityDashboardChart.Name = "adminYearQualityDashboardChart";
-            adminYearQualityDashboardChart.Size = new Size(886, 404);
+            adminYearQualityDashboardChart.Size = new Size(886, 414);
             adminYearQualityDashboardChart.TabIndex = 14;
             // 
             // yearlyCommissionsLineChart
@@ -347,10 +362,10 @@ namespace GUI_prototype
             publicQueue.Controls.Add(adminViewQueueGrid);
             publicQueue.Controls.Add(publicCommissionQueueLabel);
             publicQueue.Controls.Add(estimatedTaxPanel);
-            publicQueue.Location = new Point(4, 29);
+            publicQueue.Location = new Point(4, 24);
             publicQueue.Margin = new Padding(3, 4, 3, 4);
             publicQueue.Name = "publicQueue";
-            publicQueue.Size = new Size(892, 462);
+            publicQueue.Size = new Size(892, 472);
             publicQueue.TabIndex = 7;
             publicQueue.Text = "Public Queue";
             publicQueue.UseVisualStyleBackColor = true;
@@ -375,7 +390,7 @@ namespace GUI_prototype
             adminViewQueueGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             adminViewQueueGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             adminViewQueueGrid.Dock = DockStyle.Top;
-            adminViewQueueGrid.Location = new Point(0, 52);
+            adminViewQueueGrid.Location = new Point(0, 100);
             adminViewQueueGrid.Margin = new Padding(3, 4, 3, 4);
             adminViewQueueGrid.Name = "adminViewQueueGrid";
             adminViewQueueGrid.ReadOnly = true;
@@ -383,40 +398,132 @@ namespace GUI_prototype
             adminViewQueueGrid.Size = new Size(892, 352);
             adminViewQueueGrid.TabIndex = 11;
             adminViewQueueGrid.CellFormatting += AdminViewQueueGrid_CellFormatting;
-
-
-            // estimatedTaxPanel
-            // 
-            estimatedTaxPanel.BackColor = Color.FromArgb(224, 224, 224);
-            estimatedTaxPanel.Dock = DockStyle.Top;
-            estimatedTaxPanel.Location = new Point(0, 404);
-            estimatedTaxPanel.Name = "estimatedTaxPanel";
-            estimatedTaxPanel.Size = new Size(892, 48);
-            estimatedTaxPanel.TabIndex = 13;
-            estimatedTaxPanel.Controls.Add(estimatedTaxLabel);
-
-            // estimatedTaxLabel
-            // 
-            estimatedTaxLabel.AutoSize = false;
-            estimatedTaxLabel.Dock = DockStyle.Fill;
-            estimatedTaxLabel.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
-            estimatedTaxLabel.TextAlign = ContentAlignment.MiddleLeft;
-            estimatedTaxLabel.Padding = new Padding(11, 13, 11, 13);
-            estimatedTaxLabel.Name = "estimatedTaxLabel";
-            estimatedTaxLabel.Text = "Estimated Tax on Accepted Commissions: $0.00";
             // 
             // publicCommissionQueueLabel
             // 
             publicCommissionQueueLabel.BackColor = Color.FromArgb(224, 224, 224);
             publicCommissionQueueLabel.Dock = DockStyle.Top;
             publicCommissionQueueLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            publicCommissionQueueLabel.Location = new Point(0, 0);
+            publicCommissionQueueLabel.Location = new Point(0, 48);
             publicCommissionQueueLabel.Name = "publicCommissionQueueLabel";
             publicCommissionQueueLabel.Padding = new Padding(11, 13, 11, 13);
             publicCommissionQueueLabel.Size = new Size(892, 52);
             publicCommissionQueueLabel.TabIndex = 10;
             publicCommissionQueueLabel.Text = "Public Commission Queue";
-            //  
+            // 
+            // estimatedTaxPanel
+            // 
+            estimatedTaxPanel.BackColor = Color.FromArgb(224, 224, 224);
+            estimatedTaxPanel.Controls.Add(estimatedTaxLabel);
+            estimatedTaxPanel.Dock = DockStyle.Top;
+            estimatedTaxPanel.Location = new Point(0, 0);
+            estimatedTaxPanel.Name = "estimatedTaxPanel";
+            estimatedTaxPanel.Size = new Size(892, 48);
+            estimatedTaxPanel.TabIndex = 13;
+            // 
+            // estimatedTaxLabel
+            // 
+            estimatedTaxLabel.Dock = DockStyle.Fill;
+            estimatedTaxLabel.Font = new Font("Segoe UI", 9F);
+            estimatedTaxLabel.Location = new Point(0, 0);
+            estimatedTaxLabel.Name = "estimatedTaxLabel";
+            estimatedTaxLabel.Padding = new Padding(11, 13, 11, 13);
+            estimatedTaxLabel.Size = new Size(892, 48);
+            estimatedTaxLabel.TabIndex = 0;
+            estimatedTaxLabel.Text = "Estimated Tax on Accepted Commissions: $0.00";
+            estimatedTaxLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // allUsersTab
+            // 
+            allUsersTab.Controls.Add(userListPanel);
+            allUsersTab.Location = new Point(4, 24);
+            allUsersTab.Name = "allUsersTab";
+            allUsersTab.Size = new Size(892, 472);
+            allUsersTab.TabIndex = 9;
+            allUsersTab.Text = "All Users";
+            allUsersTab.UseVisualStyleBackColor = true;
+            // 
+            // userListPanel
+            // 
+            userListPanel.Controls.Add(debugButton1);
+            userListPanel.Controls.Add(panel1);
+            userListPanel.Dock = DockStyle.Fill;
+            userListPanel.Location = new Point(0, 0);
+            userListPanel.Name = "userListPanel";
+            userListPanel.Size = new Size(892, 472);
+            userListPanel.TabIndex = 11;
+            // 
+            // debugButton1
+            // 
+            debugButton1.Location = new Point(13, 14);
+            debugButton1.Name = "debugButton1";
+            debugButton1.Size = new Size(132, 23);
+            debugButton1.TabIndex = 15;
+            debugButton1.Text = "Debug - db path";
+            debugButton1.UseVisualStyleBackColor = true;
+            debugButton1.Click += debugButton1_Click;
+            // 
+            // panel1
+            // 
+            panel1.AutoScroll = true;
+            panel1.Controls.Add(deleteUserButton);
+            panel1.Controls.Add(userListGrid);
+            panel1.Controls.Add(loadUsersButton);
+            panel1.Controls.Add(usersListLabel);
+            panel1.Location = new Point(0, 43);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(891, 430);
+            panel1.TabIndex = 14;
+            // 
+            // deleteUserButton
+            // 
+            deleteUserButton.Location = new Point(608, 10);
+            deleteUserButton.Name = "deleteUserButton";
+            deleteUserButton.Size = new Size(132, 23);
+            deleteUserButton.TabIndex = 15;
+            deleteUserButton.Text = "Delete User";
+            deleteUserButton.UseVisualStyleBackColor = true;
+            deleteUserButton.Click += deleteUserButton_Click;
+            // 
+            // userListGrid
+            // 
+            userListGrid.AllowUserToAddRows = false;
+            userListGrid.AllowUserToDeleteRows = false;
+            userListGrid.AllowUserToResizeColumns = false;
+            userListGrid.AllowUserToResizeRows = false;
+            userListGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            userListGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            userListGrid.Dock = DockStyle.Fill;
+            userListGrid.Location = new Point(0, 39);
+            userListGrid.MultiSelect = false;
+            userListGrid.Name = "userListGrid";
+            userListGrid.ReadOnly = true;
+            userListGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            userListGrid.Size = new Size(891, 391);
+            userListGrid.TabIndex = 14;
+            // 
+            // loadUsersButton
+            // 
+            loadUsersButton.Location = new Point(746, 10);
+            loadUsersButton.Name = "loadUsersButton";
+            loadUsersButton.Size = new Size(132, 23);
+            loadUsersButton.TabIndex = 12;
+            loadUsersButton.Text = "Load Users";
+            loadUsersButton.UseVisualStyleBackColor = true;
+            loadUsersButton.Click += loadUsersButton_Click;
+            // 
+            // usersListLabel
+            // 
+            usersListLabel.BackColor = Color.FromArgb(224, 224, 224);
+            usersListLabel.Dock = DockStyle.Top;
+            usersListLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            usersListLabel.Location = new Point(0, 0);
+            usersListLabel.Name = "usersListLabel";
+            usersListLabel.Padding = new Padding(10);
+            usersListLabel.Size = new Size(891, 39);
+            usersListLabel.TabIndex = 8;
+            usersListLabel.Text = "Users List";
+            // 
             // pictureBox2
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
@@ -424,8 +531,8 @@ namespace GUI_prototype
             pictureBox2.Location = new Point(8, 8);
             pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(54, 65);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.Size = new Size(54, 61);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
@@ -445,11 +552,11 @@ namespace GUI_prototype
             // artistInformationTab
             // 
             artistInformationTab.Controls.Add(clientProfileTabs);
-            artistInformationTab.Location = new Point(4, 29);
+            artistInformationTab.Location = new Point(4, 24);
             artistInformationTab.Margin = new Padding(3, 4, 3, 4);
             artistInformationTab.Name = "artistInformationTab";
             artistInformationTab.Padding = new Padding(3, 4, 3, 4);
-            artistInformationTab.Size = new Size(906, 576);
+            artistInformationTab.Size = new Size(906, 581);
             artistInformationTab.TabIndex = 1;
             artistInformationTab.Text = "My Admin Information";
             artistInformationTab.UseVisualStyleBackColor = true;
@@ -468,11 +575,11 @@ namespace GUI_prototype
             // 
             userProfile.Controls.Add(clientProfileLabel);
             userProfile.Controls.Add(labelUserProfile);
-            userProfile.Location = new Point(4, 29);
+            userProfile.Location = new Point(4, 24);
             userProfile.Margin = new Padding(3, 4, 3, 4);
             userProfile.Name = "userProfile";
             userProfile.Padding = new Padding(3, 4, 3, 4);
-            userProfile.Size = new Size(898, 590);
+            userProfile.Size = new Size(898, 595);
             userProfile.TabIndex = 1;
             userProfile.Text = "User Profile";
             userProfile.UseVisualStyleBackColor = true;
@@ -482,9 +589,9 @@ namespace GUI_prototype
             clientProfileLabel.AutoSize = true;
             clientProfileLabel.Location = new Point(13, 77);
             clientProfileLabel.Name = "clientProfileLabel";
-            clientProfileLabel.Size = new Size(296, 120);
+            clientProfileLabel.Size = new Size(81, 60);
             clientProfileLabel.TabIndex = 10;
-            clientProfileLabel.Text = "Username:\r\nPassword: *** (try change to however many)\r\n\r\nAssociated Emails:\r\n\r\n[Reset password]\r\n";
+            clientProfileLabel.Text = "Username:\r\nPassword: *** \r\n\r\n\r\n";
             // 
             // labelUserProfile
             // 
@@ -526,6 +633,11 @@ namespace GUI_prototype
             ((System.ComponentModel.ISupportInitialize)yearlyCommissionsLineChart).EndInit();
             publicQueue.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)adminViewQueueGrid).EndInit();
+            estimatedTaxPanel.ResumeLayout(false);
+            allUsersTab.ResumeLayout(false);
+            userListPanel.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)userListGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             artistInformationTab.ResumeLayout(false);
             clientProfileTabs.ResumeLayout(false);
@@ -570,6 +682,14 @@ namespace GUI_prototype
         private Button reloadYearlyDashboardButton;
         private Panel estimatedTaxPanel;
         private Label estimatedTaxLabel;
+        private TabPage allUsersTab;
+        private Panel userListPanel;
+        private Button debugButton1;
+        private Panel panel1;
+        private Button deleteUserButton;
+        private DataGridView userListGrid;
+        private Button loadUsersButton;
+        private Label usersListLabel;
 
         // Placeholder for additional field declarations (actual fields will be added at bottom)
     }
