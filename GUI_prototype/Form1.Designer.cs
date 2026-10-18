@@ -1,6 +1,6 @@
 ﻿namespace GUI_prototype
 {
-    partial class Form1
+    partial class ClientDashboard
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientDashboard));
             label1 = new Label();
             tabAll = new TabControl();
             tabHome = new TabPage();
@@ -128,8 +128,8 @@
             // 
             // tabHome
             // 
-            tabHome.Controls.Add(label9);
             tabHome.Controls.Add(RequestComm);
+            tabHome.Controls.Add(label9);
             tabHome.Controls.Add(HomeParagraph);
             tabHome.Location = new Point(4, 22);
             tabHome.Name = "tabHome";
@@ -604,15 +604,15 @@
             labelUserProfile.TabIndex = 9;
             labelUserProfile.Text = "User Profile";
             // 
-            // Form1
+            // ClientDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             ClientSize = new Size(800, 495);
             Controls.Add(clientTabs);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "ClientDashboard";
+            Text = "Client Dashboard";
             Load += Form1_Load;
             tabAll.ResumeLayout(false);
             tabHome.ResumeLayout(false);

@@ -8,12 +8,12 @@ using System;
 
 namespace GUI_prototype
 {
-    public partial class Form1 : Form
+    public partial class ClientDashboard : Form
     {
         // UI elements for simple role switching in the prototype
         private ArtistInformation artistInformation;
         private User artistUser;
-        public Form1()
+        public ClientDashboard()
         {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace GUI_prototype
         }
         private void RequestComm_Click(object sender, EventArgs e)
         {
-            Form2 newWindow = new Form2();
+            CommissionRequestForm newWindow = new CommissionRequestForm();
 
             newWindow.Show();
             // this.Hide();

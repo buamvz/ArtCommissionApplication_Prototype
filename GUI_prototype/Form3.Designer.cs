@@ -1,6 +1,6 @@
 ﻿namespace GUI_prototype
 {
-    partial class Form3
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -41,9 +41,9 @@
             debugLabel = new Label();
             usernameErrorProvider = new ErrorProvider(components);
             UserTypePanel = new Panel();
-            ArtistButton = new Button();
-            AdminButton = new Button();
             ClientButton = new Button();
+            AdminButton = new Button();
+            ArtistButton = new Button();
             LoginPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)usernameErrorProvider).BeginInit();
             UserTypePanel.SuspendLayout();
@@ -167,16 +167,16 @@
             UserTypePanel.Size = new Size(676, 314);
             UserTypePanel.TabIndex = 3;
             // 
-            // ArtistButton
+            // ClientButton
             // 
-            ArtistButton.Location = new Point(340, 116);
-            ArtistButton.Margin = new Padding(3, 2, 3, 2);
-            ArtistButton.Name = "ArtistButton";
-            ArtistButton.Size = new Size(127, 56);
-            ArtistButton.TabIndex = 1;
-            ArtistButton.Text = "Artist";
-            ArtistButton.UseVisualStyleBackColor = true;
-            ArtistButton.Click += ArtistButton_Click;
+            ClientButton.Location = new Point(207, 116);
+            ClientButton.Margin = new Padding(3, 2, 3, 2);
+            ClientButton.Name = "ClientButton";
+            ClientButton.Size = new Size(127, 56);
+            ClientButton.TabIndex = 0;
+            ClientButton.Text = "Client";
+            ClientButton.UseVisualStyleBackColor = true;
+            ClientButton.Click += ClientButton_Click;
             // 
             // AdminButton
             // 
@@ -189,18 +189,18 @@
             AdminButton.UseVisualStyleBackColor = true;
             AdminButton.Click += AdminButton_Click;
             // 
-            // ClientButton
+            // ArtistButton
             // 
-            ClientButton.Location = new Point(207, 116);
-            ClientButton.Margin = new Padding(3, 2, 3, 2);
-            ClientButton.Name = "ClientButton";
-            ClientButton.Size = new Size(127, 56);
-            ClientButton.TabIndex = 0;
-            ClientButton.Text = "Client";
-            ClientButton.UseVisualStyleBackColor = true;
-            ClientButton.Click += ClientButton_Click;
+            ArtistButton.Location = new Point(340, 116);
+            ArtistButton.Margin = new Padding(3, 2, 3, 2);
+            ArtistButton.Name = "ArtistButton";
+            ArtistButton.Size = new Size(127, 56);
+            ArtistButton.TabIndex = 1;
+            ArtistButton.Text = "Artist";
+            ArtistButton.UseVisualStyleBackColor = true;
+            ArtistButton.Click += ArtistButton_Click;
             // 
-            // Form3
+            // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -209,8 +209,8 @@
             Controls.Add(debugLabel);
             Controls.Add(LoginPanel);
             Margin = new Padding(3, 2, 3, 2);
-            Name = "Form3";
-            Text = "Form3";
+            Name = "LoginForm";
+            Text = "Login";
             LoginPanel.ResumeLayout(false);
             LoginPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)usernameErrorProvider).EndInit();

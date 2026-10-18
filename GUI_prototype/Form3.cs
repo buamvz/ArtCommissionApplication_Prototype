@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace GUI_prototype
 {
-    public partial class Form3 : Form
+    public partial class LoginForm : Form
     {
         // sienna - claimed role will track what the current user plans to sign in as and will be used for the debug label
         private SystemRole? claimedRole = null;
@@ -20,7 +20,7 @@ namespace GUI_prototype
 
         private readonly ErrorProvider errorProvider;
 
-        public Form3()
+        public LoginForm()
         {
             InitializeComponent();
             LoginPanel.Visible = false;
@@ -200,7 +200,7 @@ namespace GUI_prototype
                 //SIENNAAA CHANGE WHAT FORMS THESE ROLES GO TO LATER!!!!!!!!!!! 
                 // sienna - OKAY I MADE ARTIST FORM
                 case SystemRole.Client:
-                    nextForm = new Form1();
+                    nextForm = new ClientDashboard();
                     break;
                 case SystemRole.Artist:
                     // Keep the existing destination for now.

@@ -13,7 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI_prototype
 {
-    public partial class Form2 : Form
+    public partial class CommissionRequestForm : Form
     {
         private Client client;
         private CommissionInformation commissionInfo;
@@ -31,7 +31,7 @@ namespace GUI_prototype
 
         private readonly ErrorProvider errorProvider;
 
-        public Form2()
+        public CommissionRequestForm()
         {
             InitializeComponent();
 
@@ -269,7 +269,7 @@ namespace GUI_prototype
                 // Notify the main form so the new commission appears in the "My Commissions" view.
                 try
                 {
-                    var main = Application.OpenForms.OfType<Form1>().FirstOrDefault();
+                    var main = Application.OpenForms.OfType<ClientDashboard>().FirstOrDefault();
                     main?.AddCommissionToMyCommissions(commission);
                 }
                 catch

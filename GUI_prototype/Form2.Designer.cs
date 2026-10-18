@@ -1,6 +1,6 @@
 ﻿namespace GUI_prototype
 {
-    partial class Form2
+    partial class CommissionRequestForm
     {
         /// <summary>
         /// Required designer variable.
@@ -447,7 +447,7 @@
             estimatePrice.TabIndex = 7;
             estimatePrice.Text = "Estimated Price (NZD): ";
             // 
-            // Form2
+            // CommissionRequestForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -456,8 +456,8 @@
             Controls.Add(requestSubmittedPanel);
             Controls.Add(label2);
             Controls.Add(commissionFormPanel);
-            Name = "Form2";
-            Text = "Form2";
+            Name = "CommissionRequestForm";
+            Text = "Commission Request Form";
             commissionFormPanel.ResumeLayout(false);
             commissionFormPanel.PerformLayout();
             needbyDateInput.ResumeLayout(false);
