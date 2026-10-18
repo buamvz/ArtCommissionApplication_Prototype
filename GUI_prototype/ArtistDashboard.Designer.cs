@@ -58,6 +58,7 @@
             rejectedCommissionsLabel = new Label();
             pictureBox2 = new PictureBox();
             label1 = new Label();
+            pictureBox4 = new PictureBox();
             artistInformationTab = new TabPage();
             artistProfileTabs = new TabControl();
             artistProfile = new TabPage();
@@ -86,7 +87,14 @@
             label6 = new Label();
             labelTermsOfService = new Label();
             galleryEditor = new TabPage();
-            pictureBox4 = new PictureBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            pictureBox3 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            pictureBox8 = new PictureBox();
+            pictureBox7 = new PictureBox();
+            pictureBox9 = new PictureBox();
+            label11 = new Label();
             artistTabs.SuspendLayout();
             workspaceTab.SuspendLayout();
             ArtistCommissionsDashboardTabs.SuspendLayout();
@@ -101,12 +109,20 @@
             completedCommissions.SuspendLayout();
             rejectedCommissions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             artistInformationTab.SuspendLayout();
             artistProfileTabs.SuspendLayout();
             artistProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tosEditor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            galleryEditor.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             SuspendLayout();
             // 
             // artistTabs
@@ -454,6 +470,18 @@
             label1.Text = "JellyPhlox Commission Dashboard";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // pictureBox4
+            // 
+            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
+            pictureBox4.Dock = DockStyle.Top;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(3, 3);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(786, 46);
+            pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox4.TabIndex = 24;
+            pictureBox4.TabStop = false;
+            // 
             // artistInformationTab
             // 
             artistInformationTab.Controls.Add(artistProfileTabs);
@@ -740,6 +768,8 @@
             // 
             // galleryEditor
             // 
+            galleryEditor.Controls.Add(flowLayoutPanel1);
+            galleryEditor.Controls.Add(label11);
             galleryEditor.Location = new Point(4, 24);
             galleryEditor.Name = "galleryEditor";
             galleryEditor.Size = new Size(785, 457);
@@ -747,17 +777,92 @@
             galleryEditor.Text = "Gallery Images";
             galleryEditor.UseVisualStyleBackColor = true;
             // 
-            // pictureBox4
+            // flowLayoutPanel1
             // 
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
-            pictureBox4.Dock = DockStyle.Top;
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(3, 3);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(786, 46);
-            pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox4.TabIndex = 24;
-            pictureBox4.TabStop = false;
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Controls.Add(pictureBox3);
+            flowLayoutPanel1.Controls.Add(pictureBox5);
+            flowLayoutPanel1.Controls.Add(pictureBox6);
+            flowLayoutPanel1.Controls.Add(pictureBox8);
+            flowLayoutPanel1.Controls.Add(pictureBox7);
+            flowLayoutPanel1.Controls.Add(pictureBox9);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 39);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(785, 418);
+            flowLayoutPanel1.TabIndex = 14;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.dottore;
+            pictureBox3.Location = new Point(3, 3);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(189, 239);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 0;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = Properties.Resources.paradise;
+            pictureBox5.Location = new Point(198, 3);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(197, 239);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 1;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = Properties.Resources.kpopdh_zine;
+            pictureBox6.Location = new Point(401, 3);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(342, 239);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 2;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.Image = Properties.Resources.artfight_3again2;
+            pictureBox8.Location = new Point(3, 248);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(313, 253);
+            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox8.TabIndex = 5;
+            pictureBox8.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = Properties.Resources.corazon_zine;
+            pictureBox7.Location = new Point(322, 248);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(187, 263);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 3;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            pictureBox9.Image = Properties.Resources.artfight;
+            pictureBox9.Location = new Point(515, 248);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(226, 259);
+            pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox9.TabIndex = 4;
+            pictureBox9.TabStop = false;
+            // 
+            // label11
+            // 
+            label11.BackColor = Color.FromArgb(224, 224, 224);
+            label11.Dock = DockStyle.Top;
+            label11.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Location = new Point(0, 0);
+            label11.Name = "label11";
+            label11.Padding = new Padding(10);
+            label11.Size = new Size(785, 39);
+            label11.TabIndex = 13;
+            label11.Text = "Samples of Work";
             // 
             // ArtistDashboard
             // 
@@ -782,6 +887,7 @@
             completedCommissions.ResumeLayout(false);
             rejectedCommissions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             artistInformationTab.ResumeLayout(false);
             artistProfileTabs.ResumeLayout(false);
             artistProfile.ResumeLayout(false);
@@ -789,7 +895,14 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tosEditor.ResumeLayout(false);
             tosEditor.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            galleryEditor.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ResumeLayout(false);
         }
 
@@ -856,5 +969,13 @@
         private Button reloadCompletedCommsButton;
         private FlowLayoutPanel artistCompletedCommissionsList;
         private PictureBox pictureBox4;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox5;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox8;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox9;
+        private Label label11;
     }
 }

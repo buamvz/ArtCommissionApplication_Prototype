@@ -260,6 +260,10 @@ namespace GUI_prototype
             {
                 LoadArtistTos();
             }
+            else if (currentTab == tabQueue)
+            {
+                ReloadQueue();
+            }
         }
 
         // sienna - notification for change in status

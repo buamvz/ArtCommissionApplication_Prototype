@@ -207,9 +207,9 @@ namespace GUI_prototype
             // character crop height
             if (cropTypeInputHeadshot.Checked)
                 inputCrop = CharacterCrop.Headshot;
-            else if (cropTypeInputHeadshot.Checked)
+            else if (cropTypeInputHalfbody.Checked)
                 inputCrop = CharacterCrop.Halfbody;
-            else if (cropTypeInputHeadshot.Checked)
+            else if (cropTypeInputFullbody.Checked)
                 inputCrop = CharacterCrop.Fullbody;
 
             // number of charcters
