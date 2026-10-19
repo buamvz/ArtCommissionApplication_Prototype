@@ -14,7 +14,7 @@ namespace ArtCommisionApplication.Test
     [DoNotParallelize]
     public class CommissionRequestTests
     {
-        // sienna - switching to a test user database (its been adding to main oops)
+        // sienna - switching to a test user database
         private string testUserDatabasePath;
 
         [TestInitialize]

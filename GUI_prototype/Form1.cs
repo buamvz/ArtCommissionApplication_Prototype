@@ -50,7 +50,10 @@ namespace GUI_prototype
                 connection.Open();
 
                 using var cmd = connection.CreateCommand();
-                cmd.CommandText = "SELECT Id, ClientName, CropType, NumberOfCharacters, HasBackground, Status FROM Commissions;"; // sienna - loads only what we want public
+                cmd.CommandText = "SELECT Id, ClientName, CropType, NumberOfCharacters, HasBackground, Status FROM Commissions WHERE Status IN ($Accepted, $InProgress);"; // sienna - loads only what we want public
+
+                cmd.Parameters.AddWithValue("$Accepted", (int)CommissionStatus.Accepted);
+                cmd.Parameters.AddWithValue("$InProgress", (int)CommissionStatus.InProgress);
 
                 using var reader = cmd.ExecuteReader();
 
@@ -69,8 +72,7 @@ namespace GUI_prototype
 
         private void PublicQueueGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            string columnName =
-                publicQueueGrid.Columns[e.ColumnIndex].Name;
+            string columnName = publicQueueGrid.Columns[e.ColumnIndex].Name;
 
             if (columnName == "Status" && e.Value != null && e.Value != DBNull.Value)
             {
@@ -305,6 +307,8 @@ namespace GUI_prototype
         // sienna - making the home view tab update to artist username
         private void LoadIntro()
         {
+            if (artistUser != null) artistPagesTab.Text = artistUser.Username;
+
             if (HomeParagraph == null) return;
 
             HomeParagraph.Text = $"Welcome to {artistUser.Username} commissions page, have a look around! \n\n" +

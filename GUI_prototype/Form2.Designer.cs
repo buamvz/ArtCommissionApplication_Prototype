@@ -238,7 +238,6 @@
             descriptionInput.Name = "descriptionInput";
             descriptionInput.Size = new Size(420, 133);
             descriptionInput.TabIndex = 25;
-            descriptionInput.Text = "Junpei and me at the park";
             // 
             // backgroundBool
             // 

@@ -29,12 +29,12 @@ namespace GUI_prototype
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             splitContainer1 = new SplitContainer();
             label12 = new Label();
@@ -186,7 +186,7 @@ namespace GUI_prototype
             commissionOverview.Padding = new Padding(3, 4, 3, 4);
             commissionOverview.Size = new Size(892, 472);
             commissionOverview.TabIndex = 6;
-            commissionOverview.Text = "Commission Overview";
+            commissionOverview.Text = "Commissions Overview";
             commissionOverview.UseVisualStyleBackColor = true;
             // 
             // artistAdminViewCommissionsList
@@ -260,19 +260,19 @@ namespace GUI_prototype
             // 
             // typeCommissionsPieChart
             // 
-            chartArea1.Name = "ChartArea1";
-            typeCommissionsPieChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            typeCommissionsPieChart.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            typeCommissionsPieChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            typeCommissionsPieChart.Legends.Add(legend3);
             typeCommissionsPieChart.Location = new Point(3, 3);
             typeCommissionsPieChart.Name = "typeCommissionsPieChart";
             typeCommissionsPieChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series1.YValuesPerPoint = 2;
-            typeCommissionsPieChart.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series3.YValuesPerPoint = 2;
+            typeCommissionsPieChart.Series.Add(series3);
             typeCommissionsPieChart.Size = new Size(573, 375);
             typeCommissionsPieChart.TabIndex = 0;
             typeCommissionsPieChart.Text = "typeCommissionsPieChart";
@@ -326,19 +326,19 @@ namespace GUI_prototype
             // 
             // yearlyCommissionsLineChart
             // 
-            chartArea2.Name = "ChartArea2";
-            yearlyCommissionsLineChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            yearlyCommissionsLineChart.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea2";
+            yearlyCommissionsLineChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            yearlyCommissionsLineChart.Legends.Add(legend4);
             yearlyCommissionsLineChart.Location = new Point(3, 3);
             yearlyCommissionsLineChart.Name = "yearlyCommissionsLineChart";
             yearlyCommissionsLineChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series2.ChartArea = "ChartArea2";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            series2.YValuesPerPoint = 2;
-            yearlyCommissionsLineChart.Series.Add(series2);
+            series4.ChartArea = "ChartArea2";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            series4.YValuesPerPoint = 2;
+            yearlyCommissionsLineChart.Series.Add(series4);
             yearlyCommissionsLineChart.Size = new Size(573, 375);
             yearlyCommissionsLineChart.TabIndex = 0;
             yearlyCommissionsLineChart.Text = "yearlyCommissionsLineChart";
@@ -367,7 +367,7 @@ namespace GUI_prototype
             publicQueue.Name = "publicQueue";
             publicQueue.Size = new Size(892, 472);
             publicQueue.TabIndex = 7;
-            publicQueue.Text = "Public Queue";
+            publicQueue.Text = "Commission History";
             publicQueue.UseVisualStyleBackColor = true;
             // 
             // reloadQueueButton

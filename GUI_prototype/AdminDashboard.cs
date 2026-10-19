@@ -463,15 +463,15 @@ namespace GUI_prototype
 
             userListGrid.Columns.Add("Username", "Username");
             userListGrid.Columns.Add("Role", "Role");
-            userListGrid.Columns.Add("Hash", "Password Hash");
-            userListGrid.Columns.Add("Salt", "Password Salt");
+            //userListGrid.Columns.Add("Hash", "Password Hash");
+            //userListGrid.Columns.Add("Salt", "Password Salt");
             foreach (var user in users)
             {
                 userListGrid.Rows.Add(
                     user.Username,
-                    user.Role.ToString(),
-                    user.PasswordHash,
-                    user.PasswordSalt
+                    user.Role.ToString()
+                    //user.PasswordHash,
+                    //user.PasswordSalt
                 );
             }
         }

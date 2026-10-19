@@ -32,8 +32,8 @@
             label1 = new Label();
             tabAll = new TabControl();
             tabHome = new TabPage();
-            label9 = new Label();
             RequestComm = new Button();
+            label9 = new Label();
             HomeParagraph = new Label();
             tabInformation = new TabPage();
             labelArtistEmail = new Label();
@@ -139,18 +139,6 @@
             tabHome.Text = "Home";
             tabHome.UseVisualStyleBackColor = true;
             // 
-            // label9
-            // 
-            label9.BackColor = Color.FromArgb(224, 224, 224);
-            label9.Dock = DockStyle.Top;
-            label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(3, 3);
-            label9.Name = "label9";
-            label9.Padding = new Padding(10);
-            label9.Size = new Size(772, 39);
-            label9.TabIndex = 5;
-            label9.Text = "Commission Request";
-            // 
             // RequestComm
             // 
             RequestComm.AccessibleName = "RequestComm";
@@ -164,6 +152,18 @@
             RequestComm.Text = "Request Commission Form";
             RequestComm.UseVisualStyleBackColor = false;
             RequestComm.Click += RequestComm_Click;
+            // 
+            // label9
+            // 
+            label9.BackColor = Color.FromArgb(224, 224, 224);
+            label9.Dock = DockStyle.Top;
+            label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(3, 3);
+            label9.Name = "label9";
+            label9.Padding = new Padding(10);
+            label9.Size = new Size(772, 39);
+            label9.TabIndex = 5;
+            label9.Text = "Commission Request";
             // 
             // HomeParagraph
             // 
@@ -543,6 +543,7 @@
             // 
             // userMyCommissionsList
             // 
+            userMyCommissionsList.AutoScroll = true;
             userMyCommissionsList.Dock = DockStyle.Fill;
             userMyCommissionsList.Location = new Point(3, 42);
             userMyCommissionsList.Name = "userMyCommissionsList";

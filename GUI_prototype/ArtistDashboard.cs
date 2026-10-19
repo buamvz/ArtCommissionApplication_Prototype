@@ -126,39 +126,6 @@ namespace GUI_prototype
             CommissionRepository.UpdateStatus(req.Id, newStatus);
 
             NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {newStatus}");
-
-            //switch (combo.SelectedItem.ToString())
-            //{
-            //    case "Pending":
-            //        req.SetStatus(CommissionStatus.Pending);
-            //        CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Pending);
-            //        NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {req.Status}");
-            //        break;
-
-            //    case "Rejected":
-            //        req.SetStatus(CommissionStatus.Rejected);
-            //        CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Rejected);
-            //        NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {req.Status}");
-            //        break;
-
-            //    case "Accepted":
-            //        req.SetStatus(CommissionStatus.Accepted);
-            //        CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Accepted);
-            //        NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {req.Status}");
-            //        break;
-
-            //    case "InProgress":
-            //        req.SetStatus(CommissionStatus.InProgress);
-            //        CommissionRepository.UpdateStatus(req.Id, CommissionStatus.InProgress);
-            //        NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {req.Status}");
-            //        break;
-
-            //    case "Completed":
-            //        req.SetStatus(CommissionStatus.Completed);
-            //        CommissionRepository.UpdateStatus(req.Id, CommissionStatus.Completed);
-            //        NotificationRepository.AddNotification(req.Client.ClientName, $"Your commission #{req.Id} status changed to {req.Status}");
-            //        break;
-            //}
         }
 
         private void LoadPendingCommissionRequests()

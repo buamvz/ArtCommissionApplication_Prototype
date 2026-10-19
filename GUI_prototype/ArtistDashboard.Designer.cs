@@ -593,7 +593,7 @@
             // bioTextBox
             // 
             bioTextBox.Location = new Point(91, 119);
-            bioTextBox.MaxLength = 3000;
+            bioTextBox.MaxLength = 2000;
             bioTextBox.Multiline = true;
             bioTextBox.Name = "bioTextBox";
             bioTextBox.Size = new Size(322, 182);
@@ -698,7 +698,7 @@
             // wontDrawTextBox
             // 
             wontDrawTextBox.Location = new Point(608, 132);
-            wontDrawTextBox.MaxLength = 3000;
+            wontDrawTextBox.MaxLength = 1000;
             wontDrawTextBox.Multiline = true;
             wontDrawTextBox.Name = "wontDrawTextBox";
             wontDrawTextBox.Size = new Size(153, 316);
@@ -716,7 +716,7 @@
             // willDrawTextBox
             // 
             willDrawTextBox.Location = new Point(449, 132);
-            willDrawTextBox.MaxLength = 3000;
+            willDrawTextBox.MaxLength = 1000;
             willDrawTextBox.Multiline = true;
             willDrawTextBox.Name = "willDrawTextBox";
             willDrawTextBox.Size = new Size(153, 316);
@@ -742,7 +742,7 @@
             // termsTextBox
             // 
             termsTextBox.Location = new Point(19, 132);
-            termsTextBox.MaxLength = 3000;
+            termsTextBox.MaxLength = 2000;
             termsTextBox.Multiline = true;
             termsTextBox.Name = "termsTextBox";
             termsTextBox.Size = new Size(420, 316);

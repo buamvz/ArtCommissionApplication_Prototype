@@ -192,6 +192,7 @@ namespace GUI_prototype
         }
 
         // assignemt logic done after submit has been clicked
+        private User artistUser;
         private void SubmitRequestButton_Click(object sender, EventArgs e)
         {
             // === client info ===
@@ -282,6 +283,8 @@ namespace GUI_prototype
                 // ignore persistence errors for prototype and continue to show confirmation
             }
 
+
+
             finalCommissionDetails =
                 "=== Client (You) === \n" +
                 "Name: " + client.ClientName + "\n" +
@@ -302,6 +305,10 @@ namespace GUI_prototype
             requestSubmittedPanel.Enabled = true;
             estimatePrice.Visible = false;
             estimatePrice.Enabled = false;
+
+            artistUser = UserRepository.GetArtistUser();
+            if (artistUser != null)
+                label9.Text = $"Thank you for your commission! {artistUser.Username} will get back to you shortly about your acceptance. \r\n\r\nYour commission details are as follows:\r\n";
 
             commissionDetails.Text = finalCommissionDetails;
         }
